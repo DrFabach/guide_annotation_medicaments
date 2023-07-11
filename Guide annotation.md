@@ -11,44 +11,44 @@ L'ensemble de la tâche d'annotation sera centrée sur les médicaments
 mais l'ensemble des concepts suivant doit être annoté ou corrigé (à
 partir de la préannotation) dans le document :
 
--   [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) : **drug**, **ATC**
+-   [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) : **"drug"**, **"class"**
 
--   Dose : **dose** (en relation ou non avec un médicament)
+-  [Dose](#dose-dose) : **"dose"** (en relation ou non avec un médicament)
 
--   Fréquence : **freq** (en relation ou non avec un médicament)
+-   [Fréquence](#fréquence-freq) : **"freq"** (en relation ou non avec un médicament)
 
--   Durée : **duration** (en relation ou non avec un médicament)
+-   [Durée](#durée-duree)  : **"duration"** (en relation ou non avec un médicament)
 
--   Voie d'administration : **route** (en relation ou non avec un
+-   [Voie d'administration](#voie-dadministration-route) : **"route"** (en relation ou non avec un
     médicament)
 
--   Condition : **condition** (en relation ou non avec un médicament)
+-   [Condition](#condition-condition) : **"condition"** (en relation ou non avec un médicament)
 
--   Date : **date** (en relation ou non avec un médicament)
+-   [Date]("#date-date") : **"date"** (en relation ou non avec un médicament)
 
 Le deuxième objectif est d'extraire les relations entre ces annotations
 et les médicaments, l'ensemble des relations suivantes nécessite d'être
 annoté :
 
--   start : entre une **date** et un **drug** ou **ATC**
+-   ["start"](#start) : entre une **"date"** et un **"drug"** ou **"class"**
 
--   stop ente une **date** et **drug** ou **ATC**
+-   ["stop"](#stop): entre une **"date"** et **"drug"** ou **"class"**
 
--   duration_presc : entre une **duration** et **drug** ou **ATC**
+-   ["duration_presc"](#duree-prescription) : entre une **"duration"** et **"drug"** ou **"class"**
 
--   duration_admin : entre une **duration** et **drug** ou **ATC** IV
+-   ["duration_admin"](#duree-administration) : entre une **"duration"** et **"drug"** ou **"class"** IV
 
--   refer_to : entre une **dose**, une **route**, une **freq** ou une
-    **condition** et un **drug** ou **ATC**
+-   ["refer_to"](#relation-simple) : entre une **"dose"**, une **"route"**, une **"freq"** ou une
+    **"condition"** et un **"drug"** ou **"class"**
 
 Le dernier objectif est d'extraire les relations temporelle : arrivé à
 replacer les entité temporelle les unes par rapport aux autres si elles
-sont relatives. <!--# Vraimen t? peut-être utopique -->
+sont relatives. <!--# Vraimen t? peut-être utopique -<-->
 
-Si une entité est disjointe, la relation : **same_ent** doit être
+Si une entité est disjointe, la relation : **"same_ent"** doit être
 utilisé entre les deux parties de l'entité. Si un médicament est répété
 plus loin dans le texte sans notion du nom ou de la classe, une relation
-**coref** doit être utilisée.
+**"coref"** doit être utilisée.
 
 Chaque médicaments ne peut avoir au maximum qu'une seule de ces lignes.
 S'il est nécessaire de dupliquer le lignes, il est nécessaire d'annoter
@@ -57,7 +57,7 @@ exemple [Exemple 1 :]
 
 | A annoté               | Class d'annotation | Relation avec le médicaments | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
-| médicaments            | drugs/ATC          |                              | arimidex/corticoide         |
+| médicaments            | drugs/class          |                              | arimidex/corticoide         |
 | Dose                   | dose               | refer_to                     | 1 G de doliprane            |
 | Fréquence              | freq               | refer_to                     | 3 cp/jour                   |
 | Voie d'administration  | route              | refer_to                     | en intraveineuse            |
@@ -65,7 +65,12 @@ exemple [Exemple 1 :]
 | Durée de prescription  | duration           | duration_presc               | arimidex pendant 5 ans      |
 | Date de début          | DATE               | start                        | dès ce jour                 |
 | Date de fin            | DATE               | stop                         | arrêt le 4 juin             |
+| Traitement en cours           | DATE               | en_cours                         | actuellement sous amoxicilline             |
 | Date non spécifié      | DATE               | refer_to                     | il y a environ 3-4 semaines |
+| Elément contextuel    | context               | negated                  |  |
+| Elément contextuel    | context               | hypotetical                  |  |
+| Elément contextuel    | context               | experiencer                  |  |
+
 
 
 
@@ -75,7 +80,7 @@ d'orthographe, sauf si ces fautes d'orthographe peuvent induire une
 confusion.
 
 
-<a name="medicament"></a>
+
 
 # Médicament ou Classe de Médicaments
 
@@ -173,11 +178,19 @@ Les pronoms qui font référence à un médicament ne doivent pas être inclus, 
 
 
 
-### Attributs
+### Attributs de context
 
-- Certitude (**certainty**) : Par défaut la certitude **"factual"** est donnée. Pour les médicaments suggérés ou incertains, un attribut de certitude **"suggested"**/**"uncertain"** doit être ajouté. Pour les médicaments non pris ou non donnés, un attribut de certitude **"negated"** doit être ajouté (la relation sur un médicament négativé peut être annotée, par exemple, la relation entre avk et durée doit être annotée pour "pas d'avk pendant 2 jours"). Pour les médicaments mentionnés comme contre-indication, la certitude **"counterindication"** doit être annotée.
+- annotez les phrases nominales qui modifie le context du médicament (négation, hypothétique, contre-indication, relaté à une autre personnes)
 
-- Expérimentateur (**experiencer**) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur (**"family"**/**"other"**).
+- Puis reliez ces éléments aux médicaments avec une des relations possible : **negated**, **uncertain**,**"counterindication"**  **experiencer**
+
+- Pour les médicaments suggérés ou incertains, un attribut de certitude **"uncertain"** doit être ajouté. 
+
+- Pour les médicaments non pris ou non donnés, un attribut de certitude **"negated"** doit être ajouté (la relation sur un médicament négativé peut être annotée, par exemple, la relation entre avk et durée doit être annotée pour "pas d'avk pendant 2 jours"). 
+
+- Pour les médicaments mentionnés comme contre-indication, la certitude **"counterindication"** doit être annotée.
+
+- Expérimentateur (**experiencer**) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur .
 
 
 
@@ -192,13 +205,15 @@ Les pronoms qui font référence à un médicament ne doivent pas être inclus, 
   - **"class"** : *oxygenotherapie*
 - *grand-mere maternelle : diabete de type 2 a 61 ans, sans surpoids, traitee par insuline*
   - **"drug"** : *insuline*
-    - **"experiencer"** : family
+  - **context** : *grand-mere maternelle*
+  - relation : *grand-mere maternelle* <--> *insuline* : **experiencer**
 
-Chaque référence conjointe d'un médicament (nom de classe ou de médicament) ou de ses génériques, y compris avec des fautes d'orthographe, dans la même phrase, doit être annotée.
+Chaque référence conjointe d'un médicament (nom de classe ou de médicament) ou de ses génériques, y compris avec des fautes d'orthographe, dans la même phrase, doit être annotée. Une relation de **"coref"** entre les entités doit être rajouté
 
 - *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol 1 boite)*
   - **"drug"** : *doliprane*
   - **"drug"** : *paracetamol*
+  - relation : *doliprane* <--> *paracetamol* : **"coref"**
 - *(matin : 9-12 ui novorapid(1), 20 ui levemir(1), dans les 4 zones.*
 *(gouter : 5-7 ui novorapid(2).*
 *(soir : 6-8 ui novorapid(3), 15 ui levemir(2), dans les 4 zones.*
@@ -207,24 +222,45 @@ Chaque référence conjointe d'un médicament (nom de classe ou de médicament) 
   - **"drug"** : *novorapid(2)*
   - **"drug"** : *novorapid(3)*
   - **"drug"** : *levemir(2)*
-
+  - relations : 
+    - *novorapid(1)* <--> *novorapid(2)* : **"coref"**
+    - *novorapid(2)* <--> *novorapid(3)* : **"coref"**
+    - *levemir(1)* <--> *levemir(2)* : **"coref"**
+    
 Si un médicament est écrit comme médicament et comme classe dans la même phrase, annoter les deux (comme classe et comme médicament). L'association d'un médicament à une classe dans la même phrase entraîne une annotation "drug" par médicament :
 
 - *relais par avk au cours de l'hospitalisation (coumadine)*
   - **"drug"** : *coumadine*
   - **"class"** : *avk*
+  - relation :  *avk* <-- *coumadine* : **"coref"**
 - *un traitement antiretroviral a ete debute (truvada, reyataz et norvir avec une charge virale…)*
   - **"class"** : *traitement antiretroviral*
   - **"drug"** : *truvada*
   - **"drug"** : *reyataz*
   - **"drug"** : *norvir*
+  - relations : 
+    - *traitement antiretroviral* <-- *truvada* : **"coref"**
+    - *traitement antiretroviral* <-- *reyataz* : **"coref"**
+    - *traitement antiretroviral* <-- *norvir* : **"coref"**
+    
 
-L'énumération des médicaments partageant un mot doit être annotée ensemble :
+L'énumération des médicaments partageant un mot doit être annotée en entité disjointe en utilisant les relations **"same_ent"** :
 
 - *vitamine C , D , A , and E*
-  - **"drug"** : *vitamine C , D , A , and E*
-
-Mais :
+  - **"drug"** : *vitamine*
+  - **"drug"** : *vitamine*
+  - **"drug"** : *vitamine*
+  - **"drug"** : *vitamine*
+  - **"drug"** : *C*
+  - **"drug"** : *D*
+  - **"drug"** : *A*
+  - **"drug"** : *E*
+  - relations : 
+    - *vitamine* --> *C* : **"same_ent"**
+    - *vitamine* --> *D* : **"same_ent"**
+    - *vitamine* --> *A* : **"same_ent"**
+    - *vitamine* --> *E* : **"same_ent"**
+  
 
 - *une dose de vitamine C et vitamine D*
   - **"drug"** : *vitamine C*
@@ -246,7 +282,7 @@ Dans le cas d'un dispositif médical, on annote uniquement le médicament (s'il 
   - **"drug"** : *MIRENA*
 
 <a name="dose"></a>
-
+-------------------------------------------------------
 # Dose (**"dose"**)
 
 La quantité d'un seul médicament utilisé dans chaque administration, par exemple *un comprimé, une dose, 30 mg*.
