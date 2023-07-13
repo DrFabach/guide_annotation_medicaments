@@ -43,7 +43,7 @@ annoté :
 
 Le dernier objectif est d'extraire les relations temporelle : arrivé à
 replacer les entité temporelle les unes par rapport aux autres si elles
-sont relatives. <!--# Vraimen t? peut-être utopique -<-->
+sont relatives. <!--# Vraiment? peut-être utopique --->
 
 Si une entité est disjointe, la relation : **"same_ent"** doit être
 utilisé entre les deux parties de l'entité. Si un médicament est répété
@@ -63,6 +63,7 @@ exemple [Exemple 1 :]
 | Voie d'administration  | route              | refer_to                     | en intraveineuse            |
 | Durée d'administration | duration           | duration_admin               | 1L de serum phy pendant 5h  |
 | Durée de prescription  | duration           | duration_presc               | arimidex pendant 5 ans      |
+| Condition de dispensation | condition           | refer_to               | doliprane en si besoin      |
 | Date de début          | DATE               | start                        | dès ce jour                 |
 | Date de fin            | DATE               | stop                         | arrêt le 4 juin             |
 | Traitement en cours           | DATE               | en_cours                         | actuellement sous amoxicilline             |
@@ -289,7 +290,7 @@ La quantité d'un seul médicament utilisé dans chaque administration, par exem
 
 ## Que faut-il annoter ?
 
-Les informations numériques et/ou textuelles qui marquent la quantité et l'unité d'administration d'un médicament utilisé dans une seule administration.
+Les informations numériques et/ou textuelles qui marquent la quantité et l'unité d'administration d'un médicament utilisé dans une seule administration, mais également les quantités et unité d'administration non en relation avec un médicament.
 
 ### Inclut (liste non exhaustive) :
 
@@ -308,6 +309,7 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
 - 3 bolus
 - double dose
 - [renutril] 500
+- poids 90kg 
 
 ### Exclut :
 
@@ -324,30 +326,52 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
 
 Annotez tous les doses mentionnés de tous les médicaments présents dans le résumé de sortie et leur relation avec celui-ci, même s'il fait partie du nom du médicament.
 
-- *speciafoldine 5mg 10 jours par mois*
-  - **"dose"** : *5mg*
-- *oracilline 500mui x 2 par jour.*
-  - **"dose"** : *500mui*
-- *depakine 500 x 3 par jour*
-  - **"dose"** : *500*
-- *vitabact 0,05 % : x4/jour dans chaque oeil pendant 10 jours*
-  - **"dose"**: *0,05 %*
+### Relations avec le médicament
 
-Annotez tous les doses partiels.
+Utilisé la relation **"refer_to"** si la dose est en rapport avec un médicament.
+
+### Exemples : 
+
+
+- *speciafoldine 5mg 10 jours par mois*
+  - **"drugs"** : *speciafoldine*
+  - **"dose"** : *5mg*
+  - relation : *5mg* --> *speciafoldine* : **"refer_to"**
+- *oracilline 500mui x 2 par jour.*
+   - **"drugs"** : *oracilline*
+  - **"dose"** : *500mui*
+  - relation : *500mui* --> *oracilline* : **"refer_to"**
+- *depakine 500 x 3 par jour*
+  - **"drugs"** : *depakine*
+  - **"dose"** : *500*
+  - relation : *500* --> *depakine* : **"refer_to"**
+- *vitabact 0,05 % : x4/jour dans chaque oeil pendant 10 jours*
+  - **"drugs"** : *vitabact*
+  - **"dose"**: *0,05 %*
+  - relation : *0,05 %* --> *vitabact* : **"refer_to"**
+
+Annotez tous les doses partiels, et les rassembler avec une relation de coreference: <!--# Faut-il rajouter une notion spéciale pour les doses partielles, fréquences partielles? Pour les distinguer des corefs qui sont sensées repréenter les mêmes choses exactement --->
 
 - *hydrea 500mg un jour sur 2, 1000mg un jour sur 2*.
   - **"dose"** : *500mg*
   - **"dose"** : *1000mg*
+  - relation : 
+      - *500mg* <--> *1000mg* : **"coref"**
 - *hydrocortisone : 7,5 mg le matin, 5 mg le soir (12,5 mg/m²/jour )*
   - **"dose"** : *7,5 mg*
   - **"dose"** : *5 mg*
   - **"dose"** : *12,5mg/m²*
+   - relation : 
+      - *7,5 mg* <--> *5 mg* : **"coref"**
+      - *5 mg* <--> *12,5mg/m* : **"coref"**
 
-Annotez les différentes façons de se référer au même dose dans des entrées séparées :
+Annotez les différentes façons de se référer au même dose dans des entrées séparées, et les rassembler avec une relation de coreference:
 
 - *sandostatine : 100µg/8h en sc soit 50µg/kg/j*
   - **"dose"** : *100µg*
   - **"dose"** : *50µg/kg*
+   - relation : 
+      - *100µg* <--> *50µg/kg* : **"coref"**
 
 Annoter la partie immédiatement adjacente d'un dose dans une entrée distincte :
 
@@ -356,24 +380,35 @@ Annoter la partie immédiatement adjacente d'un dose dans une entrée distincte 
 - *singulair 1 sachet de 4mg/jour,*
   - **"dose"** : *1 sachet de 4mg*
 
-Annotez une gamme de dose comme une seule entrée. Dans cet exemple, il y a plusieurs doses pour le même médicament mais dans des phrases différentes :
+Annotez une gamme de dose comme une seule entrée. Dans cet exemple, il y a plusieurs doses pour le même médicament mais dans des phrases différentes, rajouté une relation entre les termes de type coref:
 
 - *matin : 5 a 8 ui novorapid. midi : 5 a 8 ui novorapid. gouter : 3 a 4 1/2 ui novorapid. soir : 3 a 6 ui novorapid.*
   - **"dose"** :  *5 a 8 ui*
   - **"dose"** :  *5 a 8 ui*
   - **"dose"** :  *3 a 4 1/2 ui*
   - **"dose"** :  *3 a 6 ui*
+   - relation : 
+      - *5 a 8 ui* <--> *5 a 8 ui* : **"coref"**
+      - *5 a 8 ui* <--> *3 a 4 1/2 ui* : **"coref"**
+      - *3 a 4 1/2 ui* <--> *3 a 6 ui* : **"coref"**
 
-Annotez un seul motifs pour tous les médicaments lorsque la dose en concerne plusieurs : elle sera intégrée dans **ordo_blob** (voir la partie [Prescription](#prescription))
+
+
+Annotez un seul motifs pour tous les médicaments lorsque la dose en concerne plusieurs et les reliés par une entité **"refer_to"**
 
 - *doliprane et ibuprofene, 1 comprime toutes les 6 heures chacun*
-  - dose : *1 comprime*
+  - **"dose"** : *1 comprime*
+  - **"drugs"** : *doliprane*
+  - **"drugs"** : *ibuprofene*
+  - relation : 
+    - *1 comprime* --> *doliprane* : **"refer_to"**
+    - *1 comprime* --> *ibuprofene* : **"refer_to"**
 
 <a name="freq"></a>
 
 # Fréquence (**"freq"**)
 
-Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise.
+Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. Annoter également les fréquence non en rapport avec la prise d'un médicament.
 
 ## Que faut-il annoter ?
 
@@ -411,6 +446,12 @@ Toute expression qui indique la fréquence d'administration d'une dose unique d'
 
 Appliquez les mêmes principes de base que pour le balisage de la dose. Annotez chaque fréquence, même si elle est répétée dans la même phrase.
 
+### Relations avec le médicament
+
+Comme pour la dose utilisé la relation **"refer_to"** si la fréquence est en rapport avec un médicament.
+
+### Exemples : 
+
 - *doliprane 1 dose poids\*4/ jour si douleurs*
   - freq : *\*4/ jour*
 - *sectral : 48 mg matin et soir*
@@ -424,6 +465,9 @@ Si la fréquence est segmentée et concerne la même entité, annoter la partie 
 
 - *speciafoldine : 1 comprime par jour, 10 jours par mois.*
   - freq : *10 jours par mois*
+  
+
+
 
 <a name="duree"></a>
 
@@ -467,20 +511,31 @@ Suivez les mêmes principes de base que pour l'annotation de la fréquence. N'in
 
 **Ne pas inclure les "pendant" ou les "durant", etc. dans l'annotation mais seulement la durée elle-même.**
 
-### Attribut
+### Relations avec le médicament
 
-- `NE PAS ANNOTER LA TEMPORALITE.` Temporalité (**temporal_marker**) : Par défaut, **"present"** est l'attribut temporel des durées. Il peut être **"past"**, **"present"** ou **"future"**. Il doit être défini selon que la durée se situe avant, pendant ou après l'hospitalisation en cours.
+Deux relations sont possibles : 
+- **"duration_admin"** : pour la durée d'administration d'une dose de médicament (ex : administration IV)
+- **"duration_presc"** : pour la durée de prescription 
+
 
 ### Exemples
 
 - *vitabact 0,05 % : x4/jour dans chaque oeil pendant 10 jours*
   - **"duree"** : *10 jours*
+  - **"drugs"** : *vitabact*
+  - relation : *10 jours* --> *vitabact* : **"duration_presc"**
 - *ciflox 500 mg par 24 heures pour une duree totale de 3 semaines*
   - **"duree"** : *3 semaines*
+  - **"drugs"** : *ciflox*
+  - relation : *3 semaines* --> *ciflox* : **"duration_presc"**
 -  *a donc beneficie de sa 2ieme perfusion de remicade (200mg) sur 3h*
   - **"duree"** : *3h*
+  - **"drugs"** : *remicade*
+  - relation : *3h* --> *remicade* : **"duration_presc"**
 - *a ete traite pendant 2 ans par remicade*
   - **"duree"** : *2 ans*
+  - **"drugs"** : *remicade*
+  - relation : *2 ans* --> *remicade* : **"duration_presc"**
 
 <a name="voie"></a>
 
@@ -545,7 +600,7 @@ Les cas où un mode s'applique à plusieurs médicaments doivent être traités 
 
 <a name="condition"></a>
 
-# Condition (**"condition"**)
+# Condition (**"condition"**) **A Revoir**
 
 Expressions qui indiquent la condition pour laquelle le médicament doit être administré. Ces expressions sont souvent des propositions conditionnelles et commencent par une expression conditionnelle telle que "si", "en cas de", "en fonction de"....
 
@@ -568,9 +623,7 @@ Annotez toujours la phrase adjectivale de base la plus informative ou la phrase 
 
 **Inclure les "si" ou les "en cas de", etc. dans l'annotation.**
 
-### Attribut
 
-- Certitude (**"certainty"**) : Par défaut **"factual"** (la condition est toujours vraie), mais peut être aussi **"uncertain"**  (incertaine), **"sugested"** (suggérée) ou encore **"negated"** (niée, la condition n'en est pas une). Cet attribut de certitude ne s'applique qu'à la condition elle-même (voir exemple).
 
 ### Exemples
 
@@ -602,30 +655,30 @@ Les différentes façons de désigner la même condition pour les médicaments d
 
 <a name="evenement"></a>
 
-# Évènements
+# Date (**"Date"**)
 
-Information sur le fait que le médicament est commencé, arrêté, poursuivi, augmenté ou diminué à un moment défini. Cette information est généralement exprimée par le verbe principal de la phrase ou par une date. Annotez l'événement indiqué par le mot principal lié au médicament, ainsi que la date la plus précise.
+Annotez toutes les mentions temporelles mentionnées présentes dans les documents, rajoutés des relations si elles sont reliés à des médicaments.
+
+ Cette information est généralement exprimée par une date ou une notion de temporalité. Annotez la date la plus précise possible.
 
 
 ## Qu'est-ce qui doit être annoté ?
 
 Le mot principal (verbe, nom...) soulignant l'évènement tel que "mise en route", "début", "poursuite", "relais" ..., ainsi que la date la plus précise. Si le mot principal est séparé de la date dans la phrase, créer deux entités différentes.
 
-## Comment annoter ?
+## Comment annoté les relations avec les médicaments
 
 Choisissez parmi les valeurs possibles :
 
-- **"start"** : mot indiquant le début de la prise du médicament ou la date du début.
-- **"stop"** : mot indiquant l'arrêt de la prise du médicament ou la date de l'arrêt.
-- **"start-stop"** : mot indiquant la prise unique d'un médicament ou la date de la prise unique.
-- **"increase"** : mot indiquant l'augmentation de la dose d'un médicament déjà pris, ou la date de l'augmentation. L'augmentation doit être explicite (présence du mot "augmentation" par exemple) et non implicite (via les doses).
-- **"decrease"** : mot indiquant la diminution de la dose d'un médicament déjà pris, ou la date de la diminution. La diminution doit être explicite (présence du mot "diminution" par exemple) et non implicite (via les doses).
-- **"continue"** : mot indiquant la poursuite de prise d'un médicament sans changement clair de dose, ou la date de la poursuite.
-- **"switch"** : mot indiquant le changement de médicament/molécule, ou la date du changement.
+- **"start"** : date ou mention temporelle indiquant le début de la prise du médicament ou la date du début.
+- **"stop"** : date ou mention temporelle indiquant l'arrêt de la prise du médicament .
+- **"refer_to"** : date ou mention temporelle indiquant une notion de temporalité du médicament, sans spécifié la date de début ou de fin (ex : prise de 1 cp de doliprane le 21/01/2023)
+- **"en_cours"** : date ou mention temporelle indiquant la poursuite de la prise du médicament
 
-### Attributs
-- (`NE PAS ANNOTER`) Temporalité (**temporal_marker**) : Par défaut, **"present"** est l'attribut temporel des événements. Il peut être **"past"**, **"present"** ou **"future"**. Il doit être défini selon que l'événements se situe avant, pendant ou après la rédaction du document.
 
+### relation des mention temporelle avec d'autres dates **pertinent**
+
+Si une mention temporelle est présente dans le document, la relié au date les plus proches avant et après avec les relation **"avant"** et **"apres"**
 
 S'il y a deux événements sur la même expression (même s'ils sont identiques, par exemple 2 événements de début), vous devez annoter l'expression deux fois.
 
