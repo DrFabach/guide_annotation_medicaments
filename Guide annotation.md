@@ -685,37 +685,61 @@ S'il y a deux événements sur la même expression (même s'ils sont identiques,
 
 ## Exemples :
 
-- *Pas de modification de la corticothérapie*
-  - **"continue"** : *Pas de modification*
+
 - *meningocoque a + c : 11/07.*
-  - **"start-stop"** : *11/07*
+  - **"date"** : *11/07*
+  - **"drugs"** : *meningocoque a*
+  - **"drugs"** : *meningocoque*
+  - **"drugs"** : *c*
+  - relations : 
+    - *meningocoque* <--> *c* : **"same_ent"**
+    - *11/07* --> *meningocoque* : **"refer_to"**
+    - *11/07* --> *meningocoque* : **"refer_to"**
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
-  - **"start"** : *debutee lors de la chirurgie*
-  - **"stop"** : *a arrete a j5*
+  - **"class"** : *antibiotherapie*
+  - **"date"** : *lors de la chirurgie*
+  - **"date"** : *j5*
+  - relations : 
+    - *lors de la chirurgie* --> *antibiotherapie* : **"start"**
+    - *j5* --> *antibiotherapie* : **"stop"**
 - *doliprane du 11 mai au 25 mai*
-  - **"start"** : *du 11 mai*
-  - **"stop"** : *au 25 mai*
+  - **"drug"** : *doliprane*
+  - **"date"** : *11 mai*
+  - **"date"** : *25 mai*
+  - relations : 
+    - *11 mai* --> *doliprane* : **"start"**
+    - *25 mai* --> *doliprane* : **"stop"**
 - *arret du nubain le 14/12/2010*
-  - **"stop"** : *arret*
-  - **"stop"** : *14/12/2010*
-- *augmentation des doses de morphine*
-  - **"increase"** : *augmentation*
-- *poursuite de l'hydrea*
-  - **"continue"** : *poursuite*
+  - **"drug"** : *nubain*
+  - **"date"** : *14/12/2010*
+  - relations : 
+    - *14/12/2010* --> *nubain* : **"stop"**
 - *janvier 2006 : nouveau syndrome thoracique aigu, mise sous hydrea.*
-  - **"start"** : *janvier 2006*
-  - **"start"** : *mise sous*
+  - **"drug"** : *hydrea*
+  - **"date"** : *janvier 2006*
+  - relations : 
+    - *janvier 2006* --> *hydrea* : **"start"**
 - *compte-rendu d hospitalisation de jour du 27/12/2012 pour sa 16ieme perfusion de remicade*
-  - **"start-stop"** : *27/12/2012*
+  - **"drug"** : *remicade*
+  - **"date"** : *27/12/2012*
+  - relations : 
+    - *27/12/2012* --> *remicade* : **"refer_to"**
 
 Le passage d'un médicament à un autre comprend deux événements sur la même expression. Un médicament est arrêté et un autre est commencé.
 
-- *relais du traitement avk pour un traitement par heparine en sous cutanee dans la phase aigue*
-  - **"switch"** : *relais*
 
 - *la pancytopenie s est compliquee apres la chimiotherapie d un sepsis a escherichia coli resistant a la tazocilline (tazocilline\* depuis le 6 septembre 2010) traite par fortum a partir du 15 septembre 2010*
-  - **"start"** : *depuis le 6 septembre 2010*
-  - **"switch"** : *a partir du 15 septembre 2010*
+  - **"class"** : *chimiotherapie*
+  - **"drug"** : *tazocilline*
+  - **"drug"** : *tazocilline*
+  - **"drug"** : *fortum*
+  - **"date"** : *6 septembre 2010*
+  - **"date"** : *15 septembre 2010*
+  - relations : 
+    - *tazocilline* <-->  *tazocilline* : **"coref"** 
+    - *6 septembre 2010* --> *tazocilline* : **"start"**
+    - *15 septembre 2010* --> *tazocilline* : **"stop"**
+    - *15 septembre 2010* --> *fortum* : **"start"**
 
 S'il y a deux événements pour une entité, annotez deux entrées distinctes : elles seront dans le même **"drug_blob"** (voir la partie [Prescription](#prescription)). Faites en sorte que chaque entrée soit aussi spécifique et complète que possible.
 
@@ -733,28 +757,6 @@ S'il existe plusieurs médicaments pour un même événement, annotez le normale
   - **"start"** : *debuter*
 
 
-<a name="prescription"></a>
-
-# Prescription
-
-Les prescriptions sont des groupements d'annotations. Il existe deux types de prescription : la presciption de médicaments (**"drug_blob"**) et la prescription d'ordonnance (**"ordo_blob"**).
-  - Un **drug_blob** correspond à **un et un seul** médicaments(**"drug"**)/classe de médicament (**"class"**) ainsi que ses attributs. Si le même médicament est cité deux fois, il faut ses deux mentions dans le **"drug_blob"**.
-
-  - Un **ordo_blob** correspond à un regroupement de **drug_blob** et/ou de médicaments (**"drug"**) ou classes de médicaments (**"class"**) isolés ayant un attribut commun.
-
-
-##  Qu'est-ce qui doit être annoté ?
-
-Dès qu'un médicament possède des attributs : il est automatique dans un **"drug_blob"** (si au moins un de ses attributs lui est spécifique) ou dans un **"ordo_blob"** (si au moins un de ses attributs est partagé avec d'autres médicaments).
-
-
-## Comment annoter ?
-
-Du premier mot (médicament, attributs ou événement) jusqu'au dernier. Le type d'événement doit être appliqué sur les modèles de prescription liés. Si un médicament n'a pas d'attributs, ne pas faire de prescription.
-
-### Attributs :
-
-Type d'évènement (**"event_type"**) : à choisir dans **"start"** (par défaut), **"stop"**, **"start-stop"**, **"increase"**, **"decrease"**, **"continue"**, **"switch"** quand un de ces évènements est implicite mais sans terme dans la prescription pouvant être explicitement annoté comme tel.
 
 ### Exemples :
 
