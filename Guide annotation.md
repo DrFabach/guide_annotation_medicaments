@@ -7,7 +7,7 @@ informations sur tous les médicaments qui sont connus pour être pris par
 le patient ou liés à lui, différents attributs des médicaments et la
 temporalité en relation ou non avec les médicaments..
 
-L'ensemble de la tâche d'annotation sera centrée sur les médicaments
+L'ensemble de la tâche d'annotation sera centrée sur les médicaments,
 mais l'ensemble des concepts suivant doit être annoté ou corrigé (à
 partir de la préannotation) dans le document :
 
@@ -41,21 +41,21 @@ annoté :
 -   ["refer_to"](#relation-simple) : entre une **"dose"**, une **"route"**, une **"freq"** ou une
     **"condition"** et un **"drug"** ou **"class"**
 
-Le dernier objectif est d'extraire les relations temporelle : arrivé à
-replacer les entité temporelle les unes par rapport aux autres si elles
+Le dernier objectif est d'extraire les relations temporelles : arrivé à
+replacer les entités temporelles les unes par rapport aux autres si elles
 sont relatives. <!--# Vraiment? peut-être utopique --->
 
 Si une entité est disjointe, la relation : **"same_ent"** doit être
 utilisé entre les deux parties de l'entité. Si un médicament est répété
-plus loin dans le texte sans notion du nom ou de la classe, une relation
+plus loin dans le texte sans notion du nom ou de la classe, une relation.
 **"coref"** doit être utilisée.
 
-Chaque médicaments ne peut avoir au maximum qu'une seule de ces lignes.
+Chaque médicament ne peut avoir au maximum qu'une seule de ces lignes.
 S'il est nécessaire de dupliquer le lignes, il est nécessaire d'annoter
 deux médicaments différents même si ça correspond au même token. Voir
 exemple [Exemple 1 :]
 
-| A annoté               | Class d'annotation | Relation avec le médicaments | exemple                     |
+| À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
 | médicaments            | drugs/class          |                              | arimidex/corticoide         |
 | Dose                   | dose               | refer_to                     | 1 G de doliprane            |
@@ -68,9 +68,9 @@ exemple [Exemple 1 :]
 | Date de fin            | DATE               | stop                         | arrêt le 4 juin             |
 | Traitement en cours           | DATE               | en_cours                         | actuellement sous amoxicilline             |
 | Date non spécifié      | DATE               | refer_to                     | il y a environ 3-4 semaines |
-| Elément contextuel    | context               | negated                  |  |
-| Elément contextuel    | context               | hypotetical                  |  |
-| Elément contextuel    | context               | experiencer                  |  |
+| Élément contextuel    | context               | negated                  |  |
+| Élément contextuel    | context               | hypotetical                  |  |
+| Élément contextuel    | context               | experiencer                  |  |
 
 
 
@@ -149,7 +149,7 @@ Pour annoter des médicaments, le texte doit inclure une déclaration explicite 
   - nutrition (si utilisée comme traitement)
     - "oral/parentérale/entérale"
       - inclure le nom du médicament
-      - sauf s'il y a une distinction entre les deux "nutrition orale mais pas entérale".
+      - sauf s'il y a une distinction entre les deux "nutrition orale, mais pas entérale".
     - régime d'urgence
   - complément nutritionnel
 - Acronyme
@@ -167,7 +167,7 @@ Pour annoter des médicaments, le texte doit inclure une déclaration explicite 
   - sedation
   - (re)hydratation
   - antibioprophylaxie
-- Dispositif médical, sauf s'il contient un médicament, (e.g. on annote Pompe à Insuline)
+- Dispositif médical, sauf s'il contient un médicament (e.g. on annote Pompe à Insuline)
 
 
 
@@ -181,7 +181,7 @@ Les pronoms qui font référence à un médicament ne doivent pas être inclus, 
 
 ### Attributs de context
 
-- annotez les phrases nominales qui modifie le context du médicament (négation, hypothétique, contre-indication, relaté à une autre personnes)
+- annotez les phrases nominales qui modifient le context du médicament (négation, hypothétique, contre-indication, relaté à une autre personnes)
 
 - Puis reliez ces éléments aux médicaments avec une des relations possible : **negated**, **uncertain**,**"counterindication"**  **experiencer**
 
@@ -316,19 +316,19 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
 - si la dose est niée et que le médicament est donné, par exemple :
   - n'annotez pas "doublement des doses" pour "pas de necessite de doublement des doses d hydrocortisone"
 
-- Doses cumulés (car trop de variabilité dans la signification) :
-  - 3 boites
+- Doses cumulées (car trop de variabilité dans la signification) :
+  - 3 boîtes
   - dans *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol 1 boite)*
     - **"dose"** : *1 dose poids*
     - ne pas annoter : *1 boite*
 
 ## Commnent annoter ?
 
-Annotez tous les doses mentionnés de tous les médicaments présents dans le résumé de sortie et leur relation avec celui-ci, même s'il fait partie du nom du médicament.
+Annotez tous les doses mentionnées de tous les médicaments présents dans le résumé de sortie et leur relation avec celui-ci, même s'il fait partie du nom du médicament.
 
 ### Relations avec le médicament
 
-Utilisé la relation **"refer_to"** si la dose est en rapport avec un médicament.
+Utiliser la relation **"refer_to"** si la dose est en rapport avec un médicament.
 
 ### Exemples : 
 
@@ -380,7 +380,7 @@ Annoter la partie immédiatement adjacente d'un dose dans une entrée distincte 
 - *singulair 1 sachet de 4mg/jour,*
   - **"dose"** : *1 sachet de 4mg*
 
-Annotez une gamme de dose comme une seule entrée. Dans cet exemple, il y a plusieurs doses pour le même médicament mais dans des phrases différentes, rajouté une relation entre les termes de type coref:
+Annotez une gamme de dose comme une seule entrée. Dans cet exemple, il y a plusieurs doses pour le même médicament, mais dans des phrases différentes, rajouté une relation entre les termes de type coref:
 
 - *matin : 5 a 8 ui novorapid. midi : 5 a 8 ui novorapid. gouter : 3 a 4 1/2 ui novorapid. soir : 3 a 6 ui novorapid.*
   - **"dose"** :  *5 a 8 ui*
@@ -394,7 +394,7 @@ Annotez une gamme de dose comme une seule entrée. Dans cet exemple, il y a plus
 
 
 
-Annotez un seul motifs pour tous les médicaments lorsque la dose en concerne plusieurs et les reliés par une entité **"refer_to"**
+Annoter un seul motif pour tous les médicaments lorsque la dose en concerne plusieurs et les relier par une entité **"refer_to"**
 
 - *doliprane et ibuprofene, 1 comprime toutes les 6 heures chacun*
   - **"dose"** : *1 comprime*
@@ -408,7 +408,7 @@ Annotez un seul motifs pour tous les médicaments lorsque la dose en concerne pl
 
 # Fréquence (**"freq"**)
 
-Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. Annoter également les fréquence non en rapport avec la prise d'un médicament.
+Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. Annoter également les fréquences non en rapport avec la prise d'un médicament.
 
 ## Que faut-il annoter ?
 
@@ -419,7 +419,7 @@ Toute expression qui indique la fréquence d'administration d'une dose unique d'
 - Les fréquences :
   - par jour
   - toutes les 8 heures
-  - toutes les semaine
+  - toutes les semaines
   - /jour
   - /j
   - /24 heures
@@ -501,15 +501,15 @@ Expressions qui décrivent la durée totale pendant laquelle le médicament doit
   - dans 10 jours
   - depuis 10 jours
 
-- doses cumulés (car trop de variabilité dans la signification) :
+- doses cumulées (car trop de variabilité dans la signification) :
 
-  - 3 boites
+  - 3 boîtes
 
 ## Comment annoter ?
 
 Suivez les mêmes principes de base que pour l'annotation de la fréquence. N'incluez pas les prépositions complètes.
 
-**Ne pas inclure les "pendant" ou les "durant", etc. dans l'annotation mais seulement la durée elle-même.**
+**Ne pas inclure les "pendant" ou les "durant", etc. dans l'annotation, mais seulement la durée elle-même.**
 
 ### Relations avec le médicament
 
@@ -553,7 +553,7 @@ Le texte qui exprime le mode/voie d'administration, même s'il est exprimé dans
 - intraveineux ou iv
 - topique
 - sublingual
-- cutanee
+- cutanée
 - sous cutanée
 - intramusculaire
 - perfusion
@@ -611,7 +611,7 @@ Condition pour laquelle le médicament doit être administré.
 
 ### Inclut (liste non exhaustive) :
 
-- [en cas de] fievre
+- [en cas de] fièvre
 - [si] besoin
 - [si] veut
 - [en fonction des] ASAT
@@ -631,7 +631,7 @@ Annotez toujours la phrase adjectivale de base la plus informative ou la phrase 
   - **"condition"** : *si besoin*
 
 
-S'il y a différentes conditions mentionnées pour le même médicament alors inclure une entrée par condition. Dans les cas où plusieurs médicaments sont donnés avec la même condition, indiquez la condition avec tous les médicaments
+S'il y a différentes conditions mentionnées pour le même médicament, alors inclure une entrée par condition. Dans les cas où plusieurs médicaments sont donnés avec la même condition, indiquez la condition avec tous les médicaments.
 
 
 - *il a ete explique aux parents d utiliser l oxygene en cas d inconfort, de paleur ou de gene respiratoire et non en fonction d un chiffre de saturation*
@@ -657,7 +657,7 @@ Les différentes façons de désigner la même condition pour les médicaments d
 
 # Date (**"Date"**)
 
-Annotez toutes les mentions temporelles mentionnées présentes dans les documents, rajoutés des relations si elles sont reliés à des médicaments.
+Annotez toutes les mentions temporelles mentionnées présentes dans les documents, rajoutés des relations si elles sont reliées à des médicaments.
 
  Cette information est généralement exprimée par une date ou une notion de temporalité. Annotez la date la plus précise possible.
 
@@ -666,7 +666,7 @@ Annotez toutes les mentions temporelles mentionnées présentes dans les documen
 
 Le mot principal (verbe, nom...) soulignant l'évènement tel que "mise en route", "début", "poursuite", "relais" ..., ainsi que la date la plus précise. Si le mot principal est séparé de la date dans la phrase, créer deux entités différentes.
 
-## Comment annoté les relations avec les médicaments
+## Comment annoter les relations avec les médicaments
 
 Choisissez parmi les valeurs possibles :
 
@@ -676,9 +676,9 @@ Choisissez parmi les valeurs possibles :
 - **"en_cours"** : date ou mention temporelle indiquant la poursuite de la prise du médicament
 
 
-### relation des mention temporelle avec d'autres dates **pertinent**
+### relation des mentions temporelles avec d'autres dates **pertinentes**
 
-Si une mention temporelle est présente dans le document, la relié au date les plus proches avant et après avec les relation **"avant"** et **"apres"**
+Si une mention temporelle est présente dans le document, la relié au date les plus proches avant et après avec les relations **"avant"** et **"apres"**
 
 S'il y a deux événements sur la même expression (même s'ils sont identiques, par exemple 2 événements de début), vous devez annoter l'expression deux fois.
 
@@ -818,8 +818,8 @@ S'il existe plusieurs médicaments pour un même événement, annotez le normale
 - *il a été explique aux parents d’utiliser l oxygène en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
  - **"class"** : *oxygène*
  - **"condition"** : *en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
-  - relations :
-    - *en cas d’inconfort, [...] d’un chiffre de saturation* --> *oxygène* : **"refer_to"**
+ - relations :
+  - *en cas d’inconfort, [...] d’un chiffre de saturation* --> *oxygène* : **"refer_to"**
 
 
 <img src="examples/exemple5.PNG" width="1000px">
@@ -840,7 +840,7 @@ S'il existe plusieurs médicaments pour un même événement, annotez le normale
     - *si douleurs* --> *doliprane* : **"refer_to"**
 
 
-Ici le *1 boite* ne correspond pas à une dose de médicaments mais une dose de dispensation en pharmacie, ne pas le relié au médicament
+Ici le *1 boite* ne correspond pas à une dose de médicaments, mais une dose de dispensation en pharmacie, ne pas le relié au médicament
 
 <img src="examples/exemple6.PNG" width="1000px">
 
@@ -869,7 +869,6 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments mais une dose de 
 #### 7 : 
 
 - *je ne modifie pas son traitement, soit toujours lasilix 20 mg/j, atacand 8 mg, ezetrol , calciparat 1 g, allopurinol 300 mg et crestor 5.*
-
  - **"drug"** : *lasilix*
  - **"dose"** :  *20 mg*
  - **"freq"** : */j*
@@ -882,14 +881,13 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments mais une dose de 
  - **"dose"** :  *300 mg*
  - **"drug"** : *crestor*
  - **"dose"** : *5*
-  - relations :
-
-    - *20 mg* --> *lasilix* : **"refer_to"**
-    - */j* --> *lasilix* : **"refer_to"**
-    - *8 mg* --> *atacand* : **"refer_to"**
-    - *1 g* --> *calciparat* : **"refer_to"**
-    - *300 mg* --> *allopurinol* : **"refer_to"**
-    - *5* --> *crestor* : **"refer_to"**
+ - relations :
+  - *20 mg* --> *lasilix* : **"refer_to"**
+  - */j* --> *lasilix* : **"refer_to"**
+  - *8 mg* --> *atacand* : **"refer_to"**
+  - *1 g* --> *calciparat* : **"refer_to"**
+  - *300 mg* --> *allopurinol* : **"refer_to"**
+  - *5* --> *crestor* : **"refer_to"**
 
 
 <img src="examples/exemple7.PNG" width="1000px">
@@ -897,10 +895,10 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments mais une dose de 
 #### 8 
 
 - *Pluyqieurs bilans biologiques ont été réalisés notant un syndrome inflammatoire oscillant entre 11 et 45mg/l mi-juillet*
-
  - **"entre 11 et 45mg/l"** : *dose*
  - **"mi-juillet"** : *date*
 
 <img src="examples/exemple8.PNG" width="1000px">
+
 
 
