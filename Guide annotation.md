@@ -707,153 +707,147 @@ S'il existe plusieurs médicaments pour un même événement, annotez le normale
 
 ### Exemples :
 
-- *la pancytopenie s est compliquee apres la chimiotherapie d un sepsis a escherichia coli resistant a la tazocilline (tazocilline\* depuis le 6 septembre 2010) traite par fortum a partir du 15 septembre 2010*
-  - **"class"** : chimiotherapie
+#### 1 : 
+
+- *La pancytopenie s'est compliquée après la chimiothérapie d’un sepsis a Escherichia coli résistant a la tazocilline (tazocilline\* depuis le 6 septembre 2010) traite par fortum à partir du 15 septembre 2010*
+  - **"class"** : *chimiotherapie*
   - **"drug"** : *tazocilline*
-  - **"drug_blob"** : *tazocilline\* depuis le 6 septembre 2010*
-    - **"drug"** : *tazocilline*
-    - **"start"** : *depuis le 6 septembre 2010*
-  - **"drug_blob"** : *fortum a partir du 15 septembre 2010*
-    - **"drug"** : *fortum*
-    - **"switch"** : *a partir du 15 septembre 2010*
+  - **"drug"** : *tazocilline*
+  - **"date"** : *6 septembre 2010*
+  - **"drug"** : *fortum*
+  - **"drug"** : *15 septembre 2010*
+  - relations :
+    - *tazocilline* --> *tazocilline* : **"coref"**
+    - *6 septembre 2010* --> *tazocilline* : **"start"**
+    - *15 septembre 2010* --> *tazocilline* : **"stop"**
+    - *15 septembre 2010* --> *fortum* : **"start"**
+
+  
+
 
 <img src="examples/exemple1.PNG" width="1000px">
 
-- *AUGMENTIN 600mg toutes les 8h jusuq'au 2019-10-11 inclus. PARACETAMOL 250mg toutes les 6h de façon systématique pendant 48h puis en cas de douleurs pendant 7 jours*
-  - **"drug_blob"** : *AUGMENTIN 600mg toutes les 8h jusuq'au 2019-10-11 inclus*
-    - **"drug"** : *AUGMENTIN*
-    - **"dose"** : *600mg*
-    - **"freq"** : *toutes les 8h*
-    - **"end"** : *jusuq'au 2019-10-11 inclus*
-  - **"drug_blob"** : *PARACETAMOL 250mg toutes les 6h de façon systématique pendant 48h puis en cas de douleurs pendant 7 jours*
-    - **"drug"** : *PARACETAMOL*
-    - **"dose"** : *250mg*
-    - **"freq"** : *toutes les 6h*
-    - **"condition"** : *de façon systématique*
-    - **"duree"** : *48h*
-    - **"condition"** : *en cas de douleurs*
-    - **"duree"** : *pendant 7 jours*
+#### 2 : 
+
+- *AUGMENTIN 600mg toutes les 8h jusuq'au 2019-10-11 inclus. PARACÉTAMOL(1;2) 250mg(1;2) toutes les 6h de façon systématique pendant 48h puis en cas de douleurs pendant 7 jours*
+ - **"drug"** : *AUGMENTIN*
+ - **"dose"** : *600mg*
+ - **"freq"** : *toutes les 8h*
+ - **"date"** : *2019-10-11*
+ - **"drug"** : *PARACETAMOL*(1)
+ - **"dose"** : *250mg*(1)
+ - **"freq"** : *toutes les 6h*
+ - **"duree"** : *48h*
+ - **"condition"** : *systématique*
+ - **"drug"** : *PARACETAMOL*(2)
+ - **"dose"** : *250mg*(2)
+ - **"duree"** : *pendant 7 jours*
+ - **"condition"** : *en cas de douleurs*
+  - relations :
+    - *600mg* --> *AUGMENTIN* : **"refer_to"**
+    - *toutes les 8h* --> *AUGMENTIN* : **"refer_to"**
+    - *2019-10-11* --> *AUGMENTIN* : **"stop"**
+    - *250mg*(1) --> *PARACETAMOL*(1) : **"refer_to"**
+    - *250mg*(2) --> *PARACETAMOL*(2) : **"refer_to"**
+    - *toutes les 6h* --> *PARACETAMOL*(1) : **"refer_to"**
+    - *systématique* --> *PARACETAMOL*(1) : **"refer_to"**
+    - *48h* --> *PARACETAMOL*(1) : **"duration_presc"**
+    - *en cas de douleurs* --> *PARACETAMOL*(2) : **"condition"**
+    - *pendant 7 jours* --> *PARACETAMOL*(2) : **"duration_presc"**
+
+
+
 
 <img src="examples/exemple2.PNG" width="1000px">
 
-- *il a ete explique aux parents d utiliser l oxygene en cas d inconfort, de paleur ou de gene respiratoire et non en fonction d un chiffre de saturation*
-  - **"drug_blob"** : *oxygene en cas d inconfort, de paleur ou de gene respiratoire et non en fonction d un chiffre de saturation*
-    - **"drug"** : *oxygene*
-    - **"condition"** : *inconfort*
-    - **"condition"** : *paleur*
-    - **"condition"** : *gene respiratoire*
-    - **"condition"** : *chiffre de saturation*
-      - **"certainty"** : negated (ici le chiffre de saturation n'est pas une vraie condition, d'où le **"negated"**)
+#### 3 : 
+
+- *il a été explique aux parents d’utiliser l oxygène en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
+ - **"class"** : *oxygène*
+ - **"condition"** : *en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
+  - relations :
+    - *en cas d’inconfort, [...] d’un chiffre de saturation* --> *oxygène* : **"refer_to"**
+
 
 <img src="examples/exemple5.PNG" width="1000px">
 
+#### 4 : 
+
 - *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol 1 boite)*
-  - **"drug_blob"** : *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol*
-    - **"drug"** : *doliprane*
-    - **"drug"** : *paracetamol*
-    - **"dose"** : *1 dose poids*
-    - **"freq"** : *4/jour*
-    - **"condition"** : *si douleurs*
+  - **"drug"** : *doliprane*
+  - **"drug"** : *paracetamol*
+  - **"dose"** : *1 dose poids*
+  - **"freq"** : *4/jour*
+  - **"condition"** : *si douleurs*
+  - **"dose"** : *1 boite*
+  - relations :
+    - *paracetamol* --> *doliprane* : **"coref"**
+    - *1 dose poids* --> *doliprane* : **"refer_to"**
+    - *4/jour* --> *doliprane* : **"refer_to"**
+    - *si douleurs* --> *doliprane* : **"refer_to"**
 
-Dans le cas d'une co-référence vers une phrase juxtaposée, faire un grand **"drug_blob"** qui regroupe les deux phrase.
 
-  - *A l'arrêt du traitement par Lansoprazole 15 mg/jour, le patient présente une récidive des épigastralgies. Je lui renouvelle son traitement à la demande.*
-    - **"drug_blob"** : *A l'arrêt du traitement par Lansoprazole 15 mg/jour, le patient présente une récidive des épigastralgies. Je lui renouvelle son traitement à la demande.*
-      - **"stop** : *arrêt*
-      - **"drug"** : *Lansoprazole*
-      - **"dose"** : *15 mg*
-      - **"freq"** : *jour*
-      - **"continue"** : *renouvelle*
-      - **"condition"** : *demande*
-      
+Ici le *1 boite* ne correspond pas à une dose de médicaments mais une dose de dispensation en pharmacie, ne pas le relié au médicament
+
 <img src="examples/exemple6.PNG" width="1000px">
 
 
-Si un attribut ou un événement est lié à plusieurs médicaments, ne l'incluez que dans le motif **"ordo_blob"** qui inclura les **"drug"** et/ou les **"drug_blob** concernés.
+#### 5 je ne suis pas sur de celui-la : 
+
+  - *A l'arrêt du traitement par Lansoprazole 15 mg/jour, le patient présente une récidive des épigastralgies. Je lui renouvelle son traitement à la demande.*
+
+      
+<img src="examples/exemple3.PNG" width="1000px">
+
+#### 6 :
+
 
 
 - *traitement par endoxan avant de debuter un traitement par mabthera fludarabine endoxan etant donne la lymphocytose majeure et la presence d anemie hemolytique*
   - **"drug"** : *endoxan*
-  - **"ordo_blob"** : *debuter un traitement par mabthera fludarabine endoxan*
-    - **"start"** : *debuter*
-    - **"drug"** : *mabthera*
-    - **"drug"** : *fludarabine*
-    - **"drug"** : *endoxan*
+  - **"start"** : *debuter*
+  - **"drug"** : *mabthera*
+  - **"drug"** : *fludarabine*
+  - **"drug"** : *endoxan*
 
-<img src="examples/exemple3.PNG" width="1000px">
-
-
-- *je ne modifie pas son traitement, soit toujours lasilix 20 mg/j, atacand 8 mg, ezetrol , calciparat 1 g, allopurinol 300 mg et crestor 5.*
-  - **"ordo_blob"** : *toujours lasilix 20 mg/j, atacand 8 mg, ezetrol , calciparat 1 g, allopurinol 300 mg et crestor 5*
-    - **"continue"** : *toujours*
-    - **"drug_blob"** : *lasilix 20 mg/j*
-        - **"drug"** : *lasilix*
-      - **"dose"** :  *20 mg*
-      - **"freq"** : */j*
-    - **"drug_blob"** : *latacand 8 mg*
-      - **"drug"** : *atacand*
-      - **"dose"** :  *8 mg*
-    - **"drug"** : *ezetrol*
-    - **"drug_blob"** : *calciparat 1 g*
-      - **"drug"** : *calciparat*
-      - **"dose"** :  *1 g*
-    - **"drug_blob"** : *allopurinol 300 mg*
-      - **"drug"** : *allopurinol*
-      - **"dose"** :  *300 mg*
-    - **"drug_blob"**: *crestor 5*
-      - **"drug"** : *crestor*
-      - **"dose"** : *5*
 
 <img src="examples/exemple4.PNG" width="1000px">
 
+#### 7 : 
 
-# Attributs: Rappels
+- *je ne modifie pas son traitement, soit toujours lasilix 20 mg/j, atacand 8 mg, ezetrol , calciparat 1 g, allopurinol 300 mg et crestor 5.*
 
-Informations supplémentaire sur certaines entités.
+ - **"drug"** : *lasilix*
+ - **"dose"** :  *20 mg*
+ - **"freq"** : */j*
+ - **"drug"** : *atacand*
+ - **"dose"** :  *8 mg*
+ - **"drug"** : *ezetrol*
+ - **"drug"** : *calciparat*
+ - **"dose"** :  *1 g*
+ - **"drug"** : *allopurinol*
+ - **"dose"** :  *300 mg*
+ - **"drug"** : *crestor*
+ - **"dose"** : *5*
+  - relations :
 
-## Attributs de certitude (**"certainty"**)
-
-Informations permettant de savoir le degré de certitude de la prise d'un médicament (**"drug"**)/classe de medicament (**"class"**) ou d'une condition (**"condition"**). La certitude peut être exprimée par des mots d'incertitude (par exemple "suggéré"), ou par des modaux (par exemple "devrait"), qui indiquent une suggestion.
-
-Si le médicament est dans un **"drug_blob"**, l'attribut peut être mis sur celui-ci.
-
-
-
-### Comment marquer ?
-
-Choisissez parmi les valeurs possibles (**"factual"** est par défaut):
-- **"factual"** : L'entité n'est pas marquée comme conditionnelle ou suggérée, elle est factuelle. C'est la valeur par défaut de la certitude.
-- **"suggested"** : L'entité est/était suggérée et ne dépend pas d'une condition.
-- **"uncertain"** : L'entité se produit/ne s'est pas produite de façon certaine.
-- **"negated"** : L'entité se produit/ne se produit pas, par exemple, un médicament n'est pas administré.
-- **"counterindication"** : le médicament est mentionné comme une contre-indication.
-- ~~**"conditional"** : L'entité ne se produit que dans certaines conditions mentionnées dans le texte.~~
-
-Voir [Médicaments](#médicament-ou-classe-de-médicaments) et [Condition](#condition-condition) pour des exemples.
+    - *20 mg* --> *lasilix* : **"refer_to"**
+    - */j* --> *lasilix* : **"refer_to"**
+    - *8 mg* --> *atacand* : **"refer_to"**
+    - *1 g* --> *calciparat* : **"refer_to"**
+    - *300 mg* --> *allopurinol* : **"refer_to"**
+    - *5* --> *crestor* : **"refer_to"**
 
 
-## Attributs d'experimentateur (**"experiencer"**)
+<img src="examples/exemple7.PNG" width="1000px">
 
-Pour tous les médicaments (**"drug"**)/classes de medicament (**"class"**) listés, le patient sera considéré par défaut comme expérimentateur. Si ce n'est pas le cas, il faut le préciser.
+#### 8 
 
-### Comment marquer ?
+- *Pluyqieurs bilans biologiques ont été réalisés notant un syndrome inflammatoire oscillant entre 11 et 45mg/l mi-juillet*
 
-Choisissez parmi les valeurs possibles : le patient (**"self"**, par défaut), ou quelqu'un de sa famille (**"family"**), ou une autre personne (**"other"**).
+ - **"entre 11 et 45mg/l"** : *dose*
+ - **"mi-juillet"** : *date*
 
-- **"self"** : le patient lui-même
-- **"family"** : quelqu'un de sa famille 
-- **"other"** : une autre personne ne rentrant pas dans les 2 cas précédents.
-
-Voir [Médicaments](#médicament-ou-classe-de-médicaments) pour des exemples.
-
-## Attribut de type d'évènement (**"event_type"**)
-
-Information à propos des **"drug_blob"** et des **"ordo_blob"** quand un évènement est implicite mais pas explicite.
-
-### Comment marquer ?
-
-Il faut à choisir dans **"start"** (par défaut), **"stop"**, **"start-stop"**, **"increase"**, **"decrease"**, **"continue"**, **"switch"** quand un de ces évènements est implicite mais sans terme dans la prescription pouvant être explicitement annoté comme tel.
-
-### Exemple 1 :
+<img src="examples/exemple8.PNG" width="1000px">
 
 
