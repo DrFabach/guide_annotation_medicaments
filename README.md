@@ -77,7 +77,7 @@ Si un médicament est indiqué avec plusieurs prescriptions différentes, il fau
 
 | À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
-| médicaments            | drugs/class          |                              | arimidex/corticoïde         |
+| médicaments            | med/class          |                              | arimidex/corticoïde         |
 | Dose                   | dose               | refer_to                     | 1 G de doliprane            |
 | Fréquence              | freq               | refer_to                     | 3 cp/jour                   |
 | Voie d'administration  | route              | refer_to                     | en intraveineuse            |
@@ -356,19 +356,19 @@ Utiliser la relation **"refer_to"** si la dose est en rapport avec un médicamen
 
 
 - *speciafoldine 5mg 10 jours par mois*
-  - **"drugs"** : *speciafoldine*
+  - **"med"** : *speciafoldine*
   - **"dose"** : *5mg*
   - relation : *5mg* --> *speciafoldine* : **"refer_to"**
 - *oracilline 500mui x 2 par jour.*
-   - **"drugs"** : *oracilline*
+   - **"med"** : *oracilline*
   - **"dose"** : *500mui*
   - relation : *500mui* --> *oracilline* : **"refer_to"**
 - *depakine 500 x 3 par jour*
-  - **"drugs"** : *depakine*
+  - **"med"** : *depakine*
   - **"dose"** : *500*
   - relation : *500* --> *depakine* : **"refer_to"**
 - *vitabact 0,05 % : x4/jour dans chaque oeil pendant 10 jours*
-  - **"drugs"** : *vitabact*
+  - **"med"** : *vitabact*
   - **"dose"**: *0,05 %*
   - relation : *0,05 %* --> *vitabact* : **"refer_to"**
 
@@ -420,8 +420,8 @@ Annoter un seul motif pour tous les médicaments lorsque la dose en concerne plu
 
 - *doliprane et ibuprofene, 1 comprime toutes les 6 heures chacun*
   - **"dose"** : *1 comprime*
-  - **"drugs"** : *doliprane*
-  - **"drugs"** : *ibuprofene*
+  - **"med"** : *doliprane*
+  - **"med"** : *ibuprofene*
   - relation : 
     - *1 comprime* --> *doliprane* : **"refer_to"**
     - *1 comprime* --> *ibuprofene* : **"refer_to"**
@@ -546,19 +546,19 @@ Deux relations sont possibles :
 
 - *vitabact 0,05 % : x4/jour dans chaque oeil pendant 10 jours*
   - **"duree"** : *10 jours*
-  - **"drugs"** : *vitabact*
+  - **"med"** : *vitabact*
   - relation : *10 jours* --> *vitabact* : **"duration_presc"**
 - *ciflox 500 mg par 24 heures pour une duree totale de 3 semaines*
   - **"duree"** : *3 semaines*
-  - **"drugs"** : *ciflox*
+  - **"med"** : *ciflox*
   - relation : *3 semaines* --> *ciflox* : **"duration_presc"**
 -  *a donc beneficie de sa 2ieme perfusion de remicade (200mg) sur 3h*
   - **"duree"** : *3h*
-  - **"drugs"** : *remicade*
+  - **"med"** : *remicade*
   - relation : *3h* --> *remicade* : **"duration_presc"**
 - *a ete traite pendant 2 ans par remicade*
   - **"duree"** : *2 ans*
-  - **"drugs"** : *remicade*
+  - **"med"** : *remicade*
   - relation : *2 ans* --> *remicade* : **"duration_presc"**
 
 <a name="voie"></a>
@@ -721,7 +721,7 @@ Si une mention temporelle non spécifique (pas de date précise) est présente d
 
 - *meningocoque a + c : 11/07.*
   - **"date"** : *11/07*
-  - **"drugs"** : *meningocoque a + c*
+  - **"med"** : *meningocoque a + c*
   - relations : 
     - *11/07* --> *meningocoque a + c* : **"refer_to"**
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
@@ -1011,7 +1011,7 @@ Si un médicament est indiqué avec plusieurs prescriptions différentes, il fau
 
 | À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
-| médicaments            | drugs/class          |                              | arimidex/corticoïde         |
+| médicaments            | med/class          |                              | arimidex/corticoïde         |
 | Dose                   | dose               | refer_to                     | 1 G de doliprane            |
 | Fréquence              | freq               | refer_to                     | 3 cp/jour                   |
 | Voie d'administration  | route              | refer_to                     | en intraveineuse            |
@@ -1290,19 +1290,19 @@ Utiliser la relation **"refer_to"** si la dose est en rapport avec un médicamen
 
 
 - *speciafoldine 5mg 10 jours par mois*
-  - **"drugs"** : *speciafoldine*
+  - **"med"** : *speciafoldine*
   - **"dose"** : *5mg*
   - relation : *5mg* --> *speciafoldine* : **"refer_to"**
 - *oracilline 500mui x 2 par jour.*
-   - **"drugs"** : *oracilline*
+   - **"med"** : *oracilline*
   - **"dose"** : *500mui*
   - relation : *500mui* --> *oracilline* : **"refer_to"**
 - *depakine 500 x 3 par jour*
-  - **"drugs"** : *depakine*
+  - **"med"** : *depakine*
   - **"dose"** : *500*
   - relation : *500* --> *depakine* : **"refer_to"**
 - *vitabact 0,05 % : x4/jour dans chaque oeil pendant 10 jours*
-  - **"drugs"** : *vitabact*
+  - **"med"** : *vitabact*
   - **"dose"**: *0,05 %*
   - relation : *0,05 %* --> *vitabact* : **"refer_to"**
 
@@ -1354,8 +1354,8 @@ Annoter un seul motif pour tous les médicaments lorsque la dose en concerne plu
 
 - *doliprane et ibuprofene, 1 comprime toutes les 6 heures chacun*
   - **"dose"** : *1 comprime*
-  - **"drugs"** : *doliprane*
-  - **"drugs"** : *ibuprofene*
+  - **"med"** : *doliprane*
+  - **"med"** : *ibuprofene*
   - relation : 
     - *1 comprime* --> *doliprane* : **"refer_to"**
     - *1 comprime* --> *ibuprofene* : **"refer_to"**
@@ -1480,19 +1480,19 @@ Deux relations sont possibles :
 
 - *vitabact 0,05 % : x4/jour dans chaque oeil pendant 10 jours*
   - **"duree"** : *10 jours*
-  - **"drugs"** : *vitabact*
+  - **"med"** : *vitabact*
   - relation : *10 jours* --> *vitabact* : **"duration_presc"**
 - *ciflox 500 mg par 24 heures pour une duree totale de 3 semaines*
   - **"duree"** : *3 semaines*
-  - **"drugs"** : *ciflox*
+  - **"med"** : *ciflox*
   - relation : *3 semaines* --> *ciflox* : **"duration_presc"**
 -  *a donc beneficie de sa 2ieme perfusion de remicade (200mg) sur 3h*
   - **"duree"** : *3h*
-  - **"drugs"** : *remicade*
+  - **"med"** : *remicade*
   - relation : *3h* --> *remicade* : **"duration_presc"**
 - *a ete traite pendant 2 ans par remicade*
   - **"duree"** : *2 ans*
-  - **"drugs"** : *remicade*
+  - **"med"** : *remicade*
   - relation : *2 ans* --> *remicade* : **"duration_presc"**
 
 <a name="voie"></a>
@@ -1655,7 +1655,7 @@ Si une mention temporelle non spécifique (pas de date précise) est présente d
 
 - *meningocoque a + c : 11/07.*
   - **"date"** : *11/07*
-  - **"drugs"** : *meningocoque a + c*
+  - **"med"** : *meningocoque a + c*
   - relations : 
     - *11/07* --> *meningocoque a + c* : **"refer_to"**
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
