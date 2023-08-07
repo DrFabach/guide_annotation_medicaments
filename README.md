@@ -1,6 +1,9 @@
 
 
+
 # Guide d'annotation
+
+## Entités à annoter
 
 Pour chaque rapport de patient fourni, l'objectif est d'extraire des
 informations sur tous les médicaments qui sont connus pour être pris par
@@ -9,7 +12,7 @@ temporalité en relation ou non avec les médicaments..
 
 L'ensemble de la tâche d'annotation sera centrée sur les médicaments,
 mais l'ensemble des concepts suivant doit être annoté ou corrigé (à
-partir de la préannotation) dans le document :
+partir de la préannotation) dans le document, même s'ils ne sont pas reliés à des médicaments :
 
 -   [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) : **"drug"**, **"class"**
 
@@ -24,15 +27,19 @@ partir de la préannotation) dans le document :
 
 -   [Condition](#condition-condition) : **"condition"** (en relation ou non avec un médicament)
 
--   [Date]("#date-date") : **"date"** (en relation ou non avec un médicament)
+-   [Date ou temporalité]("#date-date") : **"date"** (en relation ou non avec un médicament)
+
+## Relations à annoter
 
 Le deuxième objectif est d'extraire les relations entre ces annotations
 et les médicaments, l'ensemble des relations suivantes nécessite d'être
 annoté :
 
--   ["start"](#start) : entre une **"date"** et un **"drug"** ou **"class"**
+-   ["start"](#start) : entre une **"date"**/**"temporalité"** et un **"drug"** ou **"class"**
 
--   ["stop"](#stop): entre une **"date"** et **"drug"** ou **"class"**
+-   ["stop"](#stop): entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
+
+-   ["En cours"](#en_cours): entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
 
 -   ["duration_presc"](#duree-prescription) : entre une **"duration"** et **"drug"** ou **"class"**
 
@@ -40,20 +47,30 @@ annoté :
 
 -   ["refer_to"](#relation-simple) : entre une **"dose"**, une **"route"**, une **"freq"** ou une
     **"condition"** et un **"drug"** ou **"class"**
+    
+    
+-   ["Augmentation, diminution"](#augmentation/diminution) : entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
 
-Le dernier objectif est d'extraire les relations temporelles : arrivé à
+-   ["Negation, hypothetique"](#Negation/hypothethique) : entre un **"context"** et **"drug"** ou **"class"** 
+
+<!--# Le dernier objectif est d'extraire les relations temporelles : arrivé à
 replacer les entités temporelles les unes par rapport aux autres si elles
-sont relatives. <!--# Vraiment? peut-être utopique --->
+sont relatives. Vraiment? peut-être utopique --->
 
 Si une entité est disjointe, la relation : **"same_ent"** doit être
 utilisé entre les deux parties de l'entité. Si un médicament est répété
 plus loin dans le texte sans notion du nom ou de la classe, une relation.
-**"coref"** doit être utilisée.
+**"coref"** doit être utilisée. Cette relation fait référence à une synonymie.
 
-Chaque médicament ne peut avoir au maximum qu'une seule de ces lignes.
-S'il est nécessaire de dupliquer le lignes, il est nécessaire d'annoter
-deux médicaments différents même si ça correspond au même token. Voir
-exemple [Exemple 1 :]
+Si un médicament est composé de deux noms commerciaux (ex: doliprane codéiné), annoté les deux médicaments et rajouté un lien **"same_ent"** entre les deux entités.
+
+## Unité d'annotation 
+
+L’annotation est centrée sur le concept de frame basé sur la temporalité d'administration des médicaments. Chaque médicament ne peut avoir au maximum qu'une seule de ces lignes en d'autre terme pour chaque fenêtre temporelle d'administration (séparer entre un début et une fin), un médicament à une dose, une fréquence, une voie d'administration .... spécifiques et uniques. S'il y a un changement de dose, fréquence,..., il y a nécessairement un changement dans la temporalité de prescription du médicament.
+
+Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être relié au médicament. Voir exemple [Exemple 1 :]
+
+Si un médicaments est indiqué avec plusieurs prescriptions différentes, il faut relié l'ensemble des attributs du médicaments à une **entité unique** du médicament si celui ci n'est pas répété (dans l'ordre de préférence : date, dose, fréquence, voie d'administration ) Voir exemple [Exemple 9 :]
 
 | À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
@@ -90,7 +107,7 @@ Tous les médicaments énumérés dans le résumé de décharge et donnés (pré
 ## Que faut-il annoter ?
 
 Nom du médicament, génériques, classe de médicaments ou de substances
-
+Ajouter que c'est la patient et pas quelqu'un d'autre 
 Pour annoter des médicaments, le texte doit inclure une déclaration explicite indiquant que le patient a pris ce médicament, qu'il le prend actuellement, qu'il se voit prescrire ce médicament, qu'il lui est suggéré de le prendre, qu'il a eu des effets secondaires en le prenant ou qu'il ne peut pas le prendre en raison d'une contre-indication.
 
 ### Médicament (**"drug"**)
@@ -209,7 +226,7 @@ Les pronoms qui font référence à un médicament ne doivent pas être inclus, 
   - **context** : *grand-mere maternelle*
   - relation : *grand-mere maternelle* <--> *insuline* : **experiencer**
 
-Chaque référence conjointe d'un médicament (nom de classe ou de médicament) ou de ses génériques, y compris avec des fautes d'orthographe, dans la même phrase, doit être annotée. Une relation de **"coref"** entre les entités doit être rajouté
+Chaque référence conjointe d'un médicament (nom de classe ou de médicament) ou de ses génériques, y compris avec des fautes d'orthographe, dans le même paragraphe, doit être annotée. Une relation de **"coref"** entre les entités doit être rajoutée
 
 - *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol 1 boite)*
   - **"drug"** : *doliprane*
@@ -376,7 +393,8 @@ Annotez les différentes façons de se référer au même dose dans des entrées
 Annoter la partie immédiatement adjacente d'un dose dans une entrée distincte :
 
 - *seretide 50 deux bouffeesx2/j*
-  - **"dose"** : *50 deux bouffees*
+  - **"dose"** : *50*
+  - **"freq"** : *deux bouffeesx2/j*
 - *singulair 1 sachet de 4mg/jour,*
   - **"dose"** : *1 sachet de 4mg*
 
@@ -465,7 +483,9 @@ Si la fréquence est segmentée et concerne la même entité, annoter la partie 
 
 - *speciafoldine : 1 comprime par jour, 10 jours par mois.*
   - freq : *10 jours par mois*
-  
+  ## A revoir
+  ## Annotr avec une corref qui prend la relation
+  ## Modifier meningocoque a +c 
 
 
 
