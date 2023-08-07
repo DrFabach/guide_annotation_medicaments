@@ -28,7 +28,9 @@ partir de la préannotation) dans le document, même s'ils ne sont pas reliés �
 -   [Condition](#condition-condition) : **"condition"** (en relation ou non avec un médicament)
 
 
--   [Date ou temporalité]("#datetemporalit%C3%A9-date") : **"date"** (en relation ou non avec un médicament)
+-   [Date ou temporalité]("#datetemporalit%C3%A9-date") : **"date"**/**"temporalité"** (en relation ou non avec un médicament)
+
+-   [Contexte]("#attributs-de-contexte") : **"Contexte"** (en relation ou non avec un médicament)
 
 ## Relations à annoter
 
@@ -51,7 +53,7 @@ annoté :
     **"condition"** et un **"drug"** ou **"class"**
     
     
--   **"Augmentation"**, **"diminution"** : entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
+-   **"Augmentation"**, **"diminution"** : entre une **"contexte** et **"drug"** ou **"class"**
 
 -   **"Negation"**, **"hypothetique"**: entre un **"contexte"** et **"drug"** ou **"class"** 
 
