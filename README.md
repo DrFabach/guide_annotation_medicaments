@@ -27,9 +27,11 @@ partir de la préannotation) dans le document, même s'ils ne sont pas reliés �
 
 -   [Condition](#condition-condition) : **"condition"** (en relation ou non avec un médicament)
 
+
 -   [Date ou temporalité]("#date-date") : **"date"** (en relation ou non avec un médicament)
 
 ## Relations à annoter
+
 
 Le deuxième objectif est d'extraire les relations entre ces annotations
 et les médicaments, l'ensemble des relations suivantes nécessite d'être
