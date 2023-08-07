@@ -28,7 +28,7 @@ partir de la préannotation) dans le document, même s'ils ne sont pas reliés �
 -   [Condition](#condition-condition) : **"condition"** (en relation ou non avec un médicament)
 
 
--   [Date ou temporalité]("#date-date") : **"date"** (en relation ou non avec un médicament)
+-   [Date ou temporalité]("#datetemporalit%C3%A9-date") : **"date"** (en relation ou non avec un médicament)
 
 ## Relations à annoter
 
@@ -37,23 +37,23 @@ Le deuxième objectif est d'extraire les relations entre ces annotations
 et les médicaments, l'ensemble des relations suivantes nécessite d'être
 annoté :
 
--   ["start"](#start) : entre une **"date"**/**"temporalité"** et un **"drug"** ou **"class"**
+-   **"start"** : entre une **"date"**/**"temporalité"** et un **"drug"** ou **"class"**
 
--   ["stop"](#stop): entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
+-   **"stop"**: entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
 
--   ["En cours"](#en_cours): entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
+-   **"En cours"**: entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
 
--   ["duration_presc"](#duree-prescription) : entre une **"duration"** et **"drug"** ou **"class"**
+-   **"duration_presc"**: entre une **"duration"** et **"drug"** ou **"class"**
 
--   ["duration_admin"](#duree-administration) : entre une **"duration"** et **"drug"** ou **"class"** IV
+-   **"duration_admin"**: entre une **"duration"** et **"drug"** ou **"class"** IV
 
--   ["refer_to"](#relation-simple) : entre une **"dose"**, une **"route"**, une **"freq"** ou une
+-   **"refer_to"**: entre une **"dose"**, une **"route"**, une **"freq"** ou une
     **"condition"** et un **"drug"** ou **"class"**
     
     
--   ["Augmentation, diminution"](#augmentation/diminution) : entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
+-   **"Augmentation"**, **"diminution"** : entre une **"date"**/**"temporalité"** et **"drug"** ou **"class"**
 
--   ["Negation, hypothetique"](#Negation/hypothethique) : entre un **"contexte"** et **"drug"** ou **"class"** 
+-   **"Negation"**, **"hypothetique"**: entre un **"contexte"** et **"drug"** ou **"class"** 
 
 <!--# Le dernier objectif est d'extraire les relations temporelles : arrivé à
 replacer les entités temporelles les unes par rapport aux autres si elles
@@ -71,9 +71,9 @@ Si un médicament est composé de deux noms commerciaux (ex: doliprane codéiné
 
 L’annotation est centrée sur le concept de frame basé sur la temporalité d'administration des médicaments. Chaque médicament ne peut avoir au maximum qu'une seule de ces lignes en d'autres termes pour chaque fenêtre temporelle d'administration (séparer entre un début et une fin), un médicament à une dose, une fréquence, une voie d'administration .... spécifiques et uniques. S'il y a un changement de dose, fréquence..., il y a nécessairement un changement dans la temporalité de prescription du médicament.
 
-Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir exemple [Exemple 1 :]
+Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir [exemple](#1--1)
 
-Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : date, dose, fréquence, voie d'administration ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple 9 :]
+Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : date, dose, fréquence, voie d'administration ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple](#2--1)
 
 | À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
