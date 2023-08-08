@@ -204,23 +204,6 @@ Les pronoms qui font référence à un médicament ne doivent pas être inclus, 
 
 Si un médicament est composé de deux noms commerciaux (ex: doliprane codéiné), annoter les deux médicaments et rajouter un lien "Same_ent" entre les deux entités.
 
-## Attributs de contexte
-
-- annotez les phrases nominales qui modifient le contexte du médicament (négation, hypothétique, contre-indication, relaté à une autre personnes, diminution de la dose, augmentation de la dose)
-
-- Puis reliez ces éléments aux médicaments avec une des relations possible : **Negation**, **Hypothetique**,**"Contre_indique"**,**Experiencer**, **Diminution** , **augmentation**
-
-- Pour les médicaments suggérés ou incertains, un attribut de certitude **"Hypothetique"** doit être ajouté. 
-
-- Pour les médicaments non pris ou non donnés, un attribut de certitude **"Negation"** doit être ajouté (la relation sur un médicament négativé peut être annotée, par exemple, la relation entre avk et durée doit être annotée pour "pas d'avk pendant 2 jours"). 
-
-- Pour les médicaments mentionnés comme contre-indication, la certitude **"Contre_indique"** doit être annotée.
-
-- Expérimentateur (**Experiencer**) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur .
-
-- Diminution augmentation (**Diminution**/**augmentation**) pour les médicaments ayant une notion de diminution augmentation sans temporalité clairement définie .
-
-
 ## Exemples :
 
 - *amlor : 10 mg le matin*
@@ -789,7 +772,24 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
     - *7 avril* --> *2 avril* : **end**
     - *30 avril* --> *7 avril* : **end**
   
-  
+
+# Attributs de contexte
+
+- annotez les phrases nominales qui modifient le contexte d'une entité (négation, hypothétique, contre-indication, relaté à une autre personnes, diminution de la dose, augmentation de la dose)
+
+- Puis reliez ces éléments aux médicaments avec une des relations possible : **Negation**, **Hypothetique**,**"Contre_indique"**,**Experiencer**, **Diminution** , **augmentation**
+
+- Pour les médicaments suggérés ou incertains, un attribut de certitude **"Hypothetique"** doit être ajouté. 
+
+- Pour les médicaments non pris ou non donnés, un attribut de certitude **"Negation"** doit être ajouté (la relation sur un médicament négativé peut être annotée, par exemple, la relation entre avk et durée doit être annotée pour "pas d'avk pendant 2 jours"). 
+
+- Pour les médicaments mentionnés comme contre-indication, la certitude **"Contre_indique"** doit être annotée.
+
+- Expérimentateur (**Experiencer**) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur .
+
+- Diminution augmentation (**Diminution**/**augmentation**) pour les médicaments ayant une notion de diminution augmentation sans temporalité clairement définie .
+
+
 
 
 # Exemples :
