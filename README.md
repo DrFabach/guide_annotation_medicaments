@@ -1,4 +1,6 @@
 
+[//]: # Amox/ Acide clavulanique : Same ent ou tout en un? Je penche sur le faite que ça importe peu -> comparaison au niveau de la frame
+
 
 
 # Guide d'annotation
@@ -328,7 +330,7 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
   - 3 boîtes
   - dans *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol 1 boite)*
     - **"Dosage"** : *1 dose poids*
-    - ne pas annoter : *1 boite*
+    - annoter *1 boite* mais ne pas mettre de relation car unité de délivrance
 
 ## Commnent annoter ?
 
@@ -849,6 +851,8 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
 
 <img src="examples/exemple2.PNG" width="1000px">
 
+
+
 #### 3 : 
 
 - *il a été explique aux parents d’utiliser l oxygène en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
@@ -857,6 +861,7 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
  - relations :
   - *en cas d’inconfort, [...] d’un chiffre de saturation* --> *oxygène* : **"Refer_to"**
 
+[//]: # ( Ne faut-il pas modifier pour mettre 3 entités reliés par un same_ent?)
 
 <img src="examples/exemple5.PNG" width="1000px">
 
@@ -1042,16 +1047,24 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments, mais une dose de
     - **"Med"** : *novorapid(3)*
     - **"Dosage"** : *15 ui*
     - **"Med"** : *levemir(2)*
+    - **"Freq"** : *Matin*
+    - **"Freq"** : *gouter*
+    - **"Freq"** : *soir*
     - relations :
       - *5-7 ui* --> *9-12 ui* : **"Same_ent"**
       - *6-8 ui* --> *5-7 ui* : **"Same_ent"**
       - *5-7 ui* --> *novorapid(1)* : **"Refer_to"**
       - *novorapid(2)* --> *novorapid(1)* : **"Same_ent"**
       - *novorapid(3)* --> *novorapid(1)* : **"Same_ent"**
+      - *Matin* --> *gouter* : **"Same_ent"**
+      - *soir* --> *gouter* : **"Same_ent"**
+      - *gouter* --> *novorapid(1)* : **"Refer_to"**
 
       - *15 ui* --> *20 ui* : **"Same_ent"**
       - *20 ui* --> *levemir(1)* : **"Refer_to"**
       - *levemir(2)* --> *levemir(1)* : **"Same_ent"**
+      - *Matin* --> *soir* : **"Same_ent"**
+      - *soir* --> *levemir(1)* : **"Refer_to"**
 
 
       
