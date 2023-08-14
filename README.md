@@ -1,5 +1,4 @@
 
-[//]: # Amox/ Acide clavulanique : Same ent ou tout en un? Je penche sur le faite que ça importe peu -> comparaison au niveau de la frame
 
 
 
@@ -30,7 +29,7 @@ partir de la préannotation) dans le document, même s'ils ne sont pas reliés �
 -   [Condition](#condition-condition) : **"Condition"** (en relation ou non avec un médicament)
 
 
--   [Date ou temporalité]("#datetemporalit%C3%A9-date") : **"Date"**/**"Temporalite"** (en relation ou non avec un médicament)
+-   [Date]("#datetemporalit%C3%A9-date") : **"Date"** (en relation ou non avec un médicament)
 
 -   [Contexte]("#attributs-de-contexte") : **"Contexte"** (en relation ou non avec un médicament)
 
@@ -41,11 +40,11 @@ Le deuxième objectif est d'extraire les relations entre ces annotations
 et les médicaments, l'ensemble des relations suivantes nécessite d'être
 annoté :
 
--   **"Start"** : entre une **"Date"**/**"Temporalite"** et un **"Med"** ou **"Classe"**
+-   **"Start"** : entre une **"Date"**/**"Contexte"** et un **"Med"** ou **"Classe"**
 
--   **"Stop"**: entre une **"Date"**/**"Temporalite"** et **"Med"** ou **"Classe"**
+-   **"Stop"**: entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"**
 
--   **"En_cours"**: entre une **"Date"**/**"Temporalite"** et **"Med"** ou **"Classe"**
+-   **"En_cours"**: entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"**
 
 -   **"Duree_presc"**: entre une **"Duree"** et **"Med"** ou **"Classe"**
 
@@ -55,7 +54,7 @@ annoté :
     **"Condition"** et un **"Med"** ou **"Classe"**
     
     
--   **"Augmentation"**, **"Diminution"** : entre une **"contexte** et **"Med"** ou **"Classe"**
+-   **"Augmentation"**, **"Diminution"** : entre une **"Contexte** et **"Med"** ou **"Classe"**
 
 -   **"Negation"**, **"Hypothetique"**: entre un **"Contexte"** et **"Med"** ou **"Classe"** 
 
@@ -64,12 +63,12 @@ replacer les entités temporelles les unes par rapport aux autres si elles
 sont relatives. Vraiment? peut-être utopique --->
 
 Si une entité est disjointe, la relation : **"Same_ent"** doit être
-utilisé entre les deux parties de l'entité. Si un médicament est répété
-plus loin dans le texte sans notion du nom ou de la classe, une relation.
-**"Coref"** doit être utilisée. Cette relation fait référence à une synonymie.
-La distinction entre les deux peut être représenté au niveau de la frame d'extraction des médicaments. Pour que la frame soit complète, il est nécessaire d'assembler l'ensemble des entités ayant la relation **Same_ent** mais de prendre une des relations relié par la relation **"Coref"** 
+utilisé entre les deux parties de l'entité.  . Si une entité est composée de plusieurs entités différentes (ex pour un dosage : Doliprane 1g le matin, 0.5g le midi et 0.5g le soir.), relier ces entités par la relation **"Same_frame"**.
+Cette relation fait référence à une synonymie. Si un médicament est répété
+plus loin dans le texte sans notion du nom ou de la classe, une relation **"Coref"** doit être utilisée.
+La distinction entre les troix peut être représenté au niveau de la frame d'extraction des médicaments. Pour que la frame soit complète, il est nécessaire d'assembler l'ensemble des entités ayant la relation **Same_ent** et **"Same_frame"** mais de prendre une des entité relié par la relation **"Coref"** 
 
-Si un médicament est composé de deux noms commerciaux (ex: doliprane codéiné), annoter les deux médicaments et rajouter un lien **"Same_ent"** entre les deux entités.
+
 
 ## Unité d'annotation 
 
@@ -77,7 +76,7 @@ L’annotation est centrée sur le concept de frame basé sur la temporalité d'
 
 Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir [exemple](#1--1)
 
-Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : date, dose, fréquence, voie d'administration ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple](#2--1)
+Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : Médicament > Classe > date de début > date de fin > dose > fréquence > Durée d'administration > voie d'administration > Condition de dispensation > Contexte ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple](#2--1)
 
 | À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
@@ -102,8 +101,7 @@ Si un médicament est indiqué avec plusieurs prescriptions différentes, il fau
 
 
 
-Les annotations doivent être faites même s'il y a des fautes
-d'orthographe, sauf si ces fautes d'orthographe peuvent induire une
+Les annotations doivent être faites même s'il y a des fautes d'orthographe, sauf si ces fautes d'orthographe peuvent induire une
 confusion.
 
 
@@ -115,9 +113,10 @@ Tous les médicaments énumérés dans le résumé de décharge et donnés (pré
 
 ## Que faut-il annoter ?
 
-Nom du médicament, génériques, classe de médicaments ou de substances
-Ajouter que c'est le patient et pas quelqu'un d'autre 
-Pour annoter des médicaments, le texte doit inclure une déclaration explicite indiquant que le patient a pris ce médicament, qu'il le prend actuellement, qu'il se voit prescrire ce médicament, qu'il lui est suggéré de le prendre, qu'il a eu des effets secondaires en le prenant ou qu'il ne peut pas le prendre en raison d'une contre-indication.
+Nom du médicament, génériques, classe de médicaments ou de substances, si un médicament est composé d'une association de plusieurs molécules (correspond à une classe ATC), annoté comme une seule entité (ex: Doliprane Codéiné ; ATC: *"N02AJ06 : Codéine et paracétamol"* )
+
+La différence entre médicament et classe : une classe fait référence à une catégorie de médicament (ex: Corticoïdes, Antibiotique...)
+
 
 ### Médicament (**"Med"**)
 
@@ -138,8 +137,7 @@ Pour annoter des médicaments, le texte doit inclure une déclaration explicite 
   - Composants des liquides IV et des solutions salines énumérés (y compris l'"eau minérale" et le "sérum physiologique")
   - Débit glucidique
 - Thérapie par substance, par exemple, *Corticothérapie* ou *traitement antirétroviral* (elle sera annotée comme une classe de médicaments).
-
-- 
+ 
 
 #### Exclus :
 
@@ -204,7 +202,6 @@ Annotez la phrase nominale complète qui correspond au nom du médicament, par e
 Les pronoms qui font référence à un médicament ne doivent pas être inclus, mais leurs attributs sont liés à l'élément auquel ils font référence.
 
 
-Si un médicament est composé de deux noms commerciaux (ex: doliprane codéiné), annoter les deux médicaments et rajouter un lien "Same_ent" entre les deux entités.
 
 ## Exemples :
 
@@ -360,20 +357,20 @@ Utiliser la relation **"Refer_to"** si la dose est en rapport avec un médicamen
   - **"Dosage"**: *0,05 %*
   - relation : *0,05 %* --> *vitabact* : **"Refer_to"**
 
-Annotez tous les doses partiels, et les rassembler avec une relation de **Same_ent**, si elles appartiennent à la même frame. Voir exemple : 
+Annotez tous les doses partiels, et les rassembler avec une relation de **Same_frame**, si elles appartiennent à la même frame. Voir exemple : 
 Si les doses correspondent à une conversion d'unité, utiliser la relatione **coref**
 
 - *hydrea 500mg un jour sur 2, 1000mg un jour sur 2*.
   - **"Dosage"** : *500mg*
   - **"Dosage"** : *1000mg*
   - relation : 
-      - *500mg* <--> *1000mg* : **"Same_ent"**
+      - *500mg* <--> *1000mg* : **"Same_frame"**
 - *hydrocortisone : 7,5 mg le matin, 5 mg le soir (12,5 mg/m²/jour )*
   - **"Dosage"** : *7,5 mg*
   - **"Dosage"** : *5 mg*
   - **"Dosage"** : *12,5mg/m²*
    - relation : 
-      - *7,5 mg* <--> *5 mg* : **"Same_ent"**
+      - *7,5 mg* <--> *5 mg* : **"Same_frame"**
       - *5 mg* <--> *12,5mg/m* : **"Coref"**
 
 Annotez les différentes façons de se référer aux mêmes doses dans des entrées séparées, et les rassembler avec une relation de coreference:
@@ -390,7 +387,7 @@ Annotez les différentes façons de se référer aux mêmes doses dans des entr�
 - *singulair 1 sachet de 4mg/jour,*
   - **"Dosage"** : *1 sachet de 4mg*
 
-Annotez une gamme de doses comme une seule entrée. Dans cet exemple, il y a plusieurs doses pour le même médicament, mais dans des phrases différentes, rajouté une relation entre les termes de type **Same_ent**:
+Annotez une gamme de doses comme une seule entrée. Dans cet exemple, il y a plusieurs doses pour le même médicament, mais dans des phrases différentes, rajouté une relation entre les termes de type **Same_frame**:
 
 - *matin : 5 a 8 ui novorapid. midi : 5 a 8 ui novorapid. gouter : 3 a 4 1/2 ui novorapid. soir : 3 a 6 ui novorapid.*
   - **"Dosage"** :  *5 a 8 ui*
@@ -398,9 +395,9 @@ Annotez une gamme de doses comme une seule entrée. Dans cet exemple, il y a plu
   - **"Dosage"** :  *3 a 4 1/2 ui*
   - **"Dosage"** :  *3 a 6 ui*
    - relation : 
-      - *5 a 8 ui* <--> *5 a 8 ui* : **"Same_ent"**
-      - *5 a 8 ui* <--> *3 a 4 1/2 ui* : **"Same_ent"**
-      - *3 a 4 1/2 ui* <--> *3 a 6 ui* : **"Same_ent"**
+      - *5 a 8 ui* <--> *5 a 8 ui* : **"Same_frame"**
+      - *5 a 8 ui* <--> *3 a 4 1/2 ui* : **"Same_frame"**
+      - *3 a 4 1/2 ui* <--> *3 a 6 ui* : **"Same_frame"**
 
 
 
@@ -471,12 +468,12 @@ Annoter la partie immédiatement adjacente d'une fréquence comme une seule entr
 - *singulair a chaque bolus : 15g a 7h et 16h30*
   - freq : *a 7h et 16h30*
 
-Si la fréquence est segmentée et concerne la même entité, annoter toutes les parties et relier les parties par la relation **Same_ent**
+Si la fréquence est segmentée et concerne la même entité, annoter toutes les parties et relier les parties par la relation **Same_frame**
 
 - *speciafoldine : 1 comprime par jour, 10 jours par mois.*
   - **freq** : *10 jours par mois*
   - **freq** : *1 comprime par jour*
-  - relation : *10 jours par mois* <--> *1 comprime par jour* : **Same_ent**
+  - relation : *10 jours par mois* <--> *1 comprime par jour* : **Same_frame**
 
 
 
@@ -651,18 +648,18 @@ S'il y a différentes conditions mentionnées pour le même médicament, alors i
   - **"Condition"** : *chiffre de saturation*
   - **contexte** : *non*
   - relations : 
-    - *en cas d inconfort* <-->*paleur* : **Same_ent**
-    - *paleur* <--> *gene respiratoire* : **Same_ent**
-    - *gene respiratoire* <--> *chiffre de saturation* : **Same_ent**
+    - *en cas d inconfort* <-->*paleur* : **Same_frame**
+    - *paleur* <--> *gene respiratoire* : **Same_frame**
+    - *gene respiratoire* <--> *chiffre de saturation* : **Same_frame**
     - *non* --> *chiffre de saturation* : **"Negation"** 
   
-Si une condition est composée de plusieurs sous-conditions (séparées par "et"), annoter séparément avec plusieurs entrées et rajouter une relation **Same_ent**
+Si une condition est composée de plusieurs sous-conditions (séparées par "et"), annoter séparément avec plusieurs entrées et rajouter une relation **Same_frame**
 
 - *melatonine 2mg : 1 gelule au coucher si agitation et probleme d endormissement*
   - **"Condition"** : *si agitation*
   - **"Condition"** : *probleme d endormissement*
   - relations : 
-    - *si agitation* <-->  *probleme d endormissement* : **Same_ent**
+    - *si agitation* <-->  *probleme d endormissement* : **Same_frame**
 
 Les différentes façons de désigner la même condition pour les médicaments doivent être traitées comme des conditions distinctes, rajouter une relation **coref**.
 
@@ -678,28 +675,23 @@ Les différentes façons de désigner la même condition pour les médicaments d
 
 Annotez toutes les mentions temporelles mentionnées présentes dans les documents, rajoutés des relations si elles sont reliées à des médicaments.
 
- Cette information est généralement exprimée par une date ou une notion de temporalité. Annotez la date la plus précise possible.
+ Cette information est généralement exprimée par une date ou une heure. Annotez la date la plus précise possible.
 
 
 ## Qu'est-ce qui doit être annoté ?
 
-En priorité il est nécessaire d'annoter la date la plus précise possible. Si aucune date n'est présente, il faut annoter le mot principal (verbe, nom...) soulignant l'évènement tel que "mise en route", "début", "poursuite", "relais" ....
+En priorité il est nécessaire d'annoter la date la plus précise possible.
 
 ## Comment annoter les relations avec les médicaments
 
 Choisissez parmi les valeurs possibles :
 
-- **"Start"** : date ou mention temporelle indiquant le début de la prise du médicament ou la date du début.
-- **"Stop"** : date ou mention temporelle indiquant l'arrêt de la prise du médicament .
-- **"Refer_to"** : date ou mention temporelle indiquant une notion de temporalité du médicament, sans spécifier la date de début ou de fin (ex : prise de 1 cp de doliprane le 21/01/2023)
-- **"en_cours"** : date ou mention temporelle indiquant la poursuite de la prise du médicament
+- **"Start"** : date indiquant le début de la prise du médicament ou la date du début.
+- **"Stop"** : date indiquant l'arrêt de la prise du médicament .
+- **"Refer_to"** : date indiquant une notion de temporalité du médicament, sans spécifier la date de début ou de fin (ex : prise de 1 cp de doliprane le 21/01/2023)
+- **"en_cours"** : date indiquant la poursuite de la prise du médicament
 
 
-
-
-### relation des mentions temporelles avec d'autres dates **pertinentes**
-
-Si une mention temporelle non spécifique (pas de date précise) est présente dans le document, la relié aux dates les plus proches avant et après avec les relations **"avant"** et **"apres"**
 
 
 
@@ -714,10 +706,8 @@ Si une mention temporelle non spécifique (pas de date précise) est présente d
     - *11/07* --> *meningocoque a + c* : **"Refer_to"**
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
   - **"Classe"** : *antibiotherapie*
-  - **"Temporalite"** : *lors de la chirurgie*
   - **"Temporalite"** : *j5*
   - relations : 
-    - *lors de la chirurgie* --> *antibiotherapie* : **"Start"**
     - *j5* --> *antibiotherapie* : **"Stop"**
 - *doliprane du 11 mai au 25 mai*
   - **"Med"** : *doliprane*
@@ -777,9 +767,16 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
 
 # Attributs de contexte
 
-- annotez les phrases nominales qui modifient le contexte d'une entité (négation, hypothétique, contre-indication, relaté à une autre personnes, diminution de la dose, augmentation de la dose)
+## Que faut-il annoter
 
-- Puis reliez ces éléments aux médicaments avec une des relations possible : **Negation**, **Hypothetique**,**"Contre_indique"**,**Experiencer**, **Diminution** , **augmentation**
+Les cas où le contexte d'une entité est modifié (négation, hypothétique, contre-indication, relaté à une autre personnes, diminution de la dose, augmentation de la dose) ou dans le cas d'un début ou arrêt d'un médicament sans date spécifique. Les rélations avec les entités caractériseront les élements de contexte.
+
+- annoter les entités modifiant le contexte de la phrase (ex: *pas* de prise de doliprane, *relais* par héparine)
+
+- Puis reliez ces éléments aux médicaments avec une des relations possible : **Negation**, **Hypothetique**,**"Contre_indique"**,**Experiencer**, **Diminution** , **Augmentation**, **Start**, **Stop**
+
+
+## Types de relations :
 
 - Pour les médicaments suggérés ou incertains, un attribut de certitude **"Hypothetique"** doit être ajouté. 
 
@@ -787,14 +784,26 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
 
 - Pour les médicaments mentionnés comme contre-indication, la certitude **"Contre_indique"** doit être annotée.
 
-- Expérimentateur (**Experiencer**) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur .
-
+- Expérimentateur (**Experiencer**) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur 
 - Diminution augmentation (**Diminution**/**augmentation**) pour les médicaments ayant une notion de diminution augmentation sans temporalité clairement définie .
 
+## Exemples 
 
 
+- *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
+  - **"Classe"** : *antibiotherapie*
+  - **"Context"** : *lors de la chirurgie*
+  - relations : 
+    - *lors de la chirurgie* --> *antibiotherapie* : **"Start"**
+- *Aspirine 500mg /jour, pas de precription de dolipran*
+  - **"Med"** : *Aspirine*
+  - **"Med"** : *dolipran*
+  - **"Contexte"** : *pas de prescription*
+  - relations : 
+    *pas de prescription** --> *dolipran* : **"Negation"** 
 
-# Exemples :
+
+# Exemples Globaux:
 
 #### 1 : 
 
@@ -823,28 +832,31 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
  - **"Dosage"** : *600mg*
  - **"Freq"** : *toutes les 8h*
  - **"Date"** : *2019-10-11*
- - **"Med"** : *PARACETAMOL*(1)
- - **"Dosage"** : *250mg*(1)
+ - **"Med"** : *PARACETAMOL*(1;2)
+ - **"Dosage"** : *250mg*(1;2)
  - **"Freq"** : *toutes les 6h*
  - **"duree"** : *48h*
  - **"Condition"** : *de façon systématique*
- - **"Med"** : *PARACETAMOL*(2)
- - **"Dosage"** : *250mg*(2)
- - **"duree"** : *pendant 7 jours*
+ - **"Contexte"** : *puis*
+
+
+ - **"duree"** : *7 jours*
  - **"Condition"** : *en cas de douleurs*
   - relations :
     - *600mg* --> *AUGMENTIN* : **"Refer_to"**
     - *toutes les 8h* --> *AUGMENTIN* : **"Refer_to"**
     - *2019-10-11* --> *AUGMENTIN* : **"Stop"**
     
-    - *250mg*(1) --> *de façon systématique* : **"Refer_to"**
+    - *250mg*(1;2) --> *de façon systématique* : **"Refer_to"**
     - *toutes les 6h* --> *de façon systématique* : **"Refer_to"**
-    - *PARACETAMOL*(1)  --> *de façon systématique*: **"Refer_to"**
+    - *PARACETAMOL*(1;2)  --> *de façon systématique*: **"Refer_to"**
     - *48h* --> *de façon systématique* : **"Duree_presc"**
+    - *puis* --> *de façon systématique* : **"Stop"**
     
-    - *250mg*(2) -->  *en cas de douleurs* : **"Refer_to"**
-    - *PARACETAMOL*(1)  --> *en cas de douleurs*: **"Refer_to"**
-    - *pendant 7 jours* --> *en cas de douleurs* : **"Duree_presc"**
+    - *250mg*(1;2) -->  *en cas de douleurs* : **"Refer_to"**
+    - *PARACETAMOL*(1;2)  --> *en cas de douleurs*: **"Refer_to"**
+    - *7 jours* --> *en cas de douleurs* : **"Duree_presc"**
+    - *puis* --> *en cas de douleurs* : **"Start"**
 
 
 
@@ -857,11 +869,18 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
 
 - *il a été explique aux parents d’utiliser l oxygène en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
  - **"Classe"** : *oxygène*
- - **"Condition"** : *en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
+ - **"Condition"** : *en cas d’inconfort*
+ - **"Condition"** : *de pâleur*
+ - **"Condition"** : *gene respiratoire*
+ - **"Contexte"** : *non*
+ - **"Condition"** : *en fonction d’un chiffre de saturation*
  - relations :
-  - *en cas d’inconfort, [...] d’un chiffre de saturation* --> *oxygène* : **"Refer_to"**
+  - *en fonction d’un chiffre de saturation* --> *gene respiratoire* : **"Same_frame"**
+  - *gene respiratoire* --> *de pâleur* : **"Same_frame"**
+  - *de pâleur* --> *en cas d’inconfort* : **"Same_frame"**
+  - *en cas d’inconfort* --> *oxygène* : **"Refer_to"**
+  -  *non* --> *en fonction d’un chiffre de saturation* : **"Negation"**
 
-[//]: # ( Ne faut-il pas modifier pour mettre 3 entités reliés par un same_ent?)
 
 <img src="examples/exemple5.PNG" width="1000px">
 
@@ -899,6 +918,7 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments, mais une dose de
       - *15 mg* --> *Lansoprazole* : **"Refer_to"**
       - */jour* --> *Lansoprazole* : **"Refer_to"**
 
+Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansoprazole.
 
 
       
@@ -920,7 +940,7 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments, mais une dose de
     - **"Contexte"** : *diminuer*
     - **"Dosage"** : *1 mg*
     - **"Freq"** : *toutes les 4 semaines*
-    - **"Temporalite"** : *jusqu'?à l?arrêt complet du traitement*
+    - **"Contexte"** : *jusqu'?à l?arrêt complet du traitement*
     - relations :
       - *SOLUPRED* --> *30/11/2020* : **"Start"**
       - *7,5 mg* --> *30/11/2020* : **"Refer_to"**
@@ -950,7 +970,7 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments, mais une dose de
 #### 7 : 
 
 - *je ne modifie pas son traitement, soit toujours lasilix 20 mg/j, atacand 8 mg, ezetrol , calciparat 1 g, allopurinol 300 mg et crestor 5.*
-  - **"temporalite"** : *toujours*
+  - **"Contexte"** : *toujours*
   - **"Med"** : *lasilix*
   - **"Dosage"** :  *20 mg*
   - **"Freq"** : */j*
@@ -995,7 +1015,7 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments, mais une dose de
     - **"Duree"** : *5 jours*
     - **"Med"** : *clamoxyl*
     - **"Route"** : *iv*
-    - **"Temporalite"** : *puis*
+    - **"Contexte"** : *puis*
     - **"Route"** : *per os*
 
     - relations :
@@ -1051,19 +1071,19 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments, mais une dose de
     - **"Freq"** : *gouter*
     - **"Freq"** : *soir*
     - relations :
-      - *5-7 ui* --> *9-12 ui* : **"Same_ent"**
-      - *6-8 ui* --> *5-7 ui* : **"Same_ent"**
+      - *5-7 ui* --> *9-12 ui* : **"Same_frame"**
+      - *6-8 ui* --> *5-7 ui* : **"Same_frame"**
       - *5-7 ui* --> *novorapid(1)* : **"Refer_to"**
-      - *novorapid(2)* --> *novorapid(1)* : **"Same_ent"**
-      - *novorapid(3)* --> *novorapid(1)* : **"Same_ent"**
-      - *Matin* --> *gouter* : **"Same_ent"**
-      - *soir* --> *gouter* : **"Same_ent"**
-      - *gouter* --> *novorapid(1)* : **"Refer_to"**
+      - *novorapid(2)* --> *novorapid(1)* : **"Coref"**
+      - *novorapid(3)* --> *novorapid(1)* : **"Coref"**
+      - *Matin* --> *gouter* : **"Same_frame"**
+      - *soir* --> *gouter* : **"Same_frame"**
+      - *gouter* --> *novorapid(1)* : **"Same_frame"**
 
-      - *15 ui* --> *20 ui* : **"Same_ent"**
+      - *15 ui* --> *20 ui* : **"Same_frame"**
       - *20 ui* --> *levemir(1)* : **"Refer_to"**
-      - *levemir(2)* --> *levemir(1)* : **"Same_ent"**
-      - *Matin* --> *soir* : **"Same_ent"**
+      - *levemir(2)* --> *levemir(1)* : **"Coref"**
+      - *Matin* --> *soir* : **"Same_frame"**
       - *soir* --> *levemir(1)* : **"Refer_to"**
 
 
