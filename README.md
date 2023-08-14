@@ -29,7 +29,7 @@ partir de la préannotation) dans le document, même s'ils ne sont pas reliés �
 -   [Condition](#condition-condition) : **"Condition"** (en relation ou non avec un médicament)
 
 
--   [Date]("#datetemporalit%C3%A9-date") : **"Date"** (en relation ou non avec un médicament)
+-   [Date]("#date-date") : **"Date"** (en relation ou non avec un médicament)
 
 -   [Contexte]("#attributs-de-contexte") : **"Contexte"** (en relation ou non avec un médicament)
 
@@ -671,7 +671,7 @@ Les différentes façons de désigner la même condition pour les médicaments d
     
 <a name="evenement"></a>
 
-# Date/Temporalité (**"Date"**)
+# Date (**"Date"**)
 
 Annotez toutes les mentions temporelles mentionnées présentes dans les documents, rajoutés des relations si elles sont reliées à des médicaments.
 
@@ -706,7 +706,7 @@ Choisissez parmi les valeurs possibles :
     - *11/07* --> *meningocoque a + c* : **"Refer_to"**
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
   - **"Classe"** : *antibiotherapie*
-  - **"Temporalite"** : *j5*
+  - **"Date"** : *j5*
   - relations : 
     - *j5* --> *antibiotherapie* : **"Stop"**
 - *doliprane du 11 mai au 25 mai*
@@ -908,7 +908,7 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments, mais une dose de
 #### 5 
 
   - *A l'arrêt du traitement par Lansoprazole 15 mg/jour, le patient présente une récidive des épigastralgies. Je lui renouvelle son traitement à la demande.*
-    - **"temporalite"** : *A l'arrêt*
+    - **"Contexte"** : *A l'arrêt*
     - **"Med"** : *Lansoprazole*
     - **"Dosage"** : *15 mg*
     - **"Freq"** : */jour*
