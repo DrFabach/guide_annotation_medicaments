@@ -29,7 +29,7 @@ partir de la préannotation) dans le document, même s'ils ne sont pas reliés �
 -   [Condition](#condition-condition) : **"Condition"** (en relation ou non avec un médicament)
 
 
--   [Date]("#date-date") : **"Date"** (en relation ou non avec un médicament)
+-   [Date](#date-date) : **"Date"** (en relation ou non avec un médicament)
 
 -   [Contexte]("#attributs-de-contexte") : **"Contexte"** (en relation ou non avec un médicament)
 
@@ -96,8 +96,8 @@ Si un médicament est indiqué avec plusieurs prescriptions différentes, il fau
 | Élément contextuel    | Context               | Experiencer                  |  |
 | Élément contextuel    | Context               | Augmentation                  |  |
 | Élément contextuel    | Context               | Diminution                  |  |
-
-
+| Élément contextuel    | Context               | Start                  |  |
+| Élément contextuel    | Context               | Stop                  |  |
 
 
 
