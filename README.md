@@ -64,8 +64,8 @@ sont relatives. Vraiment? peut-être utopique --->
 
 Si une entité est disjointe, la relation : **"Same_ent"** doit être
 utilisé entre les deux parties de l'entité.  . Si une entité est composée de plusieurs entités différentes (ex pour un dosage : Doliprane 1g le matin, 0.5g le midi et 0.5g le soir.), relier ces entités par la relation **"Same_frame"**.
-Cette relation fait référence à une synonymie. Si un médicament est répété
-plus loin dans le texte sans notion du nom ou de la classe, une relation **"Coref"** doit être utilisée.
+Cette relation fait référence à une synonymie. Relier l'ensemble des entités appartenants à la same frame à une entité centrale.
+Si un médicament est répété plus loin dans le texte sans notion du nom ou de la classe, une relation **"Coref"** doit être utilisée.
 La distinction entre les troix peut être représenté au niveau de la frame d'extraction des médicaments. Pour que la frame soit complète, il est nécessaire d'assembler l'ensemble des entités ayant la relation **Same_ent** et **"Same_frame"** mais de prendre une des entité relié par la relation **"Coref"** 
 
 
