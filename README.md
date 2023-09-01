@@ -62,13 +62,25 @@ annoté :
 replacer les entités temporelles les unes par rapport aux autres si elles
 sont relatives. Vraiment? peut-être utopique --->
 
-Si une entité est disjointe, la relation : **"Same_ent"** doit être
-utilisé entre les deux parties de l'entité.  . Si une entité est composée de plusieurs entités différentes (ex pour un dosage : Doliprane 1g le matin, 0.5g le midi et 0.5g le soir.), relier ces entités par la relation **"Same_frame"**.
-Cette relation fait référence à une synonymie. Si un médicament est répété
+-  **"Same_ent"** : Si une entité est disjointe, la relation : **"Same_ent"** doit être
+utilisé entre les deux parties de l'entité.
+
+-  **"Same_frame"** : Si une entité est composée de plusieurs entités différentes (ex pour un dosage : Doliprane 1g le matin, 0.5g le midi et 0.5g le soir.), relier ces entités par la relation **"Same_frame"**.
+
+- **"Coref"** : Cette relation fait référence à une synonymie. Si un médicament est répété
 plus loin dans le texte sans notion du nom ou de la classe, une relation **"Coref"** doit être utilisée.
-La distinction entre les troix peut être représenté au niveau de la frame d'extraction des médicaments. Pour que la frame soit complète, il est nécessaire d'assembler l'ensemble des entités ayant la relation **Same_ent** et **"Same_frame"** mais de prendre une des entité relié par la relation **"Coref"** 
 
 
+Ce sens des relations **"Same_ent"** et **"Coref"** n'a pas d'importance car les entités reliés appartiendront toujours à la même frame.
+
+Pour les relation **"Same_frame"** il est nécessaire de relier l'ensemble des entités à une entité cible qui sera elle même reliée à un autre type d'entité de la frame. Ceci permettant de différencier des attributs complexes de médicaments pouvant être composé d'éléments individuels différents pour différentes frames.
+
+Exemple : 
+
+<img src="examples/exemple_same_frame.png" width="1000px">
+
+Ici deux frames sont crées pour le med1 et le med2. La fréquence de med1 est composée de plusieurs entités toutes reliées par la relation **"Same_frame"** à l'entité freq2 : freq1, freq2, freq3 et freq5.
+Pour le med2, les entité reliés à freq3 sont prises en comptes : freq1.
 
 ## Unité d'annotation 
 
@@ -116,6 +128,12 @@ Tous les médicaments énumérés dans le résumé de décharge et donnés (pré
 Nom du médicament, génériques, classe de médicaments ou de substances, si un médicament est composé d'une association de plusieurs molécules (correspond à une classe ATC), annoté comme une seule entité (ex: Doliprane Codéiné ; ATC: *"N02AJ06 : Codéine et paracétamol"* )
 
 La différence entre médicament et classe : une classe fait référence à une catégorie de médicament (ex: Corticoïdes, Antibiotique...)
+Lien pour identifier si l'entité est un médicament ou une classe :
+
+- [https://bioportal.lirmm.fr/search?q=&ontologies=ATCFRE&include_properties=false&include_views=false&includeObsolete=false&require_definition=false&exact_match=false&categories=](sifr Bioportal)
+
+- [https://www.hetop.eu/hetop/fr/?q=&home](Hetop), pas de classification ATC
+
 
 
 ### Médicament (**"Med"**)
@@ -298,6 +316,7 @@ La quantité d'un seul médicament utilisé dans chaque administration, par exem
 ## Que faut-il annoter ?
 
 Les informations numériques et/ou textuelles qui marquent la quantité et l'unité d'administration d'un médicament utilisé dans une seule administration, mais également les quantités et unité d'administration non en relation avec un médicament.
+Cette expression doit être compatible avec un dosage pour un médicament.
 
 ### Inclus (liste non exhaustive) :
 
@@ -316,7 +335,7 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
 - 3 bolus
 - double dose
 - [renutril] 500
-- poids 90kg 
+
 
 ### Exclus :
 
@@ -482,7 +501,7 @@ Si la fréquence est segmentée et concerne la même entité, annoter toutes les
 
 # Durée (**"duree"**)
 
-Une expression de temps écoulé qui indique pendant combien de temps le médicament doit être administré. Ces expressions sont souvent des syntagmes nominaux, des syntagmes prépositionnels ou des clauses.
+Une expression de temps écoulé qui indique pendant combien de temps le médicament doit être administré. Ces expressions sont souvent des syntagmes nominaux, des syntagmes prépositionnels ou des clauses. Cette expression doit être compatible avec un durée en relation avec un médicament. Ne pas annoté l'âge.
 
 ## Qu'est-ce qui doit être annoté ?
 
@@ -510,9 +529,7 @@ Expressions qui décrivent la durée totale pendant laquelle le médicament doit
   - dans 10 jours
   - depuis 10 jours
 
-- doses cumulées (car trop de variabilité dans la signification) :
-
-  - 3 boîtes
+- l'âge des patients
 
 ## Comment annoter ?
 
@@ -775,6 +792,7 @@ Les cas où le contexte d'une entité est modifié (négation, hypothétique, co
 
 - Puis reliez ces éléments aux médicaments avec une des relations possible : **Negation**, **Hypothetique**,**"Contre_indique"**,**Experiencer**, **Diminution** , **Augmentation**, **Start**, **Stop**
 
+Ajouter ces entités et relations, même si une date et présente pour **Diminution** , **Augmentation**, **Start**, **Stop**
 
 ## Types de relations :
 
