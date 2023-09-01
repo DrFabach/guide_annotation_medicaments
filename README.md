@@ -62,6 +62,7 @@ annoté :
 replacer les entités temporelles les unes par rapport aux autres si elles
 sont relatives. Vraiment? peut-être utopique --->
 
+
 -  **"Same_ent"** : Si une entité est disjointe, la relation : **"Same_ent"** doit être
 utilisé entre les deux parties de l'entité.
 
@@ -69,6 +70,9 @@ utilisé entre les deux parties de l'entité.
 
 - **"Coref"** : Cette relation fait référence à une synonymie. Si un médicament est répété
 plus loin dans le texte sans notion du nom ou de la classe, une relation **"Coref"** doit être utilisée.
+
+La distinction entre les troix peut être représenté au niveau de la frame d'extraction des médicaments. Pour que la frame soit complète, il est nécessaire d'assembler l'ensemble des entités ayant la relation **Same_ent** et **"Same_frame"** mais de prendre une des entité relié par la relation **"Coref"** 
+
 
 
 Ce sens des relations **"Same_ent"** et **"Coref"** n'a pas d'importance car les entités reliés appartiendront toujours à la même frame.
