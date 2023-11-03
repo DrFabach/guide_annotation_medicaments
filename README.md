@@ -260,21 +260,21 @@ Chaque référence conjointe d'un médicament (nom de classe ou de médicament) 
     - *novorapid(2)* <--> *novorapid(3)* : **"Coref"**
     - *levemir(1)* <--> *levemir(2)* : **"Coref"**
     
-Si un médicament est écrit comme médicament et comme classe dans la même phrase, annoter les deux (comme classe et comme médicament). L'association d'un médicament à une classe dans la même phrase entraîne une annotation d'une relation de type "Classe" par médicament :
+Si un médicament est écrit comme médicament et comme classe dans la même phrase, annoter les deux (comme classe et comme médicament). L'association d'un médicament à une classe dans la même phrase entraîne une annotation d'une relation de type "Refer_to" par médicament :
 
 - *relais par avk au cours de l'hospitalisation (coumadine)*
   - **"Med"** : *coumadine*
   - **"Classe"** : *avk*
-  - relation :  *avk* <-- *coumadine* : **"Classe"**
+  - relation :  *avk* <-- *coumadine* : **"Refer_to"**
 - *un traitement antiretroviral a ete debute (truvada, reyataz et norvir avec une charge virale…)*
   - **"Classe"** : *traitement antiretroviral*
   - **"Med"** : *truvada*
   - **"Med"** : *reyataz*
   - **"Med"** : *norvir*
   - relations : 
-    - *traitement antiretroviral* <-- *truvada* : **"Classe"**
-    - *traitement antiretroviral* <-- *reyataz* : **"Classe"**
-    - *traitement antiretroviral* <-- *norvir* : **"Classe"**
+    - *traitement antiretroviral* <-- *truvada* : **"Refer_to"**
+    - *traitement antiretroviral* <-- *reyataz* : **"Refer_to"**
+    - *traitement antiretroviral* <-- *norvir* : **"Refer_to"**
     
 
 L'énumération des médicaments partageant un mot doit être annotée en entité disjointe en utilisant les relations **"Disj_ent"** :
