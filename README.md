@@ -68,21 +68,21 @@ utilisé entre les deux parties de l'entité.
 - **"Coref"** : Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifié, donc qu'il y a une entité **"Med"** et une entité **"Classe"**", il faut utiliser la relation **"coref"**,  le sens de la relation doit aller de la classe au médicament.
 
 
-Le sens des relations **"Disj_ent"** et **"Coref"** n'a pas d'importance car les entités reliés appartiendront toujours à la même frame (en dehors de la relation liant une **"Classe"** et un **"Med"**).
+Le sens des relations **"Disj_ent"** et **"Coref"** n'ont pas d'importance, car les entités reliées appartiendront toujours à la même frame (en dehors de la relation liant une **"Classe"** et un **"Med"**).
 
-<!--Pour les relation **"Same_frame"** il est nécessaire de relier l'ensemble des entités à une entité cible qui sera elle même reliée à un autre type d'entité de la frame. Ceci permettant de différencier des attributs complexes de médicaments pouvant être composé d'éléments individuels différents pour différentes frames.--->
+<!--Pour les relations **"Same_frame"** il est nécessaire de relier l'ensemble des entités à une entité cible qui sera elle-même reliée à un autre type d'entité de la frame. Ceci permettant de différencier des attributs complexes de médicaments pouvant être composé d'éléments individuels différents pour différentes frames.--->
 
 <!--Exemple : 
 
 <img src="examples/exemple_same_frame.png" width="1000px">
 
-Ici deux frames sont crées pour le med1 et le med2. La fréquence de med1 est composée de plusieurs entités toutes reliées par la relation **"Same_frame"** à l'entité freq2 : freq1, freq2, freq3 et freq5.
-Pour le med2, les entité reliés à freq3 sont prises en comptes : freq1.--->
+Ici deux frames sont créées pour le med1 et le med2. La fréquence de med1 est composée de plusieurs entités toutes reliées par la relation **"Same_frame"** à l'entité freq2 : freq1, freq2, freq3 et freq5.
+Pour le med2, les entités reliées à freq3 sont prises en compte : freq1.--->
 
 ## Unité d'annotation 
 
 L’annotation est centrée sur le concept de frame basé sur la temporalité d'administration des médicaments. 
-Chaque médicament unique est défini par une date de début, date de fin différentes. Cette notion de date de dispensation différente peut être explicite (date de fin et de début explicitement écrite) ou implicite (changement de dose, changement de fréquence...). Ces différentes dispensations seront centrales pour générer les frames 
+Chaque médicament unique est défini par une date de début, date de fin différente. Cette notion de date de dispensation différente peut être explicite (date de fin et de début explicitement écrite) ou implicite (changement de dose, changement de fréquence...). Ces différentes dispensations seront centrales pour générer les frames 
 
 Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir [exemple](#1--1) Il s'agira de l'entité centrale de la frame.
 
@@ -92,7 +92,7 @@ Si un médicament est renseigné avec plusieurs coréférences, choisir une des 
 
 Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : Médicament > Classe > date de début > date de fin > dose > fréquence > Durée d'administration > voie d'administration > Condition de dispensation > Contexte ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple](#2--1). Ces entités seront les entités centrales des différentes frames.
 
-Dans le cas de médicaments avec des coreférences, ou avec mention de la classe du médicaments, les attributs présents dans le textes doivent être reliés avec l'entité la plus proche sauf si les attributs ne peuvent pas être relié au médicaments car plusieurs frames sont présentes, dans ce cas tout relier à l'entité centrale. [Exemple](#3--1)
+Dans le cas de médicaments avec des coreférences, ou avec mention de la classe du médicaments, les attributs présents dans le textes doivent être reliés avec l'entité la plus proche sauf si les attributs ne peuvent pas être relié au médicaments, car plusieurs frames sont présentes, dans ce cas tout relier à l'entité centrale. [Exemple](#3--1)
 
 | À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
@@ -348,7 +348,7 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
   - 3 boîtes
   - dans *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol 1 boite)*
     - **"Dosage"** : *1 dose poids*
-    - annoter *1 boite* mais ne pas mettre de relation car unité de délivrance
+    - annoter *1 boite* mais ne pas mettre de relation, car unité de délivrance
 
 ## Commnent annoter ?
 
@@ -1109,3 +1109,4 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
       
 
 <img src="examples/matin_same_rafe.PNG" width="1000px">
+
