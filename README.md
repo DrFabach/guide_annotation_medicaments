@@ -7,31 +7,30 @@
 ## Entités à annoter
 
 Pour chaque rapport de patient fourni, l'objectif est d'extraire des
-informations sur tous les médicaments qui sont connus pour être pris par
+informations sur tous les traitements médicamenteux qui sont connus pour être pris par
 le patient ou liés à lui, différents attributs des médicaments et la
-temporalité en relation ou non avec les médicaments.
+temporalité en relation ou non avec les traitements médicamenteux.
 
 L'ensemble de la tâche d'annotation sera centrée sur les médicaments,
-mais l'ensemble des concepts suivant doit être annoté ou corrigé (à
-partir de la préannotation) dans le document, même s'ils ne sont pas reliés à des médicaments :
+à part les dates, l'ensemble des concepts suivant doivent être annotés s'ils sont en relation avec un médicament ou une classe :
 
 -   [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) : **"Med"**, **"Classe"**
 
--  [Dose](#dose-dose) : **"Dosage"** (en relation ou non avec un médicament)
+-  [Dose](#dose-dose) : **"Dosage"** (en relation avec un médicament)
 
--   [Fréquence](#fréquence-freq) : **"Freq"** (en relation ou non avec un médicament)
+-   [Fréquence](#fréquence-freq) : **"Freq"** (en relation avec un médicament)
 
--   [Durée](#durée-duree)  : **"Duree"** (en relation ou non avec un médicament)
+-   [Durée](#durée-duree)  : **"Duree"** (en relation avec un médicament)
 
--   [Voie d'administration](#voie-dadministration-route) : **"Route"** (en relation ou non avec un
+-   [Voie d'administration](#voie-dadministration-route) : **"Route"** (en relation avec un
     médicament)
 
--   [Condition](#condition-condition) : **"Condition"** (en relation ou non avec un médicament)
+-   [Condition](#condition-condition) : **"Condition"** (en relation avec un médicament)
 
 
 -   [Date/Date relative](#date-date) : **"Date"**/**"Date_relat"** (en relation ou non avec un médicament)
 
--   [Contexte]("#attributs-de-contexte") : **"Contexte"** (en relation ou non avec un médicament)
+-   [Contexte]("#attributs-de-contexte") : **"Contexte"** (en relation avec un médicament)
 
 ## Relations à annoter
 
@@ -61,14 +60,14 @@ annoté :
 
 
 
--  **"Disj_ent"** : Si une entité est disjointe, la relation : **"Disj_ent"** doit être
+-  **"Disc_ent"** : Si une entité est discontinue, la relation : **"Disc_ent"** doit être
 utilisé entre les deux parties de l'entité.
 
 
 - **"Coref"** : Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifié, donc qu'il y a une entité **"Med"** et une entité **"Classe"**", il faut utiliser la relation **"coref"**,  le sens de la relation doit aller de la classe au médicament.
 
 
-Le sens des relations **"Disj_ent"** et **"Coref"** n'ont pas d'importance, car les entités reliées appartiendront toujours à la même frame (en dehors de la relation liant une **"Classe"** et un **"Med"**).
+Le sens des relations **"Disc_ent"** et **"Coref"** n'ont pas d'importance, car les entités reliées appartiendront toujours à la même frame (en dehors de la relation liant une **"Classe"** et un **"Med"**).
 
 <!--Pour les relations **"Same_frame"** il est nécessaire de relier l'ensemble des entités à une entité cible qui sera elle-même reliée à un autre type d'entité de la frame. Ceci permettant de différencier des attributs complexes de médicaments pouvant être composé d'éléments individuels différents pour différentes frames.--->
 
@@ -277,7 +276,7 @@ Si un médicament est écrit comme médicament et comme classe dans la même phr
     - *traitement antiretroviral* <-- *norvir* : **"Refer_to"**
     
 
-L'énumération des médicaments partageant un mot doit être annotée en entité disjointe en utilisant les relations **"Disj_ent"** :
+L'énumération des médicaments partageant un mot doit être annotée en entité disjointe en utilisant les relations **"Disc_ent"** :
 
 - *vitamine C , D , A , and E*
   - **"Med"** : *vitamine C*
@@ -287,9 +286,9 @@ L'énumération des médicaments partageant un mot doit être annotée en entit�
   - **"Med"** : *A*
   - **"Med"** : *E*
   - relations : 
-    - *vitamine* --> *D* : **"Disj_ent"**
-    - *vitamine* --> *A* : **"Disj_ent"**
-    - *vitamine* --> *E* : **"Disj_ent"**
+    - *vitamine* --> *D* : **"Disc_ent"**
+    - *vitamine* --> *A* : **"Disc_ent"**
+    - *vitamine* --> *E* : **"Disc_ent"**
   
 
 - *une dose de vitamine C et vitamine D*
