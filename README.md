@@ -1,15 +1,12 @@
-
-
-
-
 # Guide d'annotation
 
-## Entités à annoter
+## Objectif
 
-Pour chaque rapport de patient fourni, l'objectif est d'extraire des
-informations sur tous les traitements médicamenteux qui sont connus pour être pris par
-le patient ou liés à lui, différents attributs des médicaments et la
-temporalité en relation ou non avec les traitements médicamenteux.
+L'objectif est d'annoter chaque texte afin d'extraire un maximum d'informations sur tous les traitements médicamenteux pris ou liés au patient.
+Pour chaque traitement un ensemble de *concepts* peuvent être annotés (ex : classe de médicament, dose). Ces concepts peuvent être liés liés à une médicament 
+à l'aide de *relations*. Les notions de temporalités sont particulièrement importante et sont annotés avec une relation ou sans relation avec le médicament.
+
+## Entités à annoter
 
 L'ensemble de la tâche d'annotation sera centrée sur les médicaments,
 à part les dates, l'ensemble des concepts suivant doivent être annotés s'ils sont en relation avec un médicament ou une classe :
