@@ -2,32 +2,30 @@
 
 ## Objectif
 
-L'objectif est d'annoter chaque texte afin d'extraire un maximum d'informations sur tous les traitements médicamenteux pris ou liés au patient.
-Pour chaque traitement un ensemble de *concepts* peuvent être annotés (ex : classe de médicament, dose). Ces concepts peuvent être liés liés à une médicament 
-à l'aide de *relations*. Les notions de temporalités sont particulièrement importante et sont annotés avec une relation ou sans relation avec le médicament.
+L'objectif est d'annoter chaque texte afin d'extraire un maximum d'informations
+sur tous les traitements médicamenteux pris ou liés au patient.  Pour chaque
+traitement un ensemble de *concepts* peuvent être annotés (ex : classe de
+médicament, dose). Ces concepts peuvent être liés liés à une médicament à l'aide
+de *relations*. Les notions de temporalités sont particulièrement importante et
+sont annotés avec une relation ou sans relation avec le médicament.
 
 ## Entités à annoter
 
-L'ensemble de la tâche d'annotation sera centrée sur les médicaments,
-à part les dates, l'ensemble des concepts suivant doivent être annotés s'ils sont en relation avec un médicament ou une classe :
+La tâche d'annotation est centrée sur le médicament. L'ensemble des concepts
+suivant doivent être annotés s'ils sont en relation avec un médicament ou une
+classe.  Une seule exception : les dates isolé doit être annotée sans relation
+avec un médicament.
 
--   [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) : **"Med"**, **"Classe"**
-
--  [Dose](#dose-dose) : **"Dosage"** (en relation avec un médicament)
-
--   [Fréquence](#fréquence-freq) : **"Freq"** (en relation avec un médicament)
-
--   [Durée](#durée-duree)  : **"Duree"** (en relation avec un médicament)
-
--   [Voie d'administration](#voie-dadministration-route) : **"Route"** (en relation avec un
-    médicament)
-
--   [Condition](#condition-condition) : **"Condition"** (en relation avec un médicament)
-
-
--   [Date/Date relative](#date-date) : **"Date"**/**"Date_relat"** (en relation ou non avec un médicament)
-
--   [Contexte]("#attributs-de-contexte") : **"Contexte"** (en relation avec un médicament)
+| Concept (cliquer pour le détail) | Classes | Lien avec un médicament |
+| ------- | ------- | ------------|
+| [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) | **"Med"**, **"Classe"** | |
+| [Dose](#dose-dose) | **"Dosage"** | en relation avec un médicament |
+| [Fréquence](#fréquence-freq) | **"Freq"** | en relation avec un médicament |
+| [Durée](#durée-duree)  | **"Duree"** | en relation avec un médicament |
+| [Voie d'administration](#voie-dadministration-route) | **"Route"** | en relation avec un médicament |
+| [Condition](#condition-condition) | **"Condition"** | en relation avec un médicament |
+| [Date/Date relative](#date-date) | **"Date"**/**"Date_relat"** | en relation ou non avec un médicament |
+| [Contexte]("#attributs-de-contexte") | **"Contexte"** | en relation avec un médicament |
 
 ## Relations à annoter
 
