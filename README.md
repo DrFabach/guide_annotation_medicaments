@@ -758,15 +758,23 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
 
 # Attributs de contexte
 
-## Que faut-il annoter
+## Que faut-il annoter ?
 
-Les cas où le contexte d'une entité est modifié (négation, hypothétique, contre-indication, relaté à une autre personnes, diminution de la dose, augmentation de la dose) ou dans le cas d'un début ou arrêt d'un médicament. Les relations avec les entités caractériseront les éléments de contexte. Annoter la plus petite expression possible prenant en compte le contexte.
+Il faut annoter les cas où le contexte d'une entité est modifié (négation,
+hypothétique, contre-indication, lié à une autre personne, diminution de la
+dose, augmentation de la dose) ou dans le cas d'un début ou arrêt d'un
+médicament. Les relations avec les entités caractériserent les éléments de
+contexte. Annoter la plus petite expression possible prenant en compte le
+contexte.
 
-- annoter les entités modifiant le contexte de la phrase (ex: *pas* de prise de doliprane, *relais* par héparine)
+1. Annoter les entités modifiant le contexte de la phrase (ex: *pas* de prise
+   de doliprane, *relais* par héparine).
+2. Puis reliez ces éléments aux médicaments avec une des relations possible :
+   **Negation**, **Hypothetique**,**"Contre_indique"**,**Experiencer**,
+**Diminution** , **Augmentation**, **Start**, **Stop**.
 
-- Puis reliez ces éléments aux médicaments avec une des relations possible : **Negation**, **Hypothetique**,**"Contre_indique"**,**Experiencer**, **Diminution** , **Augmentation**, **Start**, **Stop**
-
-Ajouter ces entités et relations, même si une entité plus spécifique est présente (exemple une date pour  **Start**, **Stop**)
+Ajouter ces entités et relations, même si une entité plus spécifique est
+présente (exemple une date pour  **Start**, **Stop**)
 
 ## Types de relations :
 
