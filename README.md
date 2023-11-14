@@ -11,10 +11,10 @@ sont annotés avec une relation ou sans relation avec le médicament.
 
 ## Entités à annoter
 
-La tâche d'annotation est centrée sur le médicament. L'ensemble des concepts
-suivant doivent être annotés s'ils sont en relation avec un médicament ou une
-classe.  Une seule exception : les dates isolé doit être annotée sans relation
-avec un médicament.
+Le premier objectif est d'annoter des entités. La tâche d'annotation est
+centrée sur le médicament. L'ensemble des concepts suivant doivent être annotés
+s'ils sont en relation avec un médicament ou une classe.  Une seule exception :
+les dates isolé doit être annotée sans relation avec un médicament.
 
 | Concept (cliquer pour le détail) | Classes | Lien avec un médicament |
 | ------- | ------- | ------------|
@@ -29,38 +29,22 @@ avec un médicament.
 
 ## Relations à annoter
 
-
 Le deuxième objectif est d'extraire les relations entre ces annotations
 et les médicaments, l'ensemble des relations suivantes nécessite d'être
 annoté :
 
--   **"Start"** : entre une **"Date"**/**"Contexte"** et un **"Med"** ou **"Classe"**
-
--   **"Stop"**: entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"**
-
--   **"En_cours"**: entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"**
-
--   **"Duree_presc"**: entre une **"Duree"** et **"Med"** ou **"Classe"**
-
--   **"Duree_admin"**: entre une **"Duree"** et **"Med"** ou **"Classe"** IV
-
--   **"Refer_to"**: entre une **"Dosage"**, une **"Route"**, une **"Freq"** ou une
-    **"Condition"** et un **"Med"** ou **"Classe"**
-    
-    
--   **"Augmentation"**, **"Diminution"** : entre une **"Contexte** et **"Med"** ou **"Classe"**
-
--   **"Negation"**, **"Hypothetique"**,**"Contre_indique"**,**"Experiencer"**: entre un **"Contexte"** et **"Med"** ou **"Classe"** 
-
-
-
-
--  **"Disc_ent"** : Si une entité est discontinue, la relation : **"Disc_ent"** doit être
-utilisé entre les deux parties de l'entité.
-
-
-- **"Coref"** : Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifié, donc qu'il y a une entité **"Med"** et une entité **"Classe"**", il faut utiliser la relation **"coref"**,  le sens de la relation doit aller de la classe au médicament.
-
+| Relation | Entités liées |
+| -------- | ------------- |
+| **"Start"** | entre une **"Date"**/**"Contexte"** et un **"Med"** ou **"Classe"** |
+| **"Stop"** |  entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"** |
+| **"En_cours"** |  entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"** |
+| **"Duree_presc"** |  entre une **"Duree"** et **"Med"** ou **"Classe"** |
+| **"Duree_admin"** |  entre une **"Duree"** et **"Med"** ou **"Classe"** IV |
+| **"Refer_to"** |  entre une **"Dosage"**, une **"Route"**, une **"Freq"** ou une **"Condition"** et un **"Med"** ou **"Classe"** |
+| **"Augmentation"**, **"Diminution"**  |  entre une **"Contexte** et **"Med"** ou **"Classe"** |
+| **"Negation"**, **"Hypothetique"**,**"Contre_indique"**,**"Experiencer"** |  entre un **"Contexte"** et **"Med"** ou **"Classe"**  |
+| **"Disc_ent"**  |  Si une entité est discontinue, la relation  **"Disc_ent"** doit être utilisé entre les deux parties de l'entité. |
+| **"Coref"**  |  Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifié, donc qu'il y a une entité **"Med"** et une entité **"Classe"**", il faut utiliser la relation **"coref"**,  le sens de la relation doit aller de la classe au médicament. |
 
 Le sens des relations **"Disc_ent"** et **"Coref"** n'ont pas d'importance, car les entités reliées appartiendront toujours à la même frame (en dehors de la relation liant une **"Classe"** et un **"Med"**).
 
@@ -75,7 +59,7 @@ Pour le med2, les entités reliées à freq3 sont prises en compte : freq1.--->
 
 ## Unité d'annotation 
 
-L’annotation est centrée sur le concept de frame basé sur la temporalité d'administration des médicaments. 
+L’annotation est centrée sur le concept de *frame* basé sur la temporalité d'administration des médicaments. 
 Chaque médicament unique est défini par une date de début, date de fin différente. Cette notion de date de dispensation différente peut être explicite (date de fin et de début explicitement écrite) ou implicite (changement de dose, changement de fréquence...). Ces différentes dispensations seront centrales pour générer les frames 
 
 Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir [exemple](#1--1) Il s'agira de l'entité centrale de la frame.
