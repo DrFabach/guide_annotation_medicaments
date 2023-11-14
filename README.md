@@ -600,8 +600,10 @@ Les différentes façons de désigner le même mode d'administration doivent êt
 
 # Condition (**"Condition"**) 
 
-Expressions qui indiquent la condition pour laquelle le médicament doit être administré. Ces expressions sont souvent des propositions conditionnelles et commencent par une expression conditionnelle telle que "si", "en cas de", "en fonction de"....
-
+Expressions qui indiquent la condition pour laquelle le médicament doit être
+administré. Ces expressions sont souvent des propositions conditionnelles et
+commencent par une expression conditionnelle telle que "si", "en cas de", "en
+fonction de"...
 
 ## Qu'est-ce qui doit être annoté ?
 
@@ -616,21 +618,20 @@ Condition pour laquelle le médicament doit être administré.
 
 ## Comment annoter ?
 
-
-Annotez toujours la phrase adjectivale de base la plus informative ou la phrase nominale de base la plus courte comme condition du médicament. N'incluez pas les phrases complexes, n'incluez pas les phrases coordonnées. Au lieu de cela, extrayez de ces phrases la phrase de base, même si cela signifie que vous vous retrouverez avec plusieurs conditions.
+Annotez toujours la phrase adjectivale de base la plus informative ou la phrase
+nominale de base la plus courte comme condition du médicament. N'incluez pas
+les phrases complexes, n'incluez pas les phrases coordonnées. Au lieu de cela,
+extrayez de ces phrases la phrase de base, même si cela signifie que vous vous
+retrouverez avec plusieurs conditions.
 
 **Inclure les "si" ou les "en cas de", etc. dans l'annotation.**
-
-
 
 ### Exemples
 
 - *codenfan une dose/poids si besoin maximum 3x par jour*
   - **"Condition"** : *si besoin*
 
-
 S'il y a différentes conditions mentionnées pour le même médicament, alors inclure une entrée par condition et les relier au médicament. Dans les cas où plusieurs médicaments sont donnés avec la même condition, indiquez la condition et relié la avec tous les médicaments.
-
 
 - *il a ete explique aux parents d utiliser l oxygene en cas d inconfort, de paleur ou de gene respiratoire et non en fonction d un chiffre de saturation*
   - **"Condition"** : *en cas d inconfort*
@@ -650,7 +651,6 @@ Si une condition est composée de plusieurs sous-conditions (séparées par "et"
 - *melatonine 2mg : 1 gelule au coucher si agitation et probleme d endormissement*
   - **"Condition"** : *si agitation*
   - **"Condition"** : *probleme d endormissement*
-
 
 Les différentes façons de désigner la même condition pour les médicaments doivent être traitées comme des conditions distinctes, rajouter une relation **coref**.
 
