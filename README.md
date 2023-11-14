@@ -475,7 +475,13 @@ Si la fréquence est segmentée et concerne la même frame, annoter toutes les p
 
 # Durée (**"duree"**)
 
-Une expression de temps écoulé qui indique pendant combien de temps le médicament doit être administré. Ces expressions sont souvent des syntagmes nominaux, des syntagmes prépositionnels ou des clauses. Cette expression doit être compatible avec un durée en relation avec un médicament. Ne pas annoté l'âge. Annoté uniquement les durée en relation avec un médicament. Si une durée est utilisée pour exprimer une date relative (ex: dans 3 mois), annoter comme une date relative.
+Une expression de temps écoulé qui indique pendant combien de temps le
+médicament doit être administré. Ces expressions sont souvent des syntagmes
+nominaux, des syntagmes prépositionnels ou des clauses. Cette expression doit
+être compatible avec un durée en relation avec un médicament. Ne pas annoter
+l'âge. Annoter uniquement les durées en relation avec un médicament. Si une
+durée est utilisée pour exprimer une date relative (ex: dans 3 mois), annoter
+comme une date relative.
 
 ## Qu'est-ce qui doit être annoté ?
 
