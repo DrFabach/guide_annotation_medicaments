@@ -670,10 +670,14 @@ Les différentes façons de désigner la même condition pour les médicaments d
 
 # Date (**"Date"**)
 
-Annotez toutes les mentions temporelles mentionnées présentes dans les documents, rajoutés des relations si elles sont reliées à des médicaments. Annoter les dates relatives (dans 10 jours, il y a 6 mois ) comme des **"Date_relative"**.
+Annotez toutes les mentions temporelles mentionnées présentes dans les
+documents, rajoutez des relations si elles sont reliées à des médicaments.
+Annotez les dates relatives (dans 10 jours, il y a 6 mois ) comme des
+**"Date_relative"**.
 
-Cette information est généralement exprimée par une date ou une heure. Annotez la date/heure la plus précise possible, sans prendre en compte les prépositions.
-
+Cette information est généralement exprimée par une date ou une heure. Annotez
+la date/heure la plus précise possible, sans prendre en compte les
+prépositions.
 
 ## Qu'est-ce qui doit être annoté ?
 
