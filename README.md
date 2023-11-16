@@ -1,71 +1,50 @@
-
-
-
-
 # Guide d'annotation
+
+## Objectif
+
+L'objectif est d'annoter chaque texte afin d'extraire un maximum d'informations
+sur tous les traitements médicamenteux pris ou liés au patient.  Pour chaque
+traitement un ensemble de *concepts* peuvent être annotés (ex : classe de
+médicament, dose). Ces concepts peuvent être liés liés à une médicament à l'aide
+de *relations*. Les notions de temporalités sont particulièrement importante et
+sont annotés avec une relation ou sans relation avec le médicament.
 
 ## Entités à annoter
 
-Pour chaque rapport de patient fourni, l'objectif est d'extraire des
-informations sur tous les traitements médicamenteux qui sont connus pour être pris par
-le patient ou liés à lui, différents attributs des médicaments et la
-temporalité en relation ou non avec les traitements médicamenteux.
+Le premier objectif est d'annoter des entités. La tâche d'annotation est
+centrée sur le médicament. L'ensemble des concepts suivant doivent être annotés
+s'ils sont en relation avec un médicament ou une classe.  Une seule exception :
+les dates isolé doit être annotée sans relation avec un médicament.
 
-L'ensemble de la tâche d'annotation sera centrée sur les médicaments,
-à part les dates, l'ensemble des concepts suivant doivent être annotés s'ils sont en relation avec un médicament ou une classe :
-
--   [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) : **"Med"**, **"Classe"**
-
--  [Dose](#dose-dose) : **"Dosage"** (en relation avec un médicament)
-
--   [Fréquence](#fréquence-freq) : **"Freq"** (en relation avec un médicament)
-
--   [Durée](#durée-duree)  : **"Duree"** (en relation avec un médicament)
-
--   [Voie d'administration](#voie-dadministration-route) : **"Route"** (en relation avec un
-    médicament)
-
--   [Condition](#condition-condition) : **"Condition"** (en relation avec un médicament)
-
-
--   [Date/Date relative](#date-date) : **"Date"**/**"Date_relat"** (en relation ou non avec un médicament)
-
--   [Contexte]("#attributs-de-contexte") : **"Contexte"** (en relation avec un médicament)
+| Concept (cliquer pour le détail) | Classes | Lien avec un médicament |
+| ------- | ------- | ------------|
+| [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) | **"Med"**, **"Classe"** | |
+| [Dose](#dose-dose) | **"Dosage"** | en relation avec un médicament |
+| [Fréquence](#fréquence-freq) | **"Freq"** | en relation avec un médicament |
+| [Durée](#durée-duree)  | **"Duree"** | en relation avec un médicament |
+| [Voie d'administration](#voie-dadministration-route) | **"Route"** | en relation avec un médicament |
+| [Condition](#condition-condition) | **"Condition"** | en relation avec un médicament |
+| [Date/Date relative](#date-date) | **"Date"**/**"Date_relat"** | en relation ou non avec un médicament |
+| [Contexte]("#attributs-de-contexte") | **"Contexte"** | en relation avec un médicament |
 
 ## Relations à annoter
-
 
 Le deuxième objectif est d'extraire les relations entre ces annotations
 et les médicaments, l'ensemble des relations suivantes nécessite d'être
 annoté :
 
--   **"Start"** : entre une **"Date"**/**"Contexte"** et un **"Med"** ou **"Classe"**
-
--   **"Stop"**: entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"**
-
--   **"En_cours"**: entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"**
-
--   **"Duree_presc"**: entre une **"Duree"** et **"Med"** ou **"Classe"**
-
--   **"Duree_admin"**: entre une **"Duree"** et **"Med"** ou **"Classe"** IV
-
--   **"Refer_to"**: entre une **"Dosage"**, une **"Route"**, une **"Freq"** ou une
-    **"Condition"** et un **"Med"** ou **"Classe"**
-    
-    
--   **"Augmentation"**, **"Diminution"** : entre une **"Contexte** et **"Med"** ou **"Classe"**
-
--   **"Negation"**, **"Hypothetique"**,**"Contre_indique"**,**"Experiencer"**: entre un **"Contexte"** et **"Med"** ou **"Classe"** 
-
-
-
-
--  **"Disc_ent"** : Si une entité est discontinue, la relation : **"Disc_ent"** doit être
-utilisé entre les deux parties de l'entité.
-
-
-- **"Coref"** : Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifié, donc qu'il y a une entité **"Med"** et une entité **"Classe"**", il faut utiliser la relation **"coref"**,  le sens de la relation doit aller de la classe au médicament.
-
+| Relation | Entités liées |
+| -------- | ------------- |
+| **"Start"** | entre une **"Date"**/**"Contexte"** et un **"Med"** ou **"Classe"** |
+| **"Stop"** |  entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"** |
+| **"En_cours"** |  entre une **"Date"**/**"Contexte"** et **"Med"** ou **"Classe"** |
+| **"Duree_presc"** |  entre une **"Duree"** et **"Med"** ou **"Classe"** |
+| **"Duree_admin"** |  entre une **"Duree"** et **"Med"** ou **"Classe"** IV |
+| **"Refer_to"** |  entre une **"Dosage"**, une **"Route"**, une **"Freq"** ou une **"Condition"** et un **"Med"** ou **"Classe"** |
+| **"Augmentation"**, **"Diminution"**  |  entre une **"Contexte** et **"Med"** ou **"Classe"** |
+| **"Negation"**, **"Hypothetique"**,**"Contre_indique"**,**"Experiencer"** |  entre un **"Contexte"** et **"Med"** ou **"Classe"**  |
+| **"Disc_ent"**  |  Si une entité est discontinue, la relation  **"Disc_ent"** doit être utilisé entre les deux parties de l'entité. |
+| **"Coref"**  |  Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifié, donc qu'il y a une entité **"Med"** et une entité **"Classe"**", il faut utiliser la relation **"coref"**,  le sens de la relation doit aller de la classe au médicament. |
 
 Le sens des relations **"Disc_ent"** et **"Coref"** n'ont pas d'importance, car les entités reliées appartiendront toujours à la même frame (en dehors de la relation liant une **"Classe"** et un **"Med"**).
 
@@ -80,7 +59,7 @@ Pour le med2, les entités reliées à freq3 sont prises en compte : freq1.--->
 
 ## Unité d'annotation 
 
-L’annotation est centrée sur le concept de frame basé sur la temporalité d'administration des médicaments. 
+L’annotation est centrée sur le concept de *frame* basé sur la temporalité d'administration des médicaments. 
 Chaque médicament unique est défini par une date de début, date de fin différente. Cette notion de date de dispensation différente peut être explicite (date de fin et de début explicitement écrite) ou implicite (changement de dose, changement de fréquence...). Ces différentes dispensations seront centrales pour générer les frames 
 
 Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir [exemple](#1--1) Il s'agira de l'entité centrale de la frame.
@@ -496,7 +475,13 @@ Si la fréquence est segmentée et concerne la même frame, annoter toutes les p
 
 # Durée (**"duree"**)
 
-Une expression de temps écoulé qui indique pendant combien de temps le médicament doit être administré. Ces expressions sont souvent des syntagmes nominaux, des syntagmes prépositionnels ou des clauses. Cette expression doit être compatible avec un durée en relation avec un médicament. Ne pas annoté l'âge. Annoté uniquement les durée en relation avec un médicament. Si une durée est utilisée pour exprimer une date relative (ex: dans 3 mois), annoter comme une date relative.
+Une expression de temps écoulé qui indique pendant combien de temps le
+médicament doit être administré. Ces expressions sont souvent des syntagmes
+nominaux, des syntagmes prépositionnels ou des clauses. Cette expression doit
+être compatible avec un durée en relation avec un médicament. Ne pas annoter
+l'âge. Annoter uniquement les durées en relation avec un médicament. Si une
+durée est utilisée pour exprimer une date relative (ex: dans 3 mois), annoter
+comme une date relative.
 
 ## Qu'est-ce qui doit être annoté ?
 
@@ -621,8 +606,10 @@ Les différentes façons de désigner le même mode d'administration doivent êt
 
 # Condition (**"Condition"**) 
 
-Expressions qui indiquent la condition pour laquelle le médicament doit être administré. Ces expressions sont souvent des propositions conditionnelles et commencent par une expression conditionnelle telle que "si", "en cas de", "en fonction de"....
-
+Expressions qui indiquent la condition pour laquelle le médicament doit être
+administré. Ces expressions sont souvent des propositions conditionnelles et
+commencent par une expression conditionnelle telle que "si", "en cas de", "en
+fonction de"...
 
 ## Qu'est-ce qui doit être annoté ?
 
@@ -637,21 +624,20 @@ Condition pour laquelle le médicament doit être administré.
 
 ## Comment annoter ?
 
-
-Annotez toujours la phrase adjectivale de base la plus informative ou la phrase nominale de base la plus courte comme condition du médicament. N'incluez pas les phrases complexes, n'incluez pas les phrases coordonnées. Au lieu de cela, extrayez de ces phrases la phrase de base, même si cela signifie que vous vous retrouverez avec plusieurs conditions.
+Annotez toujours la phrase adjectivale de base la plus informative ou la phrase
+nominale de base la plus courte comme condition du médicament. N'incluez pas
+les phrases complexes, n'incluez pas les phrases coordonnées. Au lieu de cela,
+extrayez de ces phrases la phrase de base, même si cela signifie que vous vous
+retrouverez avec plusieurs conditions.
 
 **Inclure les "si" ou les "en cas de", etc. dans l'annotation.**
-
-
 
 ### Exemples
 
 - *codenfan une dose/poids si besoin maximum 3x par jour*
   - **"Condition"** : *si besoin*
 
-
 S'il y a différentes conditions mentionnées pour le même médicament, alors inclure une entrée par condition et les relier au médicament. Dans les cas où plusieurs médicaments sont donnés avec la même condition, indiquez la condition et relié la avec tous les médicaments.
-
 
 - *il a ete explique aux parents d utiliser l oxygene en cas d inconfort, de paleur ou de gene respiratoire et non en fonction d un chiffre de saturation*
   - **"Condition"** : *en cas d inconfort*
@@ -672,7 +658,6 @@ Si une condition est composée de plusieurs sous-conditions (séparées par "et"
   - **"Condition"** : *si agitation*
   - **"Condition"** : *probleme d endormissement*
 
-
 Les différentes façons de désigner la même condition pour les médicaments doivent être traitées comme des conditions distinctes, rajouter une relation **coref**.
 
 - *en cas d'anemie aregenerative (hemolyse non mecanique) augmenter les corticoides*
@@ -685,10 +670,14 @@ Les différentes façons de désigner la même condition pour les médicaments d
 
 # Date (**"Date"**)
 
-Annotez toutes les mentions temporelles mentionnées présentes dans les documents, rajoutés des relations si elles sont reliées à des médicaments. Annoter les dates relatives (dans 10 jours, il y a 6 mois ) comme des **"Date_relative"**.
+Annotez toutes les mentions temporelles mentionnées présentes dans les
+documents, rajoutez des relations si elles sont reliées à des médicaments.
+Annotez les dates relatives (dans 10 jours, il y a 6 mois ) comme des
+**"Date_relative"**.
 
-Cette information est généralement exprimée par une date ou une heure. Annotez la date/heure la plus précise possible, sans prendre en compte les prépositions.
-
+Cette information est généralement exprimée par une date ou une heure. Annotez
+la date/heure la plus précise possible, sans prendre en compte les
+prépositions.
 
 ## Qu'est-ce qui doit être annoté ?
 
@@ -779,15 +768,23 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
 
 # Attributs de contexte
 
-## Que faut-il annoter
+## Que faut-il annoter ?
 
-Les cas où le contexte d'une entité est modifié (négation, hypothétique, contre-indication, relaté à une autre personnes, diminution de la dose, augmentation de la dose) ou dans le cas d'un début ou arrêt d'un médicament. Les relations avec les entités caractériseront les éléments de contexte. Annoter la plus petite expression possible prenant en compte le contexte.
+Il faut annoter les cas où le contexte d'une entité est modifié (négation,
+hypothétique, contre-indication, lié à une autre personne, diminution de la
+dose, augmentation de la dose) ou dans le cas d'un début ou arrêt d'un
+médicament. Les relations avec les entités caractériserent les éléments de
+contexte. Annoter la plus petite expression possible prenant en compte le
+contexte.
 
-- annoter les entités modifiant le contexte de la phrase (ex: *pas* de prise de doliprane, *relais* par héparine)
+1. Annoter les entités modifiant le contexte de la phrase (ex: *pas* de prise
+   de doliprane, *relais* par héparine).
+2. Puis reliez ces éléments aux médicaments avec une des relations possible :
+   **Negation**, **Hypothetique**,**"Contre_indique"**,**Experiencer**,
+**Diminution** , **Augmentation**, **Start**, **Stop**.
 
-- Puis reliez ces éléments aux médicaments avec une des relations possible : **Negation**, **Hypothetique**,**"Contre_indique"**,**Experiencer**, **Diminution** , **Augmentation**, **Start**, **Stop**
-
-Ajouter ces entités et relations, même si une entité plus spécifique est présente (exemple une date pour  **Start**, **Stop**)
+Ajouter ces entités et relations, même si une entité plus spécifique est
+présente (exemple une date pour  **Start**, **Stop**)
 
 ## Types de relations :
 
