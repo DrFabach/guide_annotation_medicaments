@@ -101,11 +101,11 @@ confusion.
 
 
 
-# Médicament ou Classe de Médicaments
+### Médicament ou Classe de Médicaments
 
 Tous les médicaments énumérés dans le résumé de décharge et donnés (présents, passés ou futurs) ou contre-indiqués à un expérimentateur.
 
-## Que faut-il annoter ?
+#### Que faut-il annoter ?
 
 Nom du médicament, génériques, classe de médicaments ou de substances, si un médicament est composé d'une association de plusieurs molécules (correspond à une classe ATC), annoté comme une seule entité (ex: Doliprane Codéiné ; ATC: *"N02AJ06 : Codéine et paracétamol"* ). Ne pas annoter "traitement par", uniquement le nom du médicament.
 
@@ -120,9 +120,9 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 
 
 
-### Médicament (**"Med"**)
+#### Médicament (**"Med"**)
 
-#### Inclus :
+##### Inclus :
 
 - Les substances sur ordonnance :
   - Les médicaments de marque, par exemple, *doliprane*.
@@ -141,7 +141,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 - Thérapie par substance, par exemple, *Corticothérapie* ou *traitement antirétroviral* (elle sera annotée comme une classe de médicaments).
  
 
-#### Exclus :
+##### Exclus :
 
 - Nourriture et eau non utilisées comme traitement
 - Régime alimentaire
@@ -150,9 +150,9 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 - Médicaments illicites
 - transfusion
 
-### Classe de médicaments (**"Classe"**)
+#### Classe de médicaments (**"Classe"**)
 
-#### Inclus :
+##### Inclus :
 
 - Nom collectif d'un groupe de médicaments, par exemple *corticoïdes*.
 - Noms collectifs pour un groupe de médicaments, par exemple *vitamines*.
@@ -184,7 +184,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
   - o2
   - vit-d
 
-#### Exclus :
+##### Exclus :
 
 - "traitement" sans précision
   - traitement prophylactique
@@ -197,7 +197,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 
 
 
-## Comment annoter ?
+#### Comment annoter ?
 
 Annotez la phrase nominale complète qui correspond au nom du médicament, par exemple, amoxicilline acide clavulanique. L'annotation doit être faite même s'il y a des fautes d'orthographe. Ne pas inclure des mots tels que "injectable", "crème", "nébuliseur", "solution" comme faisant partie du nom du médicament même s'ils apparaissent immédiatement après le nom du médicament, par exemple, sélénium injectable, xylocaïne nébuliseur. N'incluez pas d'informations numériques dans le nom du médicament, p. ex. renutril 500, à moins qu'il ne s'agisse d'un type de substance, p. ex. iodure 131.
 
@@ -205,7 +205,7 @@ Les pronoms qui font référence à un médicament doivent être annotés et une
 
 
 
-## Exemples :
+#### Exemples :
 
 - *amlor : 10 mg le matin*
   - **"Med"** : *amlor*
@@ -290,15 +290,15 @@ Dans le cas d'un dispositif médical, on annote uniquement le médicament (s'il 
 
 <a name="Dosage"></a>
 -------------------------------------------------------
-# Dose (**"Dosage"**)
+### Dose (**"Dosage"**)
 
 La quantité d'un seul médicament utilisé dans chaque administration, par exemple *un comprimé, une dose, 30 mg*.
 
-## Que faut-il annoter ?
+#### Que faut-il annoter ?
 
 Les informations numériques et/ou textuelles qui marquent la quantité et l'unité d'administration d'un médicament utilisé dans une seule administration, uniquement si elles sont en rapport avec un médicament. Annoter le dosage numérique et l'unité.
 
-### Inclus (liste non exhaustive) :
+##### Inclus (liste non exhaustive) :
 
 - 1 cp
 - un comprimé
@@ -317,7 +317,7 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
 - [renutril] 500
 
 
-### Exclus :
+##### Exclus :
 
 - si la dose est niée et que le médicament est donné, par exemple :
   - n'annotez pas "doublement des doses" pour "pas de necessite de doublement des doses d hydrocortisone". 
@@ -328,15 +328,15 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
     - **"Dosage"** : *1 dose poids*
     - annoter *1 boite* mais ne pas mettre de relation, car unité de délivrance
 
-## Commnent annoter ?
+#### Commnent annoter ?
 
 Annotez tous les doses mentionnées de tous les médicaments présents dans le résumé de sortie et leur relation avec celui-ci, même s'il fait partie du nom du médicament.
 
-### Relations avec le médicament
+#### Relations avec le médicament
 
 Utiliser la relation **"Refer_to"** pour relier une dose à un médicament.
 
-### Exemples : 
+#### Exemples : 
 
 
 - *speciafoldine 5mg 10 jours par mois*
@@ -404,15 +404,15 @@ Annoter un seul motif pour tous les médicaments lorsque la dose en concerne plu
 
 <a name="Freq"></a>
 
-# Fréquence (**"Freq"**)
+### Fréquence (**"Freq"**)
 
 Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. Annoter également les fréquences non en rapport avec la prise d'un médicament.
 
-## Que faut-il annoter ?
+#### Que faut-il annoter ?
 
 Toute expression qui indique la fréquence d'administration d'une dose unique d'un médicament doit être annotée.
 
-### Inclut :
+##### Inclut :
 
 - Les fréquences :
   - par jour
@@ -440,15 +440,15 @@ Toute expression qui indique la fréquence d'administration d'une dose unique d'
   - a 4 heures
   - avant chaque repas
 
-## Comment annoter ?
+#### Comment annoter ?
 
 Appliquez les mêmes principes de base que pour le balisage de la dose. Annotez chaque fréquence, même si elle est répétée dans la même phrase.
 
-### Relations avec le médicament
+#### Relations avec le médicament
 
 Comme pour la dose, utiliser la relation **"Refer_to"** si la fréquence est en rapport avec un médicament.
 
-### Exemples : 
+#### Exemples : 
 
 - *doliprane 1 dose poids\*4/ jour si douleurs*
   - freq : *\*4/ jour*
@@ -473,7 +473,7 @@ Si la fréquence est segmentée et concerne la même frame, annoter toutes les p
 
 <a name="duree"></a>
 
-# Durée (**"duree"**)
+### Durée (**"duree"**)
 
 Une expression de temps écoulé qui indique pendant combien de temps le
 médicament doit être administré. Ces expressions sont souvent des syntagmes
@@ -483,11 +483,11 @@ l'âge. Annoter uniquement les durées en relation avec un médicament. Si une
 durée est utilisée pour exprimer une date relative (ex: dans 3 mois), annoter
 comme une date relative.
 
-## Qu'est-ce qui doit être annoté ?
+#### Qu'est-ce qui doit être annoté ?
 
 Expressions qui décrivent la durée totale pendant laquelle le médicament doit être pris à une dose donnée. 
 
-### Inclus :
+##### Inclus :
 
 - Des expressions de durée (sans les adverbes) :
 
@@ -497,7 +497,7 @@ Expressions qui décrivent la durée totale pendant laquelle le médicament doit
   - tant que nécessaire
   - 3h
 
-### Exclus :
+##### Exclus :
 
 - Les expressions temporelles qui indiquent quand chaque dose doit être prise. Incluez-les dans la rubrique fréquence.
 
@@ -511,20 +511,20 @@ Expressions qui décrivent la durée totale pendant laquelle le médicament doit
 
 - l'âge des patients
 
-## Comment annoter ?
+#### Comment annoter ?
 
 Suivez les mêmes principes de base que pour l'annotation de la fréquence. N'incluez pas les prépositions complètes.
 
 **Ne pas inclure les "pendant" ou les "durant", etc. dans l'annotation, mais seulement la durée elle-même.**
 
-### Relations avec le médicament
+#### Relations avec le médicament
 
 Deux relations sont possibles : 
 - **"Duree_admin"** : pour la durée d'administration d'une dose de médicament (ex : administration IV)
 - **"Duree_presc"** : pour la durée de prescription 
 
 
-### Exemples
+#### Exemples
 
 - *vitabact 0,05 % : x4/jour dans chaque oeil pendant 10 jours*
   - **"duree"** : *10 jours*
@@ -545,15 +545,15 @@ Deux relations sont possibles :
 
 <a name="voie"></a>
 
-# Voie d'administration (**"Route"**)
+### Voie d'administration (**"Route"**)
 
 Décris la méthode d'administration du médicament.
 
-## Qu'est-ce qui doit être annoté ?
+#### Qu'est-ce qui doit être annoté ?
 
 Le texte qui exprime le mode/voie d'administration, même s'il est exprimé dans le cadre du nom du médicament ou de la posologie.
 
-### Inclus :
+##### Inclus :
 
 - per os
 - intraveineux ou iv
@@ -569,7 +569,7 @@ Le texte qui exprime le mode/voie d'administration, même s'il est exprimé dans
 - Abréviations de ce qui précède
 
 
-## Comment annoter ?
+#### Comment annoter ?
 
 Suivez les mêmes principes de base que pour l'annotation de la durée. Plusieurs routes peuvent être liées à un seul nom de médicament.
 
@@ -604,25 +604,25 @@ Les différentes façons de désigner le même mode d'administration doivent êt
 
 <a name="Condition"></a>
 
-# Condition (**"Condition"**) 
+### Condition (**"Condition"**) 
 
 Expressions qui indiquent la condition pour laquelle le médicament doit être
 administré. Ces expressions sont souvent des propositions conditionnelles et
 commencent par une expression conditionnelle telle que "si", "en cas de", "en
 fonction de"...
 
-## Qu'est-ce qui doit être annoté ?
+#### Qu'est-ce qui doit être annoté ?
 
 Condition pour laquelle le médicament doit être administré.
 
-### Inclus (liste non exhaustive) :
+##### Inclus (liste non exhaustive) :
 
 - [en cas de] fièvre
 - [si] besoin
 - [si] veut
 - [en fonction des] ASAT
 
-## Comment annoter ?
+#### Comment annoter ?
 
 Annotez toujours la phrase adjectivale de base la plus informative ou la phrase
 nominale de base la plus courte comme condition du médicament. N'incluez pas
@@ -632,7 +632,7 @@ retrouverez avec plusieurs conditions.
 
 **Inclure les "si" ou les "en cas de", etc. dans l'annotation.**
 
-### Exemples
+#### Exemples
 
 - *codenfan une dose/poids si besoin maximum 3x par jour*
   - **"Condition"** : *si besoin*
@@ -668,7 +668,7 @@ Les différentes façons de désigner la même condition pour les médicaments d
     
 <a name="evenement"></a>
 
-# Date (**"Date"**)
+### Date (**"Date"**)
 
 Annotez toutes les mentions temporelles mentionnées présentes dans les
 documents, rajoutez des relations si elles sont reliées à des médicaments.
@@ -679,11 +679,11 @@ Cette information est généralement exprimée par une date ou une heure. Annote
 la date/heure la plus précise possible, sans prendre en compte les
 prépositions. Si une date est composée d'un jour et d'une horaire, annoter l'ensemble comme une seule entité (ex : `01/20/2022 02:00`)
 
-## Qu'est-ce qui doit être annoté ?
+#### Qu'est-ce qui doit être annoté ?
 
 En priorité il est nécessaire d'annoter la date la plus précise possible.
 
-## Comment annoter les relations avec les médicaments
+#### Comment annoter les relations avec les médicaments
 
 Choisissez parmi les valeurs possibles :
 
@@ -697,7 +697,7 @@ Choisissez parmi les valeurs possibles :
 
 
 
-## Exemples :
+#### Exemples :
 
 - *le 01/20/2022 02:00*
   - **"Date"** : *01/20/2022 02:00*
@@ -767,9 +767,9 @@ S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évene
     - *30 avril* --> *7 avril* : **end**
   
 
-# Attributs de contexte
+### Attributs de contexte
 
-## Que faut-il annoter ?
+#### Que faut-il annoter ?
 
 Il faut annoter les cas où le contexte d'une entité est modifié (négation,
 hypothétique, contre-indication, lié à une autre personne, diminution de la
@@ -787,7 +787,7 @@ contexte.
 Ajouter ces entités et relations, même si une entité plus spécifique est
 présente (exemple une date pour  **Start**, **Stop**)
 
-## Types de relations :
+#### Types de relations :
 
 - Pour les médicaments suggérés ou incertains, un attribut de certitude **"Hypothetique"** doit être ajouté. 
 
@@ -798,7 +798,7 @@ présente (exemple une date pour  **Start**, **Stop**)
 - Expérimentateur (**Experiencer**) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur 
 - Diminution augmentation (**Diminution**/**augmentation**) pour les médicaments ayant une notion de diminution augmentation sans temporalité clairement définie .
 
-## Exemples 
+#### Exemples 
 
 
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
@@ -814,9 +814,9 @@ présente (exemple une date pour  **Start**, **Stop**)
     *pas de prescription** --> *dolipran* : **"Negation"** 
 
 
-# Exemples Globaux:
+## Exemples Globaux:
 
-#### 1 : 
+### 1 : 
 
 - *La pancytopenie s'est compliquée après la chimiothérapie d’un sepsis a Escherichia coli résistant a la tazocilline (tazocilline\* depuis le 6 septembre 2010) traite par fortum à partir du 15 septembre 2010*
   - **"Classe"** : *chimiotherapie*
@@ -836,7 +836,7 @@ présente (exemple une date pour  **Start**, **Stop**)
 
 <img src="examples/exemple1.PNG" width="1000px">
 
-#### 2 : 
+### 2 : 
 
 - *AUGMENTIN 600mg toutes les 8h jusuq'au 2019-10-11 inclus. PARACÉTAMOL(1;2) 250mg(1;2) toutes les 6h de façon systématique pendant 48h puis en cas de douleurs pendant 7 jours*
  - **"Med"** : *AUGMENTIN*
@@ -874,14 +874,14 @@ présente (exemple une date pour  **Start**, **Stop**)
 
 <img src="examples/exemple2.PNG" width="1000px">
 
-#### 3 :
+### 3.1 :
 
 - Différence d'attribution des relations, cas simple, cas multi-frame
 
 <img src="examples/coref_relie.PNG" width="1000px">
 <img src="examples/coref_multi_frame.PNG" width="1000px">
 
-#### 3 : 
+### 3.2 : 
 
 - *il a été explique aux parents d’utiliser l oxygène en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
  - **"Classe"** : *oxygène*
@@ -900,7 +900,7 @@ présente (exemple une date pour  **Start**, **Stop**)
 
 <img src="examples/Si_besoin.PNG" width="1000px">
 
-#### 4 : 
+### 4 : 
 
 - *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol 1 boite)*
   - **"Med"** : *doliprane*
@@ -921,7 +921,7 @@ Ici le *1 boite* ne correspond pas à une dose de médicaments, mais une dose de
 <img src="examples/exemple6.PNG" width="1000px">
 
 
-#### 5 
+### 5 
 
   - *A l'arrêt du traitement par Lansoprazole 15 mg/jour, le patient présente une récidive des épigastralgies. Je lui renouvelle son traitement à la demande.*
     - **"Contexte"** : *A l'arrêt*
@@ -983,7 +983,7 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
 
 
 
-#### 7 : 
+### 7 : 
 
 - *je ne modifie pas son traitement, soit toujours lasilix 20 mg/j, atacand 8 mg, ezetrol , calciparat 1 g, allopurinol 300 mg et crestor 5.*
   - **"Contexte"** : *toujours*
@@ -1015,7 +1015,7 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
   
 <img src="examples/exemple7.PNG" width="1000px">
 
-#### 8 :
+### 8 :
 
 - *Pluyqieurs bilans biologiques ont été réalisés notant un syndrome inflammatoire oscillant entre 11 et 45mg/l mi-juillet*
  - **"entre 11 et 45mg/l"** : *dose*
@@ -1025,7 +1025,7 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
 
 
 
-#### 10 : 
+### 10 : 
 
 - *traitement pendant 5 jours par clamoxyl iv puis relais per os* 
     - **"Duree"** : *5 jours*
@@ -1047,7 +1047,7 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
 <img src="examples/exemple10.PNG" width="1000px">
 
 
-#### 11
+### 11
 
   - *nebulisation de ventoline toutes les 6 heures puis relais par chambre d inhalation (baby-haler) le 06/02/2012*
     - **"Route"** : *nebulisation*
@@ -1070,7 +1070,7 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
       
 <img src="examples/exemple11.PNG" width="1000px">
 
-#### 12
+### 12
 
   - *(matin : 9-12 ui novorapid(1), 20 ui levemir(1), dans les 4 zones. (gouter : 5-7 ui novorapid(2). (soir : 6-8 ui novorapid(3), 15 ui levemir(2), dans les 4 zones.*
     - **"Dosage"** : *9-12 ui*
