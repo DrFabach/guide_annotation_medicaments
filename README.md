@@ -677,7 +677,7 @@ Annotez les dates relatives (dans 10 jours, il y a 6 mois ) comme des
 
 Cette information est généralement exprimée par une date ou une heure. Annotez
 la date/heure la plus précise possible, sans prendre en compte les
-prépositions.
+prépositions. Si une date est composée d'un jour et d'une horaire, annoter l'ensemble comme une seule entité (ex : `01/20/2022 02:00`)
 
 ## Qu'est-ce qui doit être annoté ?
 
@@ -699,7 +699,8 @@ Choisissez parmi les valeurs possibles :
 
 ## Exemples :
 
-
+- *le 01/20/2022 02:00*
+  - **"Date"** : *01/20/2022 02:00*
 - *meningocoque a + c : 11/07.*
   - **"Date"** : *11/07*
   - **"Med"** : *meningocoque a + c*
