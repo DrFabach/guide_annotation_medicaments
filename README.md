@@ -131,8 +131,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
   - Nom collectif d'un groupe de médicaments, par exemple *corticoïdes* (il sera annoté comme une classe de médicaments).
 - Médicaments en vente libre :
   - Noms de marque, par exemple, *Aspirine*.
-  - Ingrédients, par exemple, *vitamine D*.
-  - Noms collectifs pour un groupe de médicaments, par exemple *vitamines* (ils seront annotés comme une classe de médicaments).
+
 
 - Substances biologiques requises ou suggérées par les médecins
   - Ingrédients de la nutrition parentérale totale s'ils sont énumérés individuellement
@@ -183,6 +182,8 @@ Lien pour identifier si l'entité est un médicament ou une classe :
   - avk (pour anti-vitamine K)
   - o2
   - vit-d
+- Ingrédients, par exemple, *vitamine D*.
+  - Noms collectifs pour un groupe de médicaments, par exemple *vitamines* (ils seront annotés comme une classe de médicaments).
 
 ##### Exclus :
 
