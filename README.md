@@ -538,7 +538,7 @@ Deux relations sont possibles :
 -  *a donc beneficie de sa 2ieme perfusion de remicade (200mg) sur 3h*
   - `duree` : *3h*
   - `Med` : *remicade*
-  - relation : *3h* --> *remicade* : `Duree_presc`
+  - relation : *3h* --> *remicade* : `Duree_admin`
 - *a ete traite pendant 2 ans par remicade*
   - `duree` : *2 ans*
   - `Med` : *remicade*
