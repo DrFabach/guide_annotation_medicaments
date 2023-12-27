@@ -83,7 +83,7 @@ Dans le cas de médicaments avec des coreférences, ou avec mention de la classe
 | Condition de dispensation | Condition           | Refer_to               | doliprane en si besoin      |
 | Date de début          | DATE               | Start                        | dès ce jour                 |
 | Date de fin            | DATE               | Stop                         | arrêt le 4 juin             |
-| Traitement en cours           | DATE               | En_cours                         | actuellement sous amoxicilline             |
+| Traitement en cours           | DATE               | En_cours                         |            |
 | Date non spécifié      | DATE               | Refer_to                     | il y a environ 3-4 semaines |
 | Élément contextuel    | Context               | Negation                  |  |
 | Élément contextuel    | Context               | Hypothetique                  |  |
@@ -92,6 +92,7 @@ Dans le cas de médicaments avec des coreférences, ou avec mention de la classe
 | Élément contextuel    | Context               | Diminution                  |  |
 | Élément contextuel    | Context               | Start                  |  |
 | Élément contextuel    | Context               | Stop                  |  |
+|     Élément contextuel                  |Context                        |   En_cours                    | actuellement sous amoxicilline   |
 
 
 
