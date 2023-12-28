@@ -960,17 +960,17 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
     - `Freq` : *toutes les 4 semaines*
     - `Contexte` : *jusqu'?à l?arrêt complet du traitement*
     - relations :
-      - *SOLUPRED* --> *30/11/2020* : `Start`
-      - *7,5 mg* --> *30/11/2020* : `Refer_to`
-      - */jour* --> *30/11/2020* : `Refer_to`
-      - *4 semaines* --> *30/11/2020* : `Duree_presc`
-      - *27/12/2020* --> *30/11/2020* : `Stop`
+      - *SOLUPRED* --> *7,5 mg* : `Refer_to`
+      - *30/11/2020* --> *7,5 mg* : `Start`
+      - */jour* --> *7,5 mg* : `Refer_to`
+      - *4 semaines* --> *7,5 mg* : `Duree_presc`
+      - *27/12/2020* --> *7,5 mg* : `Stop`
       
-      - *SOLUPRED* --> *28/12/2020* : `Start`
-      - *5 mg* --> *28/12/2020* : `Refer_to`
-      - */jour* --> *28/12/2020* : `Refer_to`
-      - *4 semaines* --> *28/12/2020* : `Duree_presc`
-      - *24/01/2021* --> *28/12/2020* : `Stop`
+      - *SOLUPRED* --> *5 mg* : `Refer_to`
+      - *28/12/2020* --> *5 mg* : `Start`
+      - */jour* --> *5 mg* : `Refer_to`
+      - *4 semaines* --> *5 mg* : `Duree_presc`
+      - *24/01/2021* --> *5 mg* : `Stop`
       
       - *jusqu'?à l?arrêt complet du traitement* --> *24/01/2021* : `Stop`
       - *1 mg* --> *24/01/2021* : `Refer_to`
@@ -1058,14 +1058,17 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
     - `Route` : *chambre d inhalation*
     - `Route` : *baby-haler*
     - `Date` : *06/02/2012*
+    - `Contexte` : *puis*
 
     - relations :
       - *ventoline* --> *nebulisation* : `Refer_to`
       - *toutes les 6 heures* --> *nebulisation* : `Refer_to`
       - *06/02/2012* --> *nebulisation* : `Stop`
+      - *puis* --> *nebulisation* : `Stop`
 
       - *baby-haler* --> *chambre d inhalation* : `Coref`
       - *06/02/2012* --> *chambre d inhalation* : `Start`
+      - *puis* --> *chambre d inhalation* : `Start`
       - *ventoline* --> *chambre d inhalation* : `Refer_to`
 
       
@@ -1073,6 +1076,8 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
 <img src="examples/exemple11.PNG" width="1000px">
 
 ### 12
+
+Les (1),(2),(3) sont uniquement présents pour différencier les différentes entités.
 
   - *(matin : 9-12 ui novorapid(1), 20 ui levemir(1), dans les 4 zones. (gouter : 5-7 ui novorapid(2). (soir : 6-8 ui novorapid(3), 15 ui levemir(2), dans les 4 zones.*
     - `Dosage` : *9-12 ui*
