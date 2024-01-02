@@ -259,7 +259,7 @@ L'énumération des médicaments partageant un mot doit être annotée comme plu
 - *vitamine C , D , A , and E*
   - `Med` : *vitamine C*
   - `Med` : *vitamine*
-  - `Med` : *C* [Est ce qu'il faut annoter C tout seul? Je ne l'aurai pas fait]
+  - `Med` : *C* [Est ce qu'il faut annoter C tout seul? Je ne l'aurais pas fait]
   - `Med` : *D*
   - `Med` : *A*
   - `Med` : *E*
@@ -273,7 +273,7 @@ L'énumération des médicaments partageant un mot doit être annotée comme plu
   - `Med` : *vitamine C*
   - `Med` : *vitamine D*
 
-Annoter le nom des médicaments même si leurs attributs sont niés
+Annoter le nom des médicaments même si leurs attributs ou eux même sont niés
 
 - *pas de necessite de doublement des doses d hydrocortisone*
   - `Med` : *hydrocortisone*
