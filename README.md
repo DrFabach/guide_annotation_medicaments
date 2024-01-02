@@ -672,14 +672,14 @@ Les différentes façons de désigner la même condition pour les médicaments d
 
 ### Date (`Date`)
 
-Annotez toutes les mentions temporelles mentionnées présentes dans les
-documents, rajoutez des relations si elles sont reliées à des médicaments.
-Annotez les dates relatives (dans 10 jours, il y a 6 mois ) comme des
+Annoter toutes les mentions de marqueurs temporels présents dans les
+documents, ajouter des relations si elles sont reliées à des médicaments.
+Annoter les dates relatives (dans 10 jours, il y a 6 mois ) comme des
 `Date_relative`.
 
-Cette information est généralement exprimée par une date ou une heure. Annotez
-la date/heure la plus précise possible, sans prendre en compte les
-prépositions. Si une date est composée d'un jour et d'une horaire, annoter l'ensemble comme une seule entité (ex : `01/20/2022 02:00`)
+Cette information est généralement exprimée par une date ou une heure. Annoter
+la date (respectivement l'heure) la plus précise possible, sans prendre en compte les
+prépositions. Si une date est composée d'un jour et d'une horaire, annoter l'ensemble comme une seule entité (ex : `01/20/2022 02:00`).
 
 #### Qu'est-ce qui doit être annoté ?
 
@@ -690,13 +690,9 @@ En priorité il est nécessaire d'annoter la date la plus précise possible.
 Choisissez parmi les valeurs possibles :
 
 - `Start` : date indiquant le début de la prise du médicament ou la date du début.
-- `Stop` : date indiquant l'arrêt de la prise du médicament .
+- `Stop` : date indiquant l'arrêt de la prise du médicament.
 - `Refer_to` : date indiquant une notion de temporalité du médicament, sans spécifier la date de début ou de fin (ex : prise de 1 cp de doliprane le 21/01/2023)
 - `en_cours` : date indiquant la poursuite de la prise du médicament
-
-
-
-
 
 
 #### Exemples :
@@ -782,27 +778,26 @@ contexte.
 
 1. Annoter les entités modifiant le contexte de la phrase (ex: *pas* de prise
    de doliprane, *relais* par héparine).
-2. Puis reliez ces éléments aux médicaments avec une des relations possible :
+2. Puis reliez ces éléments aux médicaments avec une des relations possibles :
    `Negation`, `Hypothetique`,`Contre_indique`,`Experiencer`,
 `Diminution` , `Augmentation`, `Start`, `Stop`.
 
 Ajouter ces entités et relations, même si une entité plus spécifique est
-présente (exemple une date pour  `Start`, `Stop`)
+présente (exemple une date pour  `Start`, `Stop`). [Je ne suis pas sur de bien comprendre ici. Tu peux préciser ? ]
 
 #### Types de relations :
 
-- Pour les médicaments suggérés ou incertains, un attribut de certitude `Hypothetique` doit être ajouté. 
+- Pour les médicaments suggérés ou incertains, un attribut de contexte `Hypothetique` doit être ajouté. 
 
-- Pour les médicaments non pris ou non donnés, un attribut de certitude `Negation` doit être ajouté (la relation sur un médicament négativé peut être annotée, par exemple, la relation entre avk et durée doit être annotée pour "pas d'avk pendant 2 jours"). 
+- Pour les médicaments non pris ou non donnés, un attribut de contexte `Negation` doit être ajouté (la relation sur un médicament négativé peut être annotée, par exemple, la relation entre avk et durée doit être annotée pour "pas d'avk pendant 2 jours"). 
 
-- Pour les médicaments mentionnés comme contre-indication, la certitude `Contre_indique` doit être annotée.
+- Pour les médicaments mentionnés comme contre-indication, la contexte `Contre_indique` doit être annotée.
 
-- Expérimentateur (`Experiencer`) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur 
-- Diminution augmentation (`Diminution`/`augmentation`) pour les médicaments ayant une notion de diminution augmentation sans temporalité clairement définie .
+- Expérimentateur (`Experiencer`) : Si le traitement concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur 
+- Diminution ou augmentation (`Diminution`/`augmentation`) pour les médicaments ayant une notion de diminution ou augmentation sans temporalité clairement définie.
 
 #### Exemples 
-
-
+[Est ce que tu peux ajouter des exemples pour contexte, c'est le plus difficile, et il n'y en a que 2 ? ]
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
   - `Classe` : *antibiotherapie*
   - `Context` : *lors de la chirurgie*
