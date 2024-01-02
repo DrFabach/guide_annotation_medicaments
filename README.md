@@ -107,16 +107,16 @@ Tous les médicaments énumérés dans le résumé de décharge et donnés (pré
 
 #### Que faut-il annoter ?
 
-Nom du médicament, génériques, classe de médicaments ou de substances, si un médicament est composé d'une association de plusieurs molécules (correspond à une classe ATC), annoté comme une seule entité (ex: Doliprane Codéiné ; ATC: *"N02AJ06 : Codéine et paracétamol"* ). Ne pas annoter "traitement par", uniquement le nom du médicament.
+Nom du médicament, générique, classe de médicaments ou de substance. Si un médicament est composé d'une association de plusieurs molécules (correspondant à une classe ATC), alors annoter comme une seule entité (ex: Doliprane Codéiné ; ATC: *"N02AJ06 : Codéine et paracétamol"* ). Ne pas annoter "traitement par", uniquement le nom du médicament.
 
-La différence entre médicament et classe : une classe fait référence à une catégorie de médicament (ex: Corticoïdes, Antibiotique...), un médicament fait référence à une combinaison de molécule spécifique (Paractétamol, doliprane codéiné, une sous classe ATC)
+La différence entre médicament et classe : une classe fait référence à une catégorie de médicaments (ex : Corticoïdes, Antibiotique...), un médicament fait référence à une molécule ou une combinaison de molécules spécifiques (Paractétamol, doliprane codéiné, une seule sous classe ATC).
 Lien pour identifier si l'entité est un médicament ou une classe :
 
 -[Observatoire du médicament](https://observatoiredumedicament.cyrilcoquilleau.com/)
 
-- [sifr Bioportal](https://bioportal.lirmm.fr/search?q=&ontologies=ATCFRE&include_properties=false&include_views=false&includeObsolete=false&require_definition=false&exact_match=false&categories=)
+- [SIFRE BioPortal](https://bioportal.lirmm.fr/search?q=&ontologies=ATCFRE&include_properties=false&include_views=false&includeObsolete=false&require_definition=false&exact_match=false&categories=)
 
-- [Hetop](https://www.hetop.eu/hetop/fr/?q=&home), pas de classification ATC
+- [HeTOP](https://www.hetop.eu/hetop/fr/?q=&home), pas de classification ATC
 
 
 
