@@ -295,7 +295,7 @@ La quantité d'un seul médicament utilisé dans chaque administration, par exem
 
 #### Que faut-il annoter ?
 
-Les informations numériques et/ou textuelles qui marquent la quantité et l'unité d'administration d'un médicament utilisé dans une seule administration, uniquement si elles sont en rapport avec un médicament. Annoter le dosage numérique et l'unité.
+Les informations numériques et/ou textuelles qui indiquent la quantité et l'unité d'administration d'un médicament utilisées pour une seule administration ; uniquement si elles sont en rapport avec un médicament. Annoter le dosage numérique et l'unité dans la même annotation.
 
 ##### Inclus (liste non exhaustive) :
 
@@ -329,7 +329,7 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
 
 #### Commnent annoter ?
 
-Annotez tous les doses mentionnées de tous les médicaments présents dans le résumé de sortie et leur relation avec celui-ci, même s'il fait partie du nom du médicament.
+Annotez tous les doses mentionnées de tous les médicaments présents et leur relation avec celui-ci, même s'il fait partie du nom du médicament.
 
 #### Relations avec le médicament
 
@@ -355,7 +355,7 @@ Utiliser la relation `Refer_to` pour relier une dose à un médicament.
   - `Dosage`: *0,05 %*
   - relation : *0,05 %* --> *vitabact* : `Refer_to`
 
-si la dose est séparée en plusieurs parties, reliés l'ensemble des parties à l'entité centrale de la frame (unité de dispensation).
+si la dose est séparée en plusieurs parties, relier l'ensemble des parties à l'entité centrale de la frame (unité de dispensation).
 
 Si les doses correspondent à une conversion d'unité, utiliser la relation `coref`
 
@@ -372,7 +372,7 @@ Si les doses correspondent à une conversion d'unité, utiliser la relation `cor
    - relation : 
       - *7,5 mg* --> *hydrocortisone* : `Refer_to`
       - *5 mg*--> *hydrocortisone* : `Refer_to`
-      - *5 mg* <--> *12,5mg/m* : `Coref`
+      - *5 mg* <--> *12,5mg/m²* : `Coref` [ne faut il pas faire une coref avec le 7.5 également ?]
 
 Annotez les différentes façons de se référer aux mêmes doses dans des entrées séparées, et les rassembler avec une relation de `Coref`:
 
@@ -401,11 +401,14 @@ Annoter un seul motif pour tous les médicaments lorsque la dose en concerne plu
     - *1 comprime* --> *doliprane* : `Refer_to`
     - *1 comprime* --> *ibuprofene* : `Refer_to`
 
+
+[Dans toute ces section sur les Doses, on voit par l'exemple qu'il ne faut pas annoter les unités d'ordre temporel qui seront annoté par la fréquence. Je pense que le dire explicitement qq part pourra aider.]
+
 <a name="Freq"></a>
 
 ### Fréquence (`Freq`)
 
-Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. Annoter également les fréquences non en rapport avec la prise d'un médicament.
+Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. Annoter également les fréquences non en rapport avec la prise d'un médicament [Cette dernière phrase est à supprimer je crois.].
 
 #### Que faut-il annoter ?
 
@@ -425,7 +428,7 @@ Toute expression qui indique la fréquence d'administration d'une dose unique d'
   - x 3 par jour
   - jour (si précéder d'un dose)
   - 1 - 1 - 1
-  - 850 - 1000 - 1000
+  - 850 - 1000 - 1000 [cet exemple nécessite une précision car si je comprends bien c'est à la fois une fréquence et 3 doses]
   - 19/03, 25/03 et 01/04/2016
   - a J3, J5 et J7
   - le matin
@@ -501,7 +504,7 @@ Expressions qui décrivent la durée totale pendant laquelle le médicament doit
 - Les expressions temporelles qui indiquent quand chaque dose doit être prise. Incluez-les dans la rubrique fréquence.
 
   - *a prendre pendant une activité physique*
-    - *pendant une activite physique* n'est pas une durée
+    - *pendant une activite physique* n'est pas une durée [Est ce que c'est une condition ? Si oui, le préciser pour aider le lecteur]
 
 - Expression temporelle du début ou de l'arrêt d'un médicament (date realtive) :
 
@@ -546,7 +549,7 @@ Deux relations sont possibles :
 
 ### Voie d'administration (`Route`)
 
-Décris la méthode d'administration du médicament.
+Décrit la méthode d'administration du médicament. Eventuellement le dispositif médical qui permet l'administration et permet de connaître la route. 
 
 #### Qu'est-ce qui doit être annoté ?
 
@@ -565,7 +568,7 @@ Le texte qui exprime le mode/voie d'administration, même s'il est exprimé dans
 - creme
 - solution buvable
 - ophtalmique
-- Abréviations de ce qui précède
+- abréviations de ce qui précède
 
 
 #### Comment annoter ?
@@ -590,7 +593,7 @@ Les changements dans le mode d'administration d'un médicament doivent être inc
   - `Route` : *iv*
   - `Route` : *per os*
 
-Les différentes façons de désigner le même mode d'administration doivent être incluses dans des entrées séparées et relié par la relation de coref.
+Les différentes façons de désigner le même mode d'administration doivent être incluses dans des entrées séparées et reliées par la relation coref.
 
 - *nebulisation de ventoline toutes les 6 heures puis relais par chambre d inhalation (baby-haler) le 06/02/2012*
   - `Route` : *nebulisation*
@@ -636,13 +639,13 @@ retrouverez avec plusieurs conditions.
 - *codenfan une dose/poids si besoin maximum 3x par jour*
   - `Condition` : *si besoin*
 
-S'il y a différentes conditions mentionnées pour le même médicament, alors inclure une entrée par condition et les relier au médicament. Dans les cas où plusieurs médicaments sont donnés avec la même condition, indiquez la condition et relié la avec tous les médicaments.
+S'il y a différentes conditions mentionnées pour le même médicament, alors inclure une entrée par condition et les relier au médicament. Dans les cas où plusieurs médicaments sont donnés avec la même condition, indiquez la condition et la relier avec tous les médicaments.
 
 - *il a ete explique aux parents d utiliser l oxygene en cas d inconfort, de paleur ou de gene respiratoire et non en fonction d un chiffre de saturation*
   - `Condition` : *en cas d inconfort*
-  - `Condition` : *paleur*
+  - `Condition` : *paleur* [est ce qu'ici il n'y a pas une entité discontinue [en cas]...[de paleur] ? Même remarque pour le suivant]
   - `Condition` : *gene respiratoire*
-  - `Condition` : *chiffre de saturation*
+  - `Condition` : *chiffre de saturation* [pourquoi "en fonction" n'est pas annoté ici ?]
   - `contexte` : *non*
   - relations : 
     - *en cas d inconfort* --> *oxygene* : `Refer_to`
@@ -655,7 +658,7 @@ Si une condition est composée de plusieurs sous-conditions (séparées par "et"
 
 - *melatonine 2mg : 1 gelule au coucher si agitation et probleme d endormissement*
   - `Condition` : *si agitation*
-  - `Condition` : *probleme d endormissement*
+  - `Condition` : *probleme d endormissement* [et pourquoi pas [si]...[probleme d'endormissement]]
 
 Les différentes façons de désigner la même condition pour les médicaments doivent être traitées comme des conditions distinctes, rajouter une relation `coref`.
 
