@@ -125,19 +125,19 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 ##### Inclus :
 
 - Les substances sur ordonnance :
-  - Les médicaments de marque, par exemple, *doliprane*.
-  - Génériques, par ex., *paracétamol*.
-  - Ingrédients, par exemple, *furosémide*.
-  - Nom collectif d'un groupe de médicaments, par exemple *corticoïdes* (il sera annoté comme une classe de médicaments).
+  - Les médicaments de marque, par exemple, *doliprane*  
+  - Génériques, par ex., *paracétamol* 
+  - Ingrédients, par exemple, *furosémide* 
+  - Noms collectifs d'un groupe de médicaments, par exemple *corticoïdes* (il sera annoté comme une classe de médicaments) 
 - Médicaments en vente libre :
-  - Noms de marque, par exemple, *Aspirine*.
+  - Noms de marque, par exemple, *Aspirine*
 
 
-- Substances biologiques requises ou suggérées par les médecins
-  - Ingrédients de la nutrition parentérale totale s'ils sont énumérés individuellement
-  - Composants des liquides IV et des solutions salines énumérés (y compris l'"eau minérale" et le "sérum physiologique")
+- Substances biologiques requises ou suggérées par les médecins : 
+  - Ingrédients de la nutrition parentérale totale s'ils sont énumérés individuellement 
+  - Composants des liquides IV et des solutions salines énumérés (y compris l'"eau minérale" et le "sérum physiologique") 
   - Débit glucidique
-- Thérapie par substance, par exemple, *Corticothérapie* ou *traitement antirétroviral* (elle sera annotée comme une classe de médicaments).
+- Thérapie par substance, par exemple, *Corticothérapie* ou *traitement antirétroviral* (elle sera annotée comme une classe de médicaments) [Dans ce cas faut il annoter "traitement" ?].
  
 
 ##### Exclus :
@@ -154,14 +154,14 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 ##### Inclus :
 
 - Nom collectif d'un groupe de médicaments, par exemple *corticoïdes*.
-- Noms collectifs pour un groupe de médicaments, par exemple *vitamines*.
+- Noms collectifs pour un groupe de médicaments, par exemple *vitamines*. [De mon point de vue, on peut aggréger les 2 premiers items. S'il y a une différence, expliquer]
 - Thérapie par substance, par exemple, *Corticothérapie* ou *traitement antirétroviral*.
 - "therapie"
   - oxygénothérapie
   - corticothérapie
   - antibiothérapie
   - antibiotique
-- "traitement anti-" avec ou sans "traitement" avant
+- "traitement anti-" avec ou sans "traitement" avant [Préciser ici aussi, si l'on annote "traitement"]
   - traitement antalgique
   - traitement antirétroviral
   - antihypertenseur
@@ -183,7 +183,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
   - o2
   - vit-d
 - Ingrédients, par exemple, *vitamine D*.
-  - Noms collectifs pour un groupe de médicaments, par exemple *vitamines* (ils seront annotés comme une classe de médicaments).
+  - Noms collectifs pour un groupe de médicaments, par exemple *vitamines* (ils seront annotés comme une classe de médicaments). [Encore ce cas. Est ce qu'ici tu veux distinguer le cas Vitamine vs. Vitamine D qui sont deux groupes d'ingrédients mais à un niveau de granularité différent ? Ce n'est pas clair]
 
 ##### Exclus :
 
@@ -200,11 +200,9 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 
 #### Comment annoter ?
 
-Annotez la phrase nominale complète qui correspond au nom du médicament, par exemple, amoxicilline acide clavulanique. L'annotation doit être faite même s'il y a des fautes d'orthographe. Ne pas inclure des mots tels que "injectable", "crème", "nébuliseur", "solution" comme faisant partie du nom du médicament même s'ils apparaissent immédiatement après le nom du médicament, par exemple, sélénium injectable, xylocaïne nébuliseur. N'incluez pas d'informations numériques dans le nom du médicament, p. ex. renutril 500, à moins qu'il ne s'agisse d'un type de substance, p. ex. iodure 131.
+Annotez la phrase nominale complète qui correspond au nom du médicament, par exemple, amoxicilline acide clavulanique. L'annotation doit être faite même s'il y a des fautes d'orthographe. Ne pas inclure des mots tels que "injectable", "crème", "nébuliseur", "solution" comme faisant partie du nom du médicament même s'ils apparaissent immédiatement après le nom du médicament, par exemple, sélénium injectable, xylocaïne nébuliseur. N'incluez pas d'information numérique dans le nom du médicament, p. ex. renutril 500, à moins qu'il ne s'agisse d'un type de substance, par ex. iodure 131.
 
-Les pronoms qui font référence à un médicament doivent être annotés et une relation de `Coref` doit être rajoutée.
-
-
+Les pronoms qui font référence à un médicament doivent être annotés et une relation de `Coref` doit être ajoutée.
 
 #### Exemples :
 
@@ -239,7 +237,7 @@ Chaque référence conjointe d'un médicament (nom de classe ou de médicament) 
     - *novorapid(2)* <--> *novorapid(3)* : `Coref`
     - *levemir(1)* <--> *levemir(2)* : `Coref`
     
-Si un médicament est écrit comme médicament et comme classe dans la même phrase, annoter les deux (comme classe et comme médicament). L'association d'un médicament à une classe dans la même phrase entraîne une annotation d'une relation de type "Refer_to" par médicament :
+Si un traitement est écrit comme médicament et comme classe dans la même phrase, annoter les deux (comme médicament et comme classe). L'association d'un médicament à une classe dans la même phrase entraîne une annotation d'une relation de type "Refer_to" par médicament :
 
 - *relais par avk au cours de l'hospitalisation (coumadine)*
   - `Med` : *coumadine*
@@ -256,12 +254,12 @@ Si un médicament est écrit comme médicament et comme classe dans la même phr
     - *traitement antiretroviral* <-- *norvir* : `Refer_to`
     
 
-L'énumération des médicaments partageant un mot doit être annotée en entité disjointe en utilisant les relations `Disc_ent` :
+L'énumération des médicaments partageant un mot doit être annotée comme plusieurs entité disjointes en utilisant la relation `Disc_ent` :
 
 - *vitamine C , D , A , and E*
   - `Med` : *vitamine C*
   - `Med` : *vitamine*
-  - `Med` : *C*
+  - `Med` : *C* [Est ce qu'il faut annoter C tout seul? Je ne l'aurai pas fait]
   - `Med` : *D*
   - `Med` : *A*
   - `Med` : *E*
