@@ -69,7 +69,7 @@ Si un médicament est renseigné avec plusieurs coréférences, choisir une des 
 
 Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : Médicament > Classe  > Dose > Fréquence > Durée d'administration > Voie d'administration > Condition de dispensation > Date de début > Date de fin> Contexte ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple](#2--1). Ces entités seront les entités centrales des différentes frames.
 
-Dans le cas de médicaments avec des coreférences, ou avec mention de la classe du médicaments, les attributs présents dans le textes doivent être reliés avec l'entité la plus proche sauf si les attributs ne peuvent pas être relié au médicaments, car plusieurs frames sont présentes, dans ce cas tout relier à l'entité centrale. [Exemple](#3--1)
+Dans le cas de médicaments avec des coreférences, ou avec mention de la classe du médicament, les attributs présents dans le texte doivent être reliés avec l'entité la plus proche sauf si les attributs ne peuvent pas être reliés au médicament, car plusieurs frames sont présentes, dans ce cas tout relier à l'entité centrale. [Exemple](#3--1)
 
 | À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
