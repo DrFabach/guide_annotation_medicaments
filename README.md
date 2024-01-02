@@ -5,20 +5,20 @@
 L'objectif est d'annoter chaque texte afin d'extraire un maximum d'informations
 sur tous les traitements médicamenteux pris ou liés au patient.  Pour chaque
 traitement un ensemble de *concepts* peuvent être annotés (ex : classe de
-médicament, dose). Ces concepts peuvent être liés liés à une médicament à l'aide
-de *relations*. Les notions de temporalités sont particulièrement importante et
+médicament, dose). Ces concepts peuvent être liés à une médicament à l'aide
+de *relations*. Les notions de temporalités sont particulièrement importantes et
 sont annotés avec une relation ou sans relation avec le médicament.
 
-## Entités à annoter
+## L'annotation d'entités
 
-Le premier objectif est d'annoter des entités. La tâche d'annotation est
-centrée sur le médicament. L'ensemble des concepts suivant doivent être annotés
-s'ils sont en relation avec un médicament ou une classe.  Une seule exception :
-les dates isolé doit être annotée sans relation avec un médicament.
+Le premier objectif est l'annotation des entités, c'est à dire les instances de concepts. 
+La tâche d'annotation est centrée sur le médicament. L'ensemble des concepts suivant doivent être annotés
+s'ils sont en relation avec un médicament ou une classe de médicaments.  
+[To suppress?] Une seule exception : les dates isolées doivent être annotées sans relation avec un médicament.
 
 | Concept (cliquer pour le détail) | Classes | Lien avec un médicament |
 | ------- | ------- | ------------|
-| [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) | `Med`, `Classe` | |
+| [Médicament ou Classe de médicaments](#médicament-ou-classe-de-médicaments) | `Med`, `Classe` | |
 | [Dose](#dose-dose) | `Dosage` | en relation avec un médicament |
 | [Fréquence](#fréquence-freq) | `Freq` | en relation avec un médicament |
 | [Durée](#durée-duree)  | `Duree` | en relation avec un médicament |
@@ -27,10 +27,10 @@ les dates isolé doit être annotée sans relation avec un médicament.
 | [Date/Date relative](#date-date) | `Date`/`Date_relat` | en relation ou non avec un médicament |
 | [Contexte]("#attributs-de-contexte") | `Contexte` | en relation avec un médicament |
 
-## Relations à annoter
+## L'annotation de relations
 
-Le deuxième objectif est d'extraire les relations entre ces annotations
-et les médicaments, l'ensemble des relations suivantes nécessite d'être
+Le deuxième objectif est l'annotation de relations entre les entités, notamment entre les médicaments et les concepts qui décrivent leurs propriétés. 
+L'ensemble des relations suivantes nécessite d'être
 annoté :
 
 | Relation | Entités liées |
@@ -43,8 +43,8 @@ annoté :
 | `Refer_to` |  entre une `Dosage`, une `Route`, une `Freq` ou une `Condition` et un `Med` ou `Classe` |
 | `Augmentation`, `Diminution`  |  entre une `Contexte` et `Med` ou `Classe` |
 | `Negation`, `Hypothetique`,`Contre_indique`,`Experiencer` |  entre un `Contexte` et `Med` ou `Classe`  |
-| `Disc_ent`  |  Si une entité est discontinue, la relation  `Disc_ent` doit être utilisé entre les deux parties de l'entité. |
-| `Coref`  |  Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifié, donc qu'il y a une entité `Med` et une entité `Classe"`, il faut utiliser la relation `coref`,  le sens de la relation doit aller de la classe au médicament. |
+| `Disc_ent`  |  Si une entité est discontinue, la relation  `Disc_ent` doit être utilisée entre les deux parties de l'entité. |
+| `Coref`  |  Cette relation fait référence à une répétition d'un médicament dans un document. Toute répétition au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifiée, donc qu'il y a une entité `Med` et une entité `Classe"`, il faut utiliser la relation `coref`,  le sens de la relation doit aller de la classe au médicament. |
 
 Le sens des relations `Disc_ent` et `Coref` n'ont pas d'importance, car les entités reliées appartiendront toujours à la même frame (en dehors de la relation liant une `Classe` et un `Med`).
 
