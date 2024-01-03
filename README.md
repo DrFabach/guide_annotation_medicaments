@@ -465,7 +465,7 @@ Si la fréquence est segmentée et concerne la même frame, annoter toutes les p
 
 - *speciafoldine : 1 comprime par jour, 10 jours par mois.*
   - `freq` : *10 jours par mois*
-  - `freq` : *1 comprime par jour*
+  - `freq` : *1 comprime par jour*  [exemple à revoir. Il semble que par jour seul soit la fréquence, et 1 comprime le dosage, non ?]
   - relation : 
     - *10 jours par mois* --> *speciafoldine* : `Refer_to`
     - *1 comprime par jour* --> *speciafoldine* : `Refer_to`
