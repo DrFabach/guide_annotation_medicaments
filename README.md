@@ -1013,7 +1013,7 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
 <img src="examples/exemple7.PNG" width="1000px">
 
 ### 8 :
-
+[je crois que cet exemple n'est plus pertinent]
 - *Pluyqieurs bilans biologiques ont été réalisés notant un syndrome inflammatoire oscillant entre 11 et 45mg/l mi-juillet*
  - `entre 11 et 45mg/l` : *dose*
  - `mi-juillet` : *date*
