@@ -5,20 +5,20 @@
 L'objectif est d'annoter chaque texte afin d'extraire un maximum d'informations
 sur tous les traitements médicamenteux pris ou liés au patient.  Pour chaque
 traitement un ensemble de *concepts* peuvent être annotés (ex : classe de
-médicament, dose). Ces concepts peuvent être liés liés à une médicament à l'aide
-de *relations*. Les notions de temporalités sont particulièrement importante et
+médicament, dose). Ces concepts peuvent être liés à une médicament à l'aide
+de *relations*. Les notions de temporalités sont particulièrement importantes et
 sont annotés avec une relation ou sans relation avec le médicament.
 
-## Entités à annoter
+## L'annotation d'entités
 
-Le premier objectif est d'annoter des entités. La tâche d'annotation est
+Le premier objectif est l'annotation des entités, c'est à dire les intances de concepts. La tâche d'annotation est
 centrée sur le médicament. L'ensemble des concepts suivant doivent être annotés
-s'ils sont en relation avec un médicament ou une classe.  Une seule exception :
+s'ils sont en relation avec un médicament ou une classe de médicaments.  Une seule exception :
 les dates isolé doit être annotée sans relation avec un médicament.
 
 | Concept (cliquer pour le détail) | Classes | Lien avec un médicament |
 | ------- | ------- | ------------|
-| [Médicament ou Classe de médicament](#médicament-ou-classe-de-médicaments) | `Med`, `Classe` | |
+| [Médicament ou Classe de médicaments](#médicament-ou-classe-de-médicaments) | `Med`, `Classe` | |
 | [Dose](#dose-dose) | `Dosage` | en relation avec un médicament |
 | [Fréquence](#fréquence-freq) | `Freq` | en relation avec un médicament |
 | [Durée](#durée-duree)  | `Duree` | en relation avec un médicament |
@@ -27,24 +27,23 @@ les dates isolé doit être annotée sans relation avec un médicament.
 | [Date/Date relative](#date-date) | `Date`/`Date_relat` | en relation ou non avec un médicament |
 | [Contexte]("#attributs-de-contexte") | `Contexte` | en relation avec un médicament |
 
-## Relations à annoter
+## L'annotation des relations
 
-Le deuxième objectif est d'extraire les relations entre ces annotations
-et les médicaments, l'ensemble des relations suivantes nécessite d'être
+Le deuxième objectif est l'annotation de relations entre les entités, notamment entre les médicaments et les concepts qui décrivent leurs propriétés. L'ensemble des relations suivantes nécessite d'être
 annoté :
 
 | Relation | Entités liées |
 | -------- | ------------- |
-| `Start` | entre une `Date`/`Contexte` et un `Med` ou `Classe` |
-| `Stop` |  entre une `Date`/`Contexte` et `Med` ou `Classe` |
-| `En_cours` |  entre une `Date`/`Contexte` et `Med` ou `Classe` |
+| `Start` | entre une `Date` ou un `Contexte` et un `Med` ou `Classe` |
+| `Stop` |  entre une `Date` ou un `Contexte` et `Med` ou `Classe` |
+| `En_cours` |  entre une `Date` ou un `Contexte` et `Med` ou `Classe` |
 | `Duree_presc` |  entre une `Duree` et `Med` ou `Classe` |
-| `Duree_admin` |  entre une `Duree` et `Med` ou `Classe` IV |
+| `Duree_admin` |  entre une `Duree` et `Med` ou `Classe` |
 | `Refer_to` |  entre une `Dosage`, une `Route`, une `Freq` ou une `Condition` et un `Med` ou `Classe` |
 | `Augmentation`, `Diminution`  |  entre une `Contexte` et `Med` ou `Classe` |
 | `Negation`, `Hypothetique`,`Contre_indique`,`Experiencer` |  entre un `Contexte` et `Med` ou `Classe`  |
 | `Disc_ent`  |  Si une entité est discontinue, la relation  `Disc_ent` doit être utilisé entre les deux parties de l'entité. |
-| `Coref`  |  Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifié, donc qu'il y a une entité `Med` et une entité `Classe"`, il faut utiliser la relation `coref`,  le sens de la relation doit aller de la classe au médicament. |
+| `Coref`  |  Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifiée, donc qu'il y a une entité `Med` et une entité `Classe"`, il faut utiliser la relation `coref`,  le sens de la relation doit aller de la classe au médicament. |
 
 Le sens des relations `Disc_ent` et `Coref` n'ont pas d'importance, car les entités reliées appartiendront toujours à la même frame (en dehors de la relation liant une `Classe` et un `Med`).
 
@@ -68,9 +67,9 @@ Si un médicament est renseigné avec plusieurs coréférences, choisir une des 
 
 
 
-Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : Médicament > Classe  > dose > fréquence > Durée d'administration > voie d'administration > Condition de dispensation > date de début > date de fin> Contexte ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple](#2--1). Ces entités seront les entités centrales des différentes frames.
+Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : Médicament > Classe  > Dose > Fréquence > Durée d'administration > Voie d'administration > Condition de dispensation > Date de début > Date de fin > Contexte ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple](#2--1). Ces entités seront les entités centrales des différentes frames.
 
-Dans le cas de médicaments avec des coreférences, ou avec mention de la classe du médicaments, les attributs présents dans le textes doivent être reliés avec l'entité la plus proche sauf si les attributs ne peuvent pas être relié au médicaments, car plusieurs frames sont présentes, dans ce cas tout relier à l'entité centrale. [Exemple](#3--1)
+Dans le cas de médicaments avec des coreférences, ou avec mention de la classe du médicament, les attributs présents dans le texte doivent être reliés avec l'entité la plus proche sauf si les attributs ne peuvent pas être reliés au médicament, car plusieurs frames sont présentes, dans ce cas tout relier à l'entité centrale. [Exemple](#3--1)
 
 | À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
@@ -108,16 +107,16 @@ Tous les médicaments énumérés dans le résumé de décharge et donnés (pré
 
 #### Que faut-il annoter ?
 
-Nom du médicament, génériques, classe de médicaments ou de substances, si un médicament est composé d'une association de plusieurs molécules (correspond à une classe ATC), annoté comme une seule entité (ex: Doliprane Codéiné ; ATC: *"N02AJ06 : Codéine et paracétamol"* ). Ne pas annoter "traitement par", uniquement le nom du médicament.
+Nom du médicament, générique, classe de médicaments ou de substances. Si un médicament est composé d'une association de plusieurs molécules (correspondant à une classe ATC), alors annoter comme une seule entité (ex: Doliprane Codéiné ; ATC: *"N02AJ06 : Codéine et paracétamol"* ). Ne pas annoter "traitement par", uniquement le nom du médicament.
 
-La différence entre médicament et classe : une classe fait référence à une catégorie de médicament (ex: Corticoïdes, Antibiotique...), un médicament fait référence à une combinaison de molécule spécifique (Paractétamol, doliprane codéiné, une sous classe ATC)
+La différence entre médicament et classe : une classe fait référence à une catégorie de médicaments (ex: Corticoïdes, Antibiotique...), un médicament fait référence à une molécule ou une combinaison de molécules spécifiques (Paractétamol, doliprane codéiné, une seule sous classe ATC)
 Lien pour identifier si l'entité est un médicament ou une classe :
 
 -[Observatoire du médicament](https://observatoiredumedicament.cyrilcoquilleau.com/)
 
-- [sifr Bioportal](https://bioportal.lirmm.fr/search?q=&ontologies=ATCFRE&include_properties=false&include_views=false&includeObsolete=false&require_definition=false&exact_match=false&categories=)
+- [SIFR BioPortal](https://bioportal.lirmm.fr/search?q=&ontologies=ATCFRE&include_properties=false&include_views=false&includeObsolete=false&require_definition=false&exact_match=false&categories=)
 
-- [Hetop](https://www.hetop.eu/hetop/fr/?q=&home), pas de classification ATC
+- [HeTOP](https://www.hetop.eu/hetop/fr/?q=&home), pas de classification ATC
 
 
 
@@ -129,7 +128,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
   - Les médicaments de marque, par exemple, *doliprane*.
   - Génériques, par ex., *paracétamol*.
   - Ingrédients, par exemple, *furosémide*.
-  - Nom collectif d'un groupe de médicaments, par exemple *corticoïdes* (il sera annoté comme une classe de médicaments).
+  - Noms collectifs d'un groupe de médicaments, par exemple *corticoïdes* (il sera annoté comme une classe de médicaments).
 - Médicaments en vente libre :
   - Noms de marque, par exemple, *Aspirine*.
 
@@ -138,7 +137,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
   - Ingrédients de la nutrition parentérale totale s'ils sont énumérés individuellement
   - Composants des liquides IV et des solutions salines énumérés (y compris l'"eau minérale" et le "sérum physiologique")
   - Débit glucidique
-- Thérapie par substance, par exemple, *Corticothérapie* ou *traitement antirétroviral* (elle sera annotée comme une classe de médicaments).
+- Thérapie par substance, par exemple, *Corticothérapie* ou *antirétroviral* (elle sera annotée comme une classe de médicaments).
  
 
 ##### Exclus :
@@ -154,15 +153,14 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 
 ##### Inclus :
 
-- Nom collectif d'un groupe de médicaments, par exemple *corticoïdes*.
-- Noms collectifs pour un groupe de médicaments, par exemple *vitamines*.
+- Nom collectif d'un groupe de médicaments, par exemple *corticoïdes*, *vitamines*.
 - Thérapie par substance, par exemple, *Corticothérapie* ou *traitement antirétroviral*.
 - "therapie"
   - oxygénothérapie
   - corticothérapie
   - antibiothérapie
   - antibiotique
-- "traitement anti-" avec ou sans "traitement" avant
+- "traitement anti-" avec ou sans "traitement" avant (annoter le plus cours possible donc sans le "traitement")
   - traitement antalgique
   - traitement antirétroviral
   - antihypertenseur
@@ -183,8 +181,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
   - avk (pour anti-vitamine K)
   - o2
   - vit-d
-- Ingrédients, par exemple, *vitamine D*.
-  - Noms collectifs pour un groupe de médicaments, par exemple *vitamines* (ils seront annotés comme une classe de médicaments).
+
 
 ##### Exclus :
 
@@ -201,9 +198,9 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 
 #### Comment annoter ?
 
-Annotez la phrase nominale complète qui correspond au nom du médicament, par exemple, amoxicilline acide clavulanique. L'annotation doit être faite même s'il y a des fautes d'orthographe. Ne pas inclure des mots tels que "injectable", "crème", "nébuliseur", "solution" comme faisant partie du nom du médicament même s'ils apparaissent immédiatement après le nom du médicament, par exemple, sélénium injectable, xylocaïne nébuliseur. N'incluez pas d'informations numériques dans le nom du médicament, p. ex. renutril 500, à moins qu'il ne s'agisse d'un type de substance, p. ex. iodure 131.
+Annotez la phrase nominale complète qui correspond au nom du médicament, par exemple, amoxicilline acide clavulanique. L'annotation doit être faite même s'il y a des fautes d'orthographe. Ne pas inclure des mots tels que "injectable", "crème", "nébuliseur", "solution" comme faisant partie du nom du médicament même s'ils apparaissent immédiatement après le nom du médicament, par exemple, sélénium injectable, xylocaïne nébuliseur. N'incluez pas d'information numérique dans le nom du médicament, p. ex. renutril 500, à moins qu'il ne s'agisse d'un type de substance, par ex. iodure 131. Sans le cas du renutril 500, *500* correspond à la dose.
 
-Les pronoms qui font référence à un médicament doivent être annotés et une relation de `Coref` doit être rajoutée.
+Les pronoms qui font référence à un médicament doivent être annotés et une relation de `Coref` doit être ajoutée.
 
 
 
@@ -240,7 +237,7 @@ Chaque référence conjointe d'un médicament (nom de classe ou de médicament) 
     - *novorapid(2)* <--> *novorapid(3)* : `Coref`
     - *levemir(1)* <--> *levemir(2)* : `Coref`
     
-Si un médicament est écrit comme médicament et comme classe dans la même phrase, annoter les deux (comme classe et comme médicament). L'association d'un médicament à une classe dans la même phrase entraîne une annotation d'une relation de type "Refer_to" par médicament :
+Si un traitement est écrit comme médicament et comme classe dans la même phrase, annoter les deux (comme médicament et comme classe). L'association d'un médicament à une classe dans la même phrase entraîne une annotation d'une relation de type "Refer_to" par médicament :
 
 - *relais par avk au cours de l'hospitalisation (coumadine)*
   - `Med` : *coumadine*
@@ -257,12 +254,11 @@ Si un médicament est écrit comme médicament et comme classe dans la même phr
     - *traitement antiretroviral* <-- *norvir* : `Refer_to`
     
 
-L'énumération des médicaments partageant un mot doit être annotée en entité disjointe en utilisant les relations `Disc_ent` :
+L'énumération des médicaments partageant un mot doit être annotée comme plusieurs entités disjointes en utilisant la relation `Disc_ent` :
 
 - *vitamine C , D , A , and E*
   - `Med` : *vitamine C*
   - `Med` : *vitamine*
-  - `Med` : *C*
   - `Med` : *D*
   - `Med` : *A*
   - `Med` : *E*
@@ -276,7 +272,7 @@ L'énumération des médicaments partageant un mot doit être annotée en entit�
   - `Med` : *vitamine C*
   - `Med` : *vitamine D*
 
-Annoter le nom des médicaments même si leurs attributs sont niés
+Annoter le nom des médicaments même si leurs attributs ou eux même sont niés
 
 - *pas de necessite de doublement des doses d hydrocortisone*
   - `Med` : *hydrocortisone*
@@ -298,7 +294,7 @@ La quantité d'un seul médicament utilisé dans chaque administration, par exem
 
 #### Que faut-il annoter ?
 
-Les informations numériques et/ou textuelles qui marquent la quantité et l'unité d'administration d'un médicament utilisé dans une seule administration, uniquement si elles sont en rapport avec un médicament. Annoter le dosage numérique et l'unité.
+Les informations numériques et/ou textuelles qui indiquent la quantité et l'unité d'administration d'un médicament utilisées pour une seule administration, uniquement si elles sont en rapport avec un médicament. Annoter le dosage numérique et l'unité dans la même annotation.
 
 ##### Inclus (liste non exhaustive) :
 
@@ -332,7 +328,7 @@ Les informations numériques et/ou textuelles qui marquent la quantité et l'uni
 
 #### Commnent annoter ?
 
-Annotez tous les doses mentionnées de tous les médicaments présents dans le résumé de sortie et leur relation avec celui-ci, même s'il fait partie du nom du médicament.
+Annotez tous les doses mentionnées de tous les médicaments présents et leur relation avec celui-ci, même s'il fait partie du nom du médicament.
 
 #### Relations avec le médicament
 
@@ -358,7 +354,7 @@ Utiliser la relation `Refer_to` pour relier une dose à un médicament.
   - `Dosage`: *0,05 %*
   - relation : *0,05 %* --> *vitabact* : `Refer_to`
 
-si la dose est séparée en plusieurs parties, reliés l'ensemble des parties à l'entité centrale de la frame (unité de dispensation).
+si la dose est séparée en plusieurs parties, relier l'ensemble des parties à l'entité centrale de la frame (unité de dispensation).
 
 Si les doses correspondent à une conversion d'unité, utiliser la relation `coref`
 
@@ -408,7 +404,7 @@ Annoter un seul motif pour tous les médicaments lorsque la dose en concerne plu
 
 ### Fréquence (`Freq`)
 
-Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. Annoter également les fréquences non en rapport avec la prise d'un médicament.
+Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. 
 
 #### Que faut-il annoter ?
 
@@ -549,7 +545,7 @@ Deux relations sont possibles :
 
 ### Voie d'administration (`Route`)
 
-Décris la méthode d'administration du médicament.
+Décrit la méthode d'administration du médicament. Eventuellement le dispositif médical qui permet l'administration et permet de connaître la route.
 
 #### Qu'est-ce qui doit être annoté ?
 
@@ -568,7 +564,7 @@ Le texte qui exprime le mode/voie d'administration, même s'il est exprimé dans
 - creme
 - solution buvable
 - ophtalmique
-- Abréviations de ce qui précède
+- abréviations de ce qui précède
 
 
 #### Comment annoter ?
@@ -593,7 +589,7 @@ Les changements dans le mode d'administration d'un médicament doivent être inc
   - `Route` : *iv*
   - `Route` : *per os*
 
-Les différentes façons de désigner le même mode d'administration doivent être incluses dans des entrées séparées et relié par la relation de coref.
+Les différentes façons de désigner le même mode d'administration doivent être incluses dans des entrées séparées et reliées par la relation `coref`.
 
 - *nebulisation de ventoline toutes les 6 heures puis relais par chambre d inhalation (baby-haler) le 06/02/2012*
   - `Route` : *nebulisation*
@@ -672,13 +668,13 @@ Les différentes façons de désigner la même condition pour les médicaments d
 
 ### Date (`Date`)
 
-Annotez toutes les mentions temporelles mentionnées présentes dans les
-documents, rajoutez des relations si elles sont reliées à des médicaments.
-Annotez les dates relatives (dans 10 jours, il y a 6 mois ) comme des
+Annoter toutes les mentions de marqeurs temporels présents dans les
+documents, ajouter des relations si elles sont reliées à des médicaments.
+Annoter les dates relatives (dans 10 jours, il y a 6 mois ) comme des
 `Date_relative`.
 
-Cette information est généralement exprimée par une date ou une heure. Annotez
-la date/heure la plus précise possible, sans prendre en compte les
+Cette information est généralement exprimée par une date ou une heure. Annoter
+la date (respectivement l'heure) ou la composition des deux la plus précise possible, sans prendre en compte les
 prépositions. Si une date est composée d'un jour et d'une horaire, annoter l'ensemble comme une seule entité (ex : `01/20/2022 02:00`)
 
 #### Qu'est-ce qui doit être annoté ?
