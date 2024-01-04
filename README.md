@@ -371,7 +371,7 @@ Si les doses correspondent à une conversion d'unité, utiliser la relation `cor
    - relation : 
       - *7,5 mg* --> *hydrocortisone* : `Refer_to`
       - *5 mg*--> *hydrocortisone* : `Refer_to`
-      - *5 mg* <--> *12,5mg/m* : `Coref`
+      - *5 mg* <--> *12,5mg/m* : `Coref` [ne faut il pas faire une coref avec le 7.5 également ?]
 
 Annotez les différentes façons de se référer aux mêmes doses dans des entrées séparées, et les rassembler avec une relation de `Coref`:
 
@@ -424,7 +424,7 @@ Toute expression qui indique la fréquence d'administration d'une dose unique d'
   - x 3 par jour
   - jour (si précéder d'un dose)
   - 1 - 1 - 1
-  - 850 - 1000 - 1000
+  - 850 - 1000 - 1000 [cet exemple nécessite une précision car si je comprends bien c'est à la fois une fréquence et 3 doses]
   - 19/03, 25/03 et 01/04/2016
   - a J3, J5 et J7
   - le matin
@@ -459,7 +459,7 @@ Annoter la partie immédiatement adjacente d'une fréquence comme une seule entr
 
 Si la fréquence est segmentée et concerne la même frame, annoter toutes les parties et les relier à l'entité la plus proche si l'entité centrale est un médicament, sinon relié l'ensemble des parties à l'entité centrale.
 
-- *speciafoldine : 1 comprime par jour, 10 jours par mois.*
+- *speciafoldine : 1 comprime par jour, 10 jours par mois. *[exemple à revoir. Il semble que par jour seul soit la fréquence, et 1 comprime le dosage, non ?]
   - `freq` : *10 jours par mois*
   - `freq` : *1 comprime par jour*
   - relation : 
@@ -497,7 +497,7 @@ Expressions qui décrivent la durée totale pendant laquelle le médicament doit
 
 ##### Exclus :
 
-- Les expressions temporelles qui indiquent quand chaque dose doit être prise. Incluez-les dans la rubrique fréquence.
+- Les expressions temporelles qui indiquent quand chaque dose doit être prise. Incluez-les dans la rubrique fréquence.  [Est ce que c'est une condition ? Si oui, le préciser pour aider le lecteur]
 
   - *a prendre pendant une activité physique*
     - *pendant une activite physique* n'est pas une durée
@@ -635,26 +635,26 @@ retrouverez avec plusieurs conditions.
 - *codenfan une dose/poids si besoin maximum 3x par jour*
   - `Condition` : *si besoin*
 
-S'il y a différentes conditions mentionnées pour le même médicament, alors inclure une entrée par condition et les relier au médicament. Dans les cas où plusieurs médicaments sont donnés avec la même condition, indiquez la condition et relié la avec tous les médicaments.
+S'il y a différentes conditions mentionnées pour le même médicament, alors inclure une entrée par condition et les relier au médicament. Dans les cas où plusieurs médicaments sont donnés avec la même condition, indiquez la condition et la relier la avec tous les médicaments.
 
 - *il a ete explique aux parents d utiliser l oxygene en cas d inconfort, de paleur ou de gene respiratoire et non en fonction d un chiffre de saturation*
   - `Condition` : *en cas d inconfort*
-  - `Condition` : *paleur*
+  - `Condition` : *paleur* [est ce qu'ici il n'y a pas une entité discontinue [en cas]...[de paleur] ? Même remarque pour le suivant]
   - `Condition` : *gene respiratoire*
-  - `Condition` : *chiffre de saturation*
+  - `Condition` : *chiffre de saturation* [pourquoi "en fonction" n'est pas annoté ici ?]
   - `contexte` : *non*
   - relations : 
     - *en cas d inconfort* --> *oxygene* : `Refer_to`
     - *paleur* --> *oxygene* : `Refer_to`
     - *gene respiratoire* --> *oxygene* : `Refer_to`
-    - *chiffre de saturation* --> *oxygene* : `Refer_to`
+    - *chiffre de saturation* --> *oxygene* : `Refer_to` 
     - *non* --> *chiffre de saturation* : `Negation` 
   
 Si une condition est composée de plusieurs sous-conditions (séparées par "et"), annoter séparément avec plusieurs entrées.
 
 - *melatonine 2mg : 1 gelule au coucher si agitation et probleme d endormissement*
   - `Condition` : *si agitation*
-  - `Condition` : *probleme d endormissement*
+  - `Condition` : *probleme d endormissement*  [et pourquoi pas [si]...[probleme d'endormissement]]
 
 Les différentes façons de désigner la même condition pour les médicaments doivent être traitées comme des conditions distinctes, rajouter une relation `coref`.
 
@@ -668,7 +668,7 @@ Les différentes façons de désigner la même condition pour les médicaments d
 
 ### Date (`Date`)
 
-Annoter toutes les mentions de marqeurs temporels présents dans les
+Annoter toutes les mentions de marqueurs temporels présents dans les
 documents, ajouter des relations si elles sont reliées à des médicaments.
 Annoter les dates relatives (dans 10 jours, il y a 6 mois ) comme des
 `Date_relative`.
@@ -778,27 +778,27 @@ contexte.
 
 1. Annoter les entités modifiant le contexte de la phrase (ex: *pas* de prise
    de doliprane, *relais* par héparine).
-2. Puis reliez ces éléments aux médicaments avec une des relations possible :
+2. Puis reliez ces éléments aux médicaments avec une des relations possibles :
    `Negation`, `Hypothetique`,`Contre_indique`,`Experiencer`,
 `Diminution` , `Augmentation`, `Start`, `Stop`.
 
 Ajouter ces entités et relations, même si une entité plus spécifique est
-présente (exemple une date pour  `Start`, `Stop`)
+présente (exemple une date pour  `Start`, `Stop`) [Je ne suis pas sur de bien comprendre ici. Tu peux préciser ? ]
 
 #### Types de relations :
 
-- Pour les médicaments suggérés ou incertains, un attribut de certitude `Hypothetique` doit être ajouté. 
+- Pour les médicaments suggérés ou incertains, un attribut de contexte `Hypothetique` doit être ajouté. 
 
-- Pour les médicaments non pris ou non donnés, un attribut de certitude `Negation` doit être ajouté (la relation sur un médicament négativé peut être annotée, par exemple, la relation entre avk et durée doit être annotée pour "pas d'avk pendant 2 jours"). 
+- Pour les médicaments non pris ou non donnés, un attribut de contexte `Negation` doit être ajouté (la relation sur un médicament négativé peut être annotée, par exemple, la relation entre avk et durée doit être annotée pour "pas d'avk pendant 2 jours"). 
 
-- Pour les médicaments mentionnés comme contre-indication, la certitude `Contre_indique` doit être annotée.
+- Pour les médicaments mentionnés comme contre-indication, le contexte `Contre_indique` doit être annotée.
 
-- Expérimentateur (`Experiencer`) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur 
+- Expérimentateur (`Experiencer`) : Si le traitement concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur 
 - Diminution augmentation (`Diminution`/`augmentation`) pour les médicaments ayant une notion de diminution augmentation sans temporalité clairement définie .
 
 #### Exemples 
 
-
+[Est ce que tu peux ajouter des exemples pour contexte, c'est le plus difficile, et il n'y en a que 2 ? ]
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
   - `Classe` : *antibiotherapie*
   - `Context` : *lors de la chirurgie*
@@ -1014,9 +1014,9 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
 <img src="examples/exemple7.PNG" width="1000px">
 
 ### 8 :
-
+[je crois que cet exemple n'est plus pertinent]
 - *Pluyqieurs bilans biologiques ont été réalisés notant un syndrome inflammatoire oscillant entre 11 et 45mg/l mi-juillet*
- - `entre 11 et 45mg/l` : *dose*
+
  - `mi-juillet` : *date*
 
 <img src="examples/plusieurs_bilan.PNG" width="1000px">
