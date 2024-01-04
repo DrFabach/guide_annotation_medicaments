@@ -13,8 +13,7 @@ sont annotés avec une relation ou sans relation avec le médicament.
 
 Le premier objectif est l'annotation des entités, c'est à dire les intances de concepts. La tâche d'annotation est
 centrée sur le médicament. L'ensemble des concepts suivant doivent être annotés
-s'ils sont en relation avec un médicament ou une classe de médicaments.  Une seule exception :
-les dates isolé doit être annotée sans relation avec un médicament.
+s'ils sont en relation avec un médicament ou une classe de médicaments. 
 
 | Concept (cliquer pour le détail) | Classes | Lien avec un médicament |
 | ------- | ------- | ------------|
