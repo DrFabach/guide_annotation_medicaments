@@ -11,7 +11,7 @@ sont annotés avec une relation ou sans relation avec le médicament.
 
 ## L'annotation d'entités
 
-Le premier objectif est l'annotation des entités, c'est à dire les intances de concepts. La tâche d'annotation est
+Le premier objectif est l'annotation des entités, c'est à dire les instances de concepts. La tâche d'annotation est
 centrée sur le médicament. L'ensemble des concepts suivant doivent être annotés
 s'ils sont en relation avec un médicament ou une classe de médicaments. 
 
