@@ -370,7 +370,8 @@ Si les doses correspondent à une conversion d'unité, utiliser la relation `cor
    - relation : 
       - *7,5 mg* --> *hydrocortisone* : `Refer_to`
       - *5 mg*--> *hydrocortisone* : `Refer_to`
-      - *5 mg* <--> *12,5mg/m* : `Coref` [ne faut il pas faire une coref avec le 7.5 également ?]
+      - *5 mg* <--> *12,5mg/m²* : `Coref`
+      - *7,5 mg* <--> *12,5mg/m²* : `Coref` [La dose composée de 5mg et 7.5m réfère au 12.5mg/m²] 
 
 Annotez les différentes façons de se référer aux mêmes doses dans des entrées séparées, et les rassembler avec une relation de `Coref`:
 
@@ -423,7 +424,7 @@ Toute expression qui indique la fréquence d'administration d'une dose unique d'
   - x 3 par jour
   - jour (si précéder d'un dose)
   - 1 - 1 - 1
-  - 850 - 1000 - 1000 [cet exemple nécessite une précision car si je comprends bien c'est à la fois une fréquence et 3 doses]
+  - 850 - 1000 - 1000 (Annoter en tant que dose et fréquence, voir [exemple](#10--10))
   - 19/03, 25/03 et 01/04/2016
   - a J3, J5 et J7
   - le matin
