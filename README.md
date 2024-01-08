@@ -371,7 +371,7 @@ Si les doses correspondent à une conversion d'unité, utiliser la relation `cor
       - *7,5 mg* --> *hydrocortisone* : `Refer_to`
       - *5 mg*--> *hydrocortisone* : `Refer_to`
       - *5 mg* <--> *12,5mg/m²* : `Coref`
-      - *7,5 mg* <--> *12,5mg/m²* : `Coref` [La dose composée de 5mg et 7.5m réfère au 12.5mg/m²] 
+      - *7,5 mg* <--> *12,5mg/m²* : `Coref` (La dose composée de 5mg et 7.5m réfère au 12.5mg/m²)
 
 Annotez les différentes façons de se référer aux mêmes doses dans des entrées séparées, et les rassembler avec une relation de `Coref`:
 
@@ -617,10 +617,10 @@ Condition pour laquelle le médicament doit être administré.
 
 ##### Inclus (liste non exhaustive) :
 
-- [en cas de] fièvre
-- [si] besoin
-- [si] veut
-- [en fonction des] ASAT
+- en cas de fièvre
+- si besoin
+- si veut
+- en fonction des ASAT
 
 #### Comment annoter ?
 
@@ -801,7 +801,7 @@ Par exemple dans la phrase, *le doliprane a été arrêté le 10/01/2015", il fa
 
 #### Exemples 
 
-[Est ce que tu peux ajouter des exemples pour contexte, c'est le plus difficile, et il n'y en a que 2 ? ]
+
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
   - `Classe` : *antibiotherapie*
   - `Context` : *lors de la chirurgie*
@@ -1023,7 +1023,7 @@ Ici pas assez de contexte pour savoir si le traitement renouvelé est le lansopr
 <img src="examples/exemple7.PNG" width="1000px">
 
 ### 8 :
-[je crois que cet exemple n'est plus pertinent]
+
 - *Pluyqieurs bilans biologiques ont été réalisés notant un syndrome inflammatoire oscillant entre 11 et 45mg/l mi-juillet*
 
  - `mi-juillet` : *date*
@@ -1118,4 +1118,21 @@ Les (1),(2),(3) sont uniquement présents pour différencier les différentes en
       
 
 <img src="examples/matin_same_rafe.PNG" width="1000px">
+
+
+### 13
+
+  - *metformine 850 - 1000 - 1000*
+    - `Med` : *metformine*
+    - `Dosage` : *850*
+    - `Dosage` : *1000*
+    - `Dosage` : *1000*
+    - `Freq` : *850 - 1000 - 1000*
+    - relations :
+      - *850* --> *metformine* : `Refer_to`
+      - *1000* --> *metformine* : `Refer_to`
+      - *1000* --> *metformine* : `Refer_to`
+      - *850 - 1000 - 1000* --> *metformine* : `Refer_to`
+
+<img src="examples/freq_dose_comb.PNG" height="100px">
 
