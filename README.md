@@ -424,7 +424,7 @@ Toute expression qui indique la fréquence d'administration d'une dose unique d'
   - x 3 par jour
   - jour (si précéder d'un dose)
   - 1 - 1 - 1
-  - 850 - 1000 - 1000 (Annoter en tant que dose et fréquence, voir [exemple](#10--10))
+  - 850 - 1000 - 1000 (Annoter en tant que dose et fréquence, voir [exemple](#13))
   - 19/03, 25/03 et 01/04/2016
   - a J3, J5 et J7
   - le matin
@@ -459,12 +459,14 @@ Annoter la partie immédiatement adjacente d'une fréquence comme une seule entr
 
 Si la fréquence est segmentée et concerne la même frame, annoter toutes les parties et les relier à l'entité la plus proche si l'entité centrale est un médicament, sinon relié l'ensemble des parties à l'entité centrale.
 
-- *speciafoldine : 1 comprime par jour, 10 jours par mois. *[exemple à revoir. Il semble que par jour seul soit la fréquence, et 1 comprime le dosage, non ?]
+- *speciafoldine : 1 comprime par jour, 10 jours par mois. *
+  - `dose` : *1 comprime*
   - `freq` : *10 jours par mois*
-  - `freq` : *1 comprime par jour*
+  - `freq` : *par jour*
   - relation : 
     - *10 jours par mois* --> *speciafoldine* : `Refer_to`
-    - *1 comprime par jour* --> *speciafoldine* : `Refer_to`
+    - *par jour* --> *speciafoldine* : `Refer_to`
+    - *1 comprime* --> *speciafoldine* : `Refer_to`
 
 
 
@@ -497,10 +499,10 @@ Expressions qui décrivent la durée totale pendant laquelle le médicament doit
 
 ##### Exclus :
 
-- Les expressions temporelles qui indiquent quand chaque dose doit être prise. Incluez-les dans la rubrique fréquence.  [Est ce que c'est une condition ? Si oui, le préciser pour aider le lecteur]
+- Les expressions temporelles qui indiquent quand chaque dose doit être prise. Elles peuvent correspondre à une condition.
 
   - *a prendre pendant une activité physique*
-    - *pendant une activite physique* n'est pas une durée
+    - *pendant une activite physique* n'est pas une durée mais une condition. 
 
 - Expression temporelle du début ou de l'arrêt d'un médicament (date realtive) :
 
@@ -641,14 +643,14 @@ S'il y a différentes conditions mentionnées pour le même médicament, alors i
   - `Condition` : *en cas d inconfort*
   - `Condition` : *paleur* [est ce qu'ici il n'y a pas une entité discontinue [en cas]...[de paleur] ? Même remarque pour le suivant]
   - `Condition` : *gene respiratoire*
-  - `Condition` : *chiffre de saturation* [pourquoi "en fonction" n'est pas annoté ici ?]
+  - `Condition` : *en fonction d un chiffre de saturation* 
   - `contexte` : *non*
   - relations : 
     - *en cas d inconfort* --> *oxygene* : `Refer_to`
     - *paleur* --> *oxygene* : `Refer_to`
     - *gene respiratoire* --> *oxygene* : `Refer_to`
     - *chiffre de saturation* --> *oxygene* : `Refer_to` 
-    - *non* --> *chiffre de saturation* : `Negation` 
+    - *non* --> *en fonction d un chiffre de saturation* : `Negation` 
   
 Si une condition est composée de plusieurs sous-conditions (séparées par "et"), annoter séparément avec plusieurs entrées.
 
@@ -782,8 +784,9 @@ contexte.
    `Negation`, `Hypothetique`,`Contre_indique`,`Experiencer`,
 `Diminution` , `Augmentation`, `Start`, `Stop`.
 
-Ajouter ces entités et relations, même si une entité plus spécifique est
-présente (exemple une date pour  `Start`, `Stop`) [Je ne suis pas sur de bien comprendre ici. Tu peux préciser ? ]
+L'annotation des entités modifiant le contexte doit être fait dans tous les cas, même si une entité plus précise existe.
+Par exemple dans la phrase, *le doliprane a été arrêté le 10/01/2015", il faut annoter à la fois le contexte *arrêté* et la date d'arrêt *10/01/2015* et relier les deux au médicament avec une relation de type `Stop`
+
 
 #### Types de relations :
 
@@ -810,7 +813,13 @@ présente (exemple une date pour  `Start`, `Stop`) [Je ne suis pas sur de bien c
   - `Contexte` : *pas de prescription*
   - relations : 
     *pas de prescription* --> *dolipran* : `Negation` 
-
+- *Relais de l'augmentin par de l'ammoxicilline*
+  - `Med` : *augmentin*
+  - `Med` : *ammoxicilline*
+  - `Contexte` : *Relais*
+  - relations : 
+    - *Relais* --> *augmentin* : `Stop`
+    - *Relais* --> *ammoxicilline* : `Start` 
 
 ## Exemples Globaux:
 
