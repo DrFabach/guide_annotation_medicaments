@@ -6,14 +6,13 @@ L'objectif est d'annoter chaque texte afin d'extraire un maximum d'informations
 sur tous les traitements médicamenteux pris ou liés au patient.  Pour chaque
 traitement un ensemble de *concepts* peuvent être annotés (ex : classe de
 médicament, dose). Ces concepts peuvent être liés à une médicament à l'aide
-de *relations*. Les notions de temporalités sont particulièrement importantes et
-sont annotés avec une relation ou sans relation avec le médicament.
+de *relations*.
 
 ## L'annotation d'entités
 
 Le premier objectif est l'annotation des entités, c'est à dire les instances de concepts. La tâche d'annotation est
 centrée sur le médicament. L'ensemble des concepts suivant doivent être annotés
-s'ils sont en relation avec un médicament ou une classe de médicaments. 
+s'ils sont en relation avec un médicament ou une classe de médicaments, sauf pour les notions de temporalités qui sont toujours annotées même si elles ne sont pas liées avec un médicaments.
 
 | Concept (cliquer pour le détail) | Classes | Lien avec un médicament |
 | ------- | ------- | ------------|
@@ -40,7 +39,7 @@ annoté :
 | `Duree_admin` |  entre une `Duree` et `Med` ou `Classe` |
 | `Refer_to` |  entre une `Dosage`, une `Route`, une `Freq` ou une `Condition` et un `Med` ou `Classe` |
 | `Augmentation`, `Diminution`  |  entre une `Contexte` et `Med` ou `Classe` |
-| `Negation`, `Hypothetique`,`Contre_indique`,`Experiencer` |  entre un `Contexte` et `Med` ou `Classe`  |
+| `Negation`, `Hypothétique`,`Contre_indique`,`Experiencer` |  entre un `Contexte` et `Med` ou `Classe`  |
 | `Disc_ent`  |  Si une entité est discontinue, la relation  `Disc_ent` doit être utilisé entre les deux parties de l'entité. |
 | `Coref`  |  Cette relation fait référence à une répétition d'un médicament dans un document. Toutes répétitions au sein d'un document doit être annotée, qu'elle soit dans la même phrase ou non. Si la classe d'un médicament est spécifiée, donc qu'il y a une entité `Med` et une entité `Classe"`, il faut utiliser la relation `coref`,  le sens de la relation doit aller de la classe au médicament. |
 
@@ -84,7 +83,7 @@ Dans le cas de médicaments avec des coreférences, ou avec mention de la classe
 | Traitement en cours           | DATE               | En_cours                         |            |
 | Date non spécifié      | DATE               | Refer_to                     | il y a environ 3-4 semaines |
 | Élément contextuel    | Context               | Negation                  |  |
-| Élément contextuel    | Context               | Hypothetique                  |  |
+| Élément contextuel    | Context               | Hypothétique                  |  |
 | Élément contextuel    | Context               | Experiencer                  |  |
 | Élément contextuel    | Context               | Augmentation                  |  |
 | Élément contextuel    | Context               | Diminution                  |  |
@@ -502,9 +501,9 @@ Expressions qui décrivent la durée totale pendant laquelle le médicament doit
 - Les expressions temporelles qui indiquent quand chaque dose doit être prise. Elles peuvent correspondre à une condition.
 
   - *a prendre pendant une activité physique*
-    - *pendant une activite physique* n'est pas une durée mais une condition. 
+    - pendant une *activité physique* n'est pas une durée mais une condition, le pendant peut être remplacer par "en cas". 
 
-- Expression temporelle du début ou de l'arrêt d'un médicament (date realtive) :
+- Expression temporelle du début ou de l'arrêt d'un médicament (date relative) :
 
   - dans 10 jours
   - depuis 10 jours
@@ -617,10 +616,10 @@ Condition pour laquelle le médicament doit être administré.
 
 ##### Inclus (liste non exhaustive) :
 
-- en cas de fièvre
-- si besoin
-- si veut
-- en fonction des ASAT
+- [en cas de] fièvre
+- [si] besoin
+- [si] veut
+- [en fonction] des ASAT
 
 #### Comment annoter ?
 
@@ -630,33 +629,33 @@ les phrases complexes, n'incluez pas les phrases coordonnées. Au lieu de cela,
 extrayez de ces phrases la phrase de base, même si cela signifie que vous vous
 retrouverez avec plusieurs conditions.
 
-**Inclure les "si" ou les "en cas de", etc. dans l'annotation.**
+**Ne pas inclure les "si" ou les "en cas de", etc. dans l'annotation.**
 
 #### Exemples
 
 - *codenfan une dose/poids si besoin maximum 3x par jour*
-  - `Condition` : *si besoin*
+  - `Condition` : *besoin*
 
 S'il y a différentes conditions mentionnées pour le même médicament, alors inclure une entrée par condition et les relier au médicament. Dans les cas où plusieurs médicaments sont donnés avec la même condition, indiquez la condition et la relier la avec tous les médicaments.
 
 - *il a ete explique aux parents d utiliser l oxygene en cas d inconfort, de paleur ou de gene respiratoire et non en fonction d un chiffre de saturation*
-  - `Condition` : *en cas d inconfort*
-  - `Condition` : *paleur* [est ce qu'ici il n'y a pas une entité discontinue [en cas]...[de paleur] ? Même remarque pour le suivant]
+  - `Condition` : *inconfort*
+  - `Condition` : *paleur* 
   - `Condition` : *gene respiratoire*
-  - `Condition` : *en fonction d un chiffre de saturation* 
+  - `Condition` : *un chiffre de saturation* 
   - `contexte` : *non*
   - relations : 
-    - *en cas d inconfort* --> *oxygene* : `Refer_to`
+    - *inconfort* --> *oxygene* : `Refer_to`
     - *paleur* --> *oxygene* : `Refer_to`
     - *gene respiratoire* --> *oxygene* : `Refer_to`
     - *chiffre de saturation* --> *oxygene* : `Refer_to` 
-    - *non* --> *en fonction d un chiffre de saturation* : `Negation` 
+    - *non* --> *un chiffre de saturation* : `Negation` 
   
 Si une condition est composée de plusieurs sous-conditions (séparées par "et"), annoter séparément avec plusieurs entrées.
 
 - *melatonine 2mg : 1 gelule au coucher si agitation et probleme d endormissement*
-  - `Condition` : *si agitation*
-  - `Condition` : *probleme d endormissement*  [et pourquoi pas [si]...[probleme d'endormissement]]
+  - `Condition` : *agitation*
+  - `Condition` : *probleme d endormissement* 
 
 Les différentes façons de désigner la même condition pour les médicaments doivent être traitées comme des conditions distinctes, rajouter une relation `coref`.
 
@@ -781,7 +780,7 @@ contexte.
 1. Annoter les entités modifiant le contexte de la phrase (ex: *pas* de prise
    de doliprane, *relais* par héparine).
 2. Puis reliez ces éléments aux médicaments avec une des relations possibles :
-   `Negation`, `Hypothetique`,`Contre_indique`,`Experiencer`,
+   `Negation`, `Hypothétique`,`Contre_indique`,`Experiencer`,
 `Diminution` , `Augmentation`, `Start`, `Stop`.
 
 L'annotation des entités modifiant le contexte doit être fait dans tous les cas, même si une entité plus précise existe.
@@ -790,7 +789,7 @@ Par exemple dans la phrase, *le doliprane a été arrêté le 10/01/2015", il fa
 
 #### Types de relations :
 
-- Pour les médicaments suggérés ou incertains, un attribut de contexte `Hypothetique` doit être ajouté. 
+- Pour les médicaments suggérés ou incertains, un attribut de contexte `Hypothétique` doit être ajouté. 
 
 - Pour les médicaments non pris ou non donnés, un attribut de contexte `Negation` doit être ajouté (la relation sur un médicament négativé peut être annotée, par exemple, la relation entre avk et durée doit être annotée pour "pas d'avk pendant 2 jours"). 
 
@@ -1099,11 +1098,11 @@ Les (1),(2),(3) sont uniquement présents pour différencier les différentes en
     - `Freq` : *gouter*
     - `Freq` : *soir*
     - relations :
-      - *9-12 ui* --> *novorapid(2)* : `Refer_to`
+      - *9-12 ui* --> *novorapid(1)* : `Refer_to`
       - *6-8 ui* --> *novorapid(3)* : `Refer_to`
-      - *5-7 ui* --> *novorapid(1)* : `Refer_to`
+      - *5-7 ui* --> *novorapid(2)* : `Refer_to`
       - *novorapid(2)* --> *novorapid(1)* : `Coref`
-      - *novorapid(3)* --> *novorapid(1)* : `Coref`
+      - *novorapid(3)* --> *novorapid(2)* : `Coref`
       - *Matin* --> *novorapid(1)* : `Refer_to`
       - *soir* --> *novorapid(3)* : `Refer_to`
       - *gouter* --> *novorapid(2)* : `Refer_to`
