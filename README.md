@@ -60,15 +60,15 @@ Pour le med2, les entités reliées à freq3 sont prises en compte : freq1.--->
 L’annotation est centrée sur le concept de *frame* basé sur la temporalité d'administration des médicaments. 
 Chaque médicament unique est défini par une date de début, date de fin différente. Cette notion de date de dispensation différente peut être explicite (date de fin et de début explicitement écrite) ou implicite (changement de dose, changement de fréquence...). Ces différentes dispensations seront centrales pour générer les frames 
 
-Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir [exemple](#1-) Il s'agira de l'entité centrale de la frame.
+Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir [exemple](#1) Il s'agira de l'entité centrale de la frame.
 
 Si un médicament est renseigné avec plusieurs coréférences, choisir une des entités comme entité centrale, en priorité une entité `Med` par rapport aux entités `Classe`.
 
 
 
-Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : Médicament > Classe  > Dose > Fréquence > Durée d'administration > Voie d'administration > Condition de dispensation > Date de début > Date de fin > Contexte ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple](#2--1). Ces entités seront les entités centrales des différentes frames.
+Si un médicament est indiqué avec plusieurs prescriptions différentes, il faut relier l'ensemble des attributs du médicament à une **entité unique** du médicament si celui-ci n'est pas répété (dans l'ordre de préférence : Médicament > Classe  > Dose > Fréquence > Durée d'administration > Voie d'administration > Condition de dispensation > Date de début > Date de fin > Contexte ). Le but étant de pouvoir créer sans hésitation les frames pour chacune des différentes prescriptions, même si des données sont manquantes. Voir exemple [Exemple](#2). Ces entités seront les entités centrales des différentes frames.
 
-Dans le cas de médicaments avec des coreférences, ou avec mention de la classe du médicament, les attributs présents dans le texte doivent être reliés avec l'entité la plus proche sauf si les attributs ne peuvent pas être reliés au médicament, car plusieurs frames sont présentes, dans ce cas tout relier à l'entité centrale. [Exemple](#3--1)
+Dans le cas de médicaments avec des coreférences, ou avec mention de la classe du médicament, les attributs présents dans le texte doivent être reliés avec l'entité la plus proche sauf si les attributs ne peuvent pas être reliés au médicament, car plusieurs frames sont présentes, dans ce cas tout relier à l'entité centrale. [Exemple](#3)
 
 | À annoter               | Class d'annotation | Relation avec le médicament | exemple                     |
 |-----------------|-----------------|---------------------|-----------------|
