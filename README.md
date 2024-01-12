@@ -440,7 +440,7 @@ Toute expression qui indique la fréquence d'administration d'une dose unique d'
 
 #### Comment annoter ?
 
-Appliquez les mêmes principes de base que pour le balisage de la dose. Annotez chaque fréquence, même si elle est répétée dans la même phrase.
+Appliquez les mêmes principes de base que pour le balisage de la dose. Annotez chaque fréquence, même si elle est répétée dans la même phrase. 
 
 #### Relations avec le médicament
 
@@ -481,11 +481,11 @@ nominaux, des syntagmes prépositionnels ou des clauses. Cette expression doit
 être compatible avec un durée en relation avec un médicament. Ne pas annoter
 l'âge. Annoter uniquement les durées en relation avec un médicament. Si une
 durée est utilisée pour exprimer une date relative (ex: dans 3 mois), annoter
-comme une date relative.
+comme une date relative. 
 
 #### Qu'est-ce qui doit être annoté ?
 
-Expressions qui décrivent la durée totale pendant laquelle le médicament doit être pris à une dose donnée. 
+Expressions qui décrivent la durée totale pendant laquelle le médicament doit être pris à une dose donnée. Annoter uniquement si l'entité se rapporte à un médicament.
 
 ##### Inclus :
 
@@ -551,7 +551,7 @@ Décrit la méthode d'administration du médicament. Eventuellement le dispositi
 
 #### Qu'est-ce qui doit être annoté ?
 
-Le texte qui exprime le mode/voie d'administration, même s'il est exprimé dans le cadre du nom du médicament ou de la posologie.
+Le texte qui exprime le mode/voie d'administration, même s'il est exprimé dans le cadre du nom du médicament ou de la posologie. Annoter uniquement si l'entité se rapporte à un médicament.
 
 ##### Inclus :
 
@@ -604,16 +604,16 @@ Les différentes façons de désigner le même mode d'administration doivent êt
 
 <a name="Condition"></a>
 
-### Condition (`Condition`) 
+### Condition (`Condition`)   (Exemples [14](#14))
 
 Expressions qui indiquent la condition pour laquelle le médicament doit être
 administré. Ces expressions sont souvent des propositions conditionnelles et
 commencent par une expression conditionnelle telle que "si", "en cas de", "en
-fonction de"...
+fonction de"... 
 
 #### Qu'est-ce qui doit être annoté ?
 
-Condition pour laquelle le médicament doit être administré.
+Condition pour laquelle le médicament doit être administré. Annoter uniquement si l'entité se rapporte à un médicament.
 
 ##### Inclus (liste non exhaustive) :
 
@@ -661,10 +661,10 @@ Si une condition est composée de plusieurs sous-conditions (séparées par "et"
 Les différentes façons de désigner la même condition pour les médicaments doivent être traitées comme des conditions distinctes, rajouter une relation `coref`.
 
 - *en cas d'anemie aregenerative (hemolyse non mecanique) augmenter les corticoides*
-  - `Condition` : *en cas d'anemie aregenerative* 
+  - `Condition` : *anemie aregenerative* 
   - `Condition` : *hemolyse non mecanique*
   - relations : 
-    - *en cas d'anemie aregenerative* <-->  *hemolyse non mecanique* : `coref`
+    - *anemie aregenerative* <-->  *hemolyse non mecanique* : `coref`
     
 <a name="evenement"></a>
 
@@ -679,9 +679,11 @@ Cette information est généralement exprimée par une date ou une heure. Annote
 la date (respectivement l'heure) ou la composition des deux la plus précise possible, sans prendre en compte les
 prépositions. Si une date est composée d'un jour et d'une horaire, annoter l'ensemble comme une seule entité (ex : `01/20/2022 02:00`)
 
+
 #### Qu'est-ce qui doit être annoté ?
 
 En priorité il est nécessaire d'annoter la date la plus précise possible.
+Annoter même si l'entité ne se rapporte pas à un médicament.
 
 #### Comment annoter les relations avec les médicaments
 
@@ -823,7 +825,7 @@ Par exemple dans la phrase, *le doliprane a été arrêté le 10/01/2015", il fa
 
 ## Exemples Globaux:
 
-### 1 : 
+### 1 
 
 - *La pancytopenie s'est compliquée après la chimiothérapie d’un sepsis a Escherichia coli résistant a la tazocilline (tazocilline\* depuis le 6 septembre 2010) traite par fortum à partir du 15 septembre 2010*
   - `Classe` : *chimiotherapie*
@@ -843,7 +845,7 @@ Par exemple dans la phrase, *le doliprane a été arrêté le 10/01/2015", il fa
 
 <img src="examples/exemple1.PNG" width="1000px">
 
-### 2 : 
+### 2 
 
 - *AUGMENTIN 600mg toutes les 8h jusuq'au 2019-10-11 inclus. PARACÉTAMOL(1;2) 250mg(1;2) toutes les 6h de façon systématique pendant 48h puis en cas de douleurs pendant 7 jours*
  - `Med` : *AUGMENTIN*
@@ -881,33 +883,16 @@ Par exemple dans la phrase, *le doliprane a été arrêté le 10/01/2015", il fa
 
 <img src="examples/exemple2.PNG" width="1000px">
 
-### 3.1 :
+### 3
 
 - Différence d'attribution des relations, cas simple, cas multi-frame
 
 <img src="examples/coref_relie.PNG" width="1000px">
 <img src="examples/coref_multi_frame.PNG" width="1000px">
 
-### 3.2 : 
-
-- *il a été explique aux parents d’utiliser l oxygène en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
- - `Classe` : *oxygène*
- - `Condition` : *en cas d’inconfort*
- - `Condition` : *de pâleur*
- - `Condition` : *gene respiratoire*
- - `Contexte` : *non*
- - `Condition` : *en fonction d’un chiffre de saturation*
- - relations :
-  - *en fonction d’un chiffre de saturation* --> *oxygène* : `Refer_to`
-  - *gene respiratoire* --> *oxygène* : `Refer_to`
-  - *de pâleur* --> *oxygène* : `Refer_to`
-  - *en cas d’inconfort* --> *oxygène* : `Refer_to`
-  -  *non* --> *en fonction d’un chiffre de saturation* : `Negation`
 
 
-<img src="examples/Si_besoin.PNG" width="1000px">
-
-### 4 : 
+### 4 
 
 - *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol 1 boite)*
   - `Med` : *doliprane*
@@ -1136,3 +1121,22 @@ Les (1),(2),(3) sont uniquement présents pour différencier les différentes en
 
 <img src="examples/freq_dose_comb.PNG" height="100px">
 
+
+### 14
+
+- *il a été explique aux parents d’utiliser l oxygène en cas d’inconfort, de pâleur ou de gene respiratoire et non en fonction d’un chiffre de saturation*
+ - `Classe` : *oxygène*
+ - `Condition` : *inconfort*
+ - `Condition` : *pâleur*
+ - `Condition` : *gene respiratoire*
+ - `Contexte` : *non*
+ - `Condition` : *chiffre de saturation*
+ - relations :
+  - *chiffre de saturation* --> *oxygène* : `Refer_to`
+  - *gene respiratoire* --> *oxygène* : `Refer_to`
+  - *pâleur* --> *oxygène* : `Refer_to`
+  - *inconfort* --> *oxygène* : `Refer_to`
+  -  *non* --> *chiffre de saturation* : `Negation`
+
+
+<img src="examples/Si_besoin.PNG" width="1000px">
