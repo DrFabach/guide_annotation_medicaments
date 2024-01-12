@@ -2,4 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
+README.html
 guide_annotation_medicaments.Rproj
+*.swp
