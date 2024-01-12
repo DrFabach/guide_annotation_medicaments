@@ -60,7 +60,7 @@ Pour le med2, les entités reliées à freq3 sont prises en compte : freq1.--->
 L’annotation est centrée sur le concept de *frame* basé sur la temporalité d'administration des médicaments. 
 Chaque médicament unique est défini par une date de début, date de fin différente. Cette notion de date de dispensation différente peut être explicite (date de fin et de début explicitement écrite) ou implicite (changement de dose, changement de fréquence...). Ces différentes dispensations seront centrales pour générer les frames 
 
-Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir [exemple](#1--1) Il s'agira de l'entité centrale de la frame.
+Si un médicament est renseigné de manière simple dans le dossier patient, et qu'il respecte ce concept de frame, l'ensemble des attributs des médicaments doivent être reliés au médicament. Voir [exemple](#1-) Il s'agira de l'entité centrale de la frame.
 
 Si un médicament est renseigné avec plusieurs coréférences, choisir une des entités comme entité centrale, en priorité une entité `Med` par rapport aux entités `Classe`.
 
@@ -199,7 +199,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 
 Annotez la phrase nominale complète qui correspond au nom du médicament, par exemple, amoxicilline acide clavulanique. L'annotation doit être faite même s'il y a des fautes d'orthographe. Ne pas inclure des mots tels que "injectable", "crème", "nébuliseur", "solution" comme faisant partie du nom du médicament même s'ils apparaissent immédiatement après le nom du médicament, par exemple, sélénium injectable, xylocaïne nébuliseur. N'incluez pas d'information numérique dans le nom du médicament, p. ex. renutril 500, à moins qu'il ne s'agisse d'un type de substances, par ex. iodure 131. Sans le cas du renutril 500, *500* correspond à la dose.
 
-Les pronoms qui font référence à un médicament doivent être annotés et une relation de `Coref` doit être ajoutée.
+Les pronoms qui font référence à un médicament  et qui rajoute de l'information à un autre endroit doivent être annotés et une relation de `Coref` doit être ajoutée.
 
 
 
@@ -217,7 +217,7 @@ Les pronoms qui font référence à un médicament doivent être annotés et une
   - `context` : *grand-mere maternelle*
   - relation : *grand-mere maternelle* <--> *insuline* : `Experiencer`
 
-Chaque référence conjointe d'un médicament (nom de classe ou de médicament) ou de ses génériques, y compris avec des fautes d'orthographe, dans le même paragraphe, doit être annotée si elles appartiennent à la même frame (même médicament, même temporalité). Une relation de `Coref` entre les entités doit être rajoutée.
+Chaque référence conjointe d'un médicament (nom de classe ou de médicament) ou de ses génériques, y compris avec des fautes d'orthographe, dans le même paragraphe, doit être annotée si elles appartiennent à la même frame (même médicament, même temporalité). Une relation de `Coref` entre les entités doit être rajoutée. (Exemple [12](#12))
 
 - *doliprane 1 dose poids\*4/ jour si douleurs (paracetamol 1 boite)*
   - `Med` : *doliprane*
@@ -287,13 +287,14 @@ Dans le cas d'un dispositif médical, on annote uniquement le médicament (s'il 
 
 <a name="Dosage"></a>
 -------------------------------------------------------
-### Dose (`Dosage`)
+### Dose (`Dosage`) (Exemples [2](#2),[4](#4),[8](#8), [12](#12) et [13](#13))
 
 La quantité d'un seul médicament utilisé dans chaque administration, par exemple *un comprimé, une dose, 30 mg*.
 
 #### Que faut-il annoter ?
 
 Les informations numériques et/ou textuelles qui indiquent la quantité et l'unité d'administration d'un médicament utilisées pour une seule administration, uniquement si elles sont en rapport avec un médicament. Annoter le dosage numérique et l'unité dans la même annotation.
+Annoter uniquement si l'entité se rapporte à un médicament.
 
 ##### Inclus (liste non exhaustive) :
 
@@ -402,9 +403,9 @@ Annoter un seul motif pour tous les médicaments lorsque la dose en concerne plu
 
 <a name="Freq"></a>
 
-### Fréquence (`Freq`)
+### Fréquence (`Freq`)  (Exemples [4](#4),[6](#6) [12](#12) et [13](#13))
 
-Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. 
+Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque dose du médicament doit être prise. Annoter uniquement si l'entité se rapporte à un médicament.
 
 #### Que faut-il annoter ?
 
