@@ -124,7 +124,7 @@ Pour annoter des médicaments, le texte doit inclure une déclaration explicite 
 - Médicaments illicites
 - transfusion
 
-### Classe de médicaments (**"class"**)
+### Classe de médicaments (**"class"**) (Exemple [1](#1))
 
 ### Inclut :
 
@@ -192,6 +192,7 @@ Les pronoms qui font référence à un médicament ne doivent pas être inclus, 
 - Pour les médicaments mentionnés comme contre-indication, la certitude **"counterindication"** doit être annotée.
 
 - Expérimentateur (**experiencer**) : Si la médication concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur .
+
 
 
 
@@ -286,11 +287,11 @@ Dans le cas d'un dispositif médical, on annote uniquement le médicament (s'il 
 -------------------------------------------------------
 # Dose (**"dose"**)
 
-La quantité d'un seul médicament utilisé dans chaque administration, par exemple *un comprimé, une dose, 30 mg*.
+La quantité d'un seul médicament utilisé dans chaque administration, par exemple *un comprimé, une dose, 30 mg*. 
 
 ## Que faut-il annoter ?
 
-Les informations numériques et/ou textuelles qui marquent la quantité et l'unité d'administration d'un médicament utilisé dans une seule administration, mais également les quantités et unité d'administration non en relation avec un médicament.
+Les informations numériques et/ou textuelles qui marquent la quantité et l'unité d'administration d'un médicament utilisé dans une seule administration. Annoter uniquement si se réfère à un médicament.
 
 ### Inclut (liste non exhaustive) :
 
@@ -412,7 +413,7 @@ Termes, phrases ou abréviations qui décrivent la fréquence à laquelle chaque
 
 ## Que faut-il annoter ?
 
-Toute expression qui indique la fréquence d'administration d'une dose unique d'un médicament doit être annotée.
+Toute expression qui indique la fréquence d'administration d'une dose unique d'un médicament doit être annotée. Annoter uniquement si se réfère à un médicament.
 
 ### Inclut :
 
@@ -445,6 +446,7 @@ Toute expression qui indique la fréquence d'administration d'une dose unique d'
 ## Comment annoter ?
 
 Appliquez les mêmes principes de base que pour le balisage de la dose. Annotez chaque fréquence, même si elle est répétée dans la même phrase.
+Annoter uniquement si se réfère à un médicament.
 
 ### Relations avec le médicament
 
@@ -477,7 +479,7 @@ Une expression de temps écoulé qui indique pendant combien de temps le médica
 
 ## Qu'est-ce qui doit être annoté ?
 
-Expressions qui décrivent la durée totale pendant laquelle le médicament doit être pris à une dose donnée. Dans le cas de médicaments qui sont arrêtés, la durée indique pendant combien de temps le médicament a été arrêté.
+Expressions qui décrivent la durée totale pendant laquelle le médicament doit être pris à une dose donnée. Dans le cas de médicaments qui sont arrêtés, la durée indique pendant combien de temps le médicament a été arrêté. Annoter uniquement si se réfère à un médicament.
 
 ### Inclut :
 
@@ -607,7 +609,7 @@ Expressions qui indiquent la condition pour laquelle le médicament doit être a
 
 ## Qu'est-ce qui doit être annoté ?
 
-Condition pour laquelle le médicament doit être administré.
+Condition pour laquelle le médicament doit être administré. Annoter uniquement si se réfère à un médicament.
 
 ### Inclut (liste non exhaustive) :
 
@@ -664,7 +666,7 @@ Annotez toutes les mentions temporelles mentionnées présentes dans les documen
 
 ## Qu'est-ce qui doit être annoté ?
 
-Le mot principal (verbe, nom...) soulignant l'évènement tel que "mise en route", "début", "poursuite", "relais" ..., ainsi que la date la plus précise. Si le mot principal est séparé de la date dans la phrase, créer deux entités différentes.
+Le mot principal (verbe, nom...) soulignant l'évènement tel que "mise en route", "début", "poursuite", "relais" ..., ainsi que la date la plus précise. Si le mot principal est séparé de la date dans la phrase, créer deux entités différentes. Annoter toutes les dates et dates relatives même si elles ne sont pas en rapport avec un médicament.
 
 ## Comment annoter les relations avec les médicaments
 
