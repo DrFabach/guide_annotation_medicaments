@@ -702,6 +702,8 @@ Choisissez parmi les valeurs possibles :
 
 #### Exemples :
 
+- *Début du méthotrexate dans 3 mois*
+  - `Date_relative` : *dans 3 mois*
 - *le 01/20/2022 02:00*
   - `Date` : *01/20/2022 02:00*
 - *meningocoque a + c : 11/07.*
