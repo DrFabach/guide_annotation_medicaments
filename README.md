@@ -386,8 +386,9 @@ Annotez les différentes façons de se référer aux mêmes doses dans des entr�
   - `Dosage` : *50*
   - `Freq` : *deux bouffeesx2/j*
 - *singulair 1 sachet de 4mg/jour,*
-  - `Dosage` : *1 sachet de 4mg*
-
+  - `Dosage` : *1 sachet*
+  - `Dosage` :  *4mg*
+  - *1 sachet* <-> *4mg* : `Coref`
 
 
 
