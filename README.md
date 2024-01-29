@@ -145,7 +145,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 - Régime alimentaire
 - Tabac
 - Alcool
-- Médicaments illicites
+- Médicaments illicites29
 - transfusion
 
 #### Classe de médicaments (`Classe`)
@@ -717,6 +717,7 @@ Choisissez parmi les valeurs possibles :
   - `Date_relative` : *j5*
   - relations : 
     - *j5* --> *antibiotherapie* : `Stop`
+    - *arrete* --> *antibiotherapie* : `Stop`
 - *doliprane du 11 mai au 25 mai*
   - `Med` : *doliprane*
   - `Date` : *11 mai*
@@ -756,9 +757,11 @@ Le passage d'un médicament à un autre comprend deux événements sur la même 
     - *15 septembre 2010* --> *tazocilline* : `Stop`
     - *15 septembre 2010* --> *fortum* : `Start`
 
-S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évenement, annoter l'ensemble des entités et créer des relations permettant de recréer une frame pour chaque prescription. Relier tout les attributs à l'entité la plus discriminante entre les prescriptions ((dans l'ordre de préférence : date, dose, fréquence, voie d'administration ) . 
+S'il y a plusieurs prescriptions (en terme de temporalité) pour un même évenement, annoter l'ensemble des entités et créer des relations permettant de recréer une frame pour chaque prescription. Relier tout les attributs à l'entité la plus discriminante entre les prescriptions ((dans l'ordre de préférence : Médicament > Classe > Dose > Fréquence > Durée d'administration > Voie d'administration > Condition de dispensation > Date de début > Date de fin > Contexte ) . 
 
-- *debut du traitement par ambisome le 29 mars 2014 a 3 mg/kg jusqu au 2 avril puis 5 mg/kg jusqu au 7 avril, puis 7,5 mg/kg jusqu au 30 avril*
+
+
+- *debut du traitement par ambisome le 29 mars 2014 jusqu au 2 avril puis diminution jusqu au 7 avril, puis diminution jusqu au 30 avril*
   - `med` : *ambisome*
   - `Date` : *29 mars 2014*
   - `Date` : *2 avril*
