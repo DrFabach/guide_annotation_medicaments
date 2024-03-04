@@ -145,7 +145,7 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 - Régime alimentaire
 - Tabac
 - Alcool
-- Médicaments illicites29
+- Médicaments illicites
 - transfusion
 
 #### Classe de médicaments (`Classe`)
@@ -200,6 +200,8 @@ Lien pour identifier si l'entité est un médicament ou une classe :
 Annotez la phrase nominale complète qui correspond au nom du médicament, par exemple, amoxicilline acide clavulanique. L'annotation doit être faite même s'il y a des fautes d'orthographe. Ne pas inclure des mots tels que "injectable", "crème", "nébuliseur", "solution" comme faisant partie du nom du médicament même s'ils apparaissent immédiatement après le nom du médicament, par exemple, sélénium injectable, xylocaïne nébuliseur. N'incluez pas d'information numérique dans le nom du médicament, p. ex. renutril 500, à moins qu'il ne s'agisse d'un type de substances, par ex. iodure 131. Sans le cas du renutril 500, *500* correspond à la dose.
 
 Les pronoms qui font référence à un médicament  et qui rajoute de l'information à un autre endroit doivent être annotés et une relation de `Coref` doit être ajoutée.
+
+S'il y a un médicament uniquement présent sous la forme de "traitement" sans précision, ne pas annoté la mention de "traitement", mais annoter les attributs qui pourrait s'y référer. Ne pas créer de relation dans ce cas, voir exemple [15](#15)
 
 
 
@@ -701,6 +703,7 @@ Choisissez parmi les valeurs possibles :
 
 
 
+
 #### Exemples :
 
 - *Début du méthotrexate dans 3 mois*
@@ -808,20 +811,25 @@ Par exemple dans la phrase, *le doliprane a été arrêté le 10/01/2015", il fa
 - Expérimentateur (`Experiencer`) : Si le traitement concerne d'autres personnes, elle doit être annotée avec un attribut d'expérimentateur 
 - Diminution augmentation (`Diminution`/`augmentation`) pour les médicaments ayant une notion de diminution augmentation sans temporalité clairement définie .
 
+#### Ne pas annoter :
+
+Ne pas annoter les éléments contextuels n'ayant pas de relation précise avec un médicament.
+Exemmple, ne pas annoter : "traité par Doliprane", la relation entre "traité" et "Doliprane" n'est pas assez précise pour mettre une relation spécifique. 
+
 #### Exemples 
 
 
 - *antibiotherapie debutee lors de la chirurgie, a arrete a j5*
   - `Classe` : *antibiotherapie*
-  - `Context` : *lors de la chirurgie*
+  - `Context` : *debutee*
   - relations : 
-    - *lors de la chirurgie* --> *antibiotherapie* : `Start`
+    - *debutee* --> *antibiotherapie* : `Start`
 - *Aspirine 500mg /jour, pas de precription de dolipran*
   - `Med` : *Aspirine*
   - `Med` : *dolipran*
-  - `Contexte` : *pas de prescription*
+  - `Contexte` : *pas*
   - relations : 
-    *pas de prescription* --> *dolipran* : `Negation` 
+    *pas* --> *dolipran* : `Negation` 
 - *Relais de l'augmentin par de l'ammoxicilline*
   - `Med` : *augmentin*
   - `Med` : *ammoxicilline*
@@ -1147,3 +1155,16 @@ Les (1),(2),(3) sont uniquement présents pour différencier les différentes en
 
 
 <img src="examples/Si_besoin.PNG" width="1000px">
+
+
+
+### 15
+
+- *Récemment, il a oublié de faire une injection mais rapidement il décrit tout de même l?apparition d?une arthrite du poignet gauche. Ainsi, après discussion, je pense qu?il faut bien maintenir ce traitement une fois par semaine.*
+ - `Date_relative` : *Récemment*
+ - `Route` : *injection*
+ - `Contexte` : *maintenir*
+ - `Freq` : *une fois par semaine*
+ 
+
+<img src="examples/medicament.PNG" width="1000px">
